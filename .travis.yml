@@ -1,0 +1,9 @@
+language: groovy
+install: ./gradlew assemble
+script: ./gradlew clean build
+notifications:
+  email: false
+branches:
+  only:
+    - master
+
