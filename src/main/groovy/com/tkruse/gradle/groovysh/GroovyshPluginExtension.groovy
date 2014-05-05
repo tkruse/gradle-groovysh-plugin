@@ -6,5 +6,7 @@ import org.gradle.api.Project
 class GroovyshPluginExtension
 {
 
+    def enableBuildShell = true;
+    def enableAppShell = true;
 
 }

@@ -7,10 +7,18 @@ import org.junit.Test
 class GroovyshPluginTest {
 
     @Test
-    void testApply() {
+    void testApplyNoJava() {
         Project project = ProjectBuilder.builder().build()
         project.apply plugin: 'groovysh'
-
+        project.extensions.groovysh.enableAppShell = false
         assert project.tasks.buildShell instanceof BuildShellTask
+    }
+
+    @Test
+    void testApplyWithJava() {
+        Project project = ProjectBuilder.builder().build()
+        project.apply plugin: 'java'
+        project.apply plugin: 'groovysh'
+        assert project.tasks.shell instanceof ApplicationShellTask
     }
 }

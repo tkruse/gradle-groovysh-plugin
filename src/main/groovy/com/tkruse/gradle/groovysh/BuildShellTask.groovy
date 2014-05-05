@@ -11,7 +11,7 @@ class BuildShellTask
 {
 
     static final String NAME = 'buildShell';
-
+    static final String CONFIGURATION_NAME = 'buildShellConf';
 
     public BuildShellTask()
     {
@@ -23,6 +23,7 @@ class BuildShellTask
     @TaskAction
     void exec()
     {
+
         GroovyshPlugin.checkDeamon(project)
         GroovyshPlugin.checkQuiet(project)
 

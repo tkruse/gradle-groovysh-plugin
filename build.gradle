@@ -40,8 +40,19 @@ task wrapper(type: Wrapper, description: 'Generates the gradle wrapper.') {
     gradleVersion = '1.12'
 }
 
+test {
+    testLogging {
+        exceptionFormat "full" // default is "short"
+    }
+}
+
 dependencies {
     compile gradleApi()
     compile "jline:jline:1.0"
+    compile('org.codehaus.groovy:groovy-all:2.2.2') { force = true }
+    runtime('commons-cli:commons-cli:1.2')
+//    compile("jline:jline:2.11") {
+//        exclude(group: 'junit', module: 'junit')
+//    }
     testCompile("junit:junit-dep:4.11")
 }
