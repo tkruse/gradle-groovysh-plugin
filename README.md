@@ -38,3 +38,11 @@ To build the plugin, just type the following commmand:
 
     ./gradlew clean build
 
+Features
+--------
+
+- Run a shell where project variable is the same as in build.gradle file
+
+Wishlist
+--------
+- Run a shell with application classes

@@ -1,5 +1,6 @@
 package com.tkruse.gradle.groovysh
 
+import org.codehaus.groovy.tools.shell.Groovysh
 import org.gradle.api.DefaultTask
 import org.gradle.api.Task
 import org.gradle.api.GradleException
@@ -10,8 +11,7 @@ class BuildShellTask
 {
 
     static final String NAME = 'buildShell';
-    static final String CONFIGURATION_NAME = 'buildShellConf';
-    private final static String DAEMON_PROP = 'org.gradle.daemon';
+
 
     public BuildShellTask()
     {
@@ -23,14 +23,14 @@ class BuildShellTask
     @TaskAction
     void exec()
     {
-        println('This is a gradle Build Shell. The variable "project" is bound to your root project.')
-        println('Run e.g. "project.ext.properties" to inspect your project.')
+        GroovyshPlugin.checkDeamon(project)
+        GroovyshPlugin.checkQuiet(project)
 
-        if (project.hasProperty(DAEMON_PROP) && project.property(DAEMON_PROP) == 'true') {
-            throw new IllegalStateException('Do not run $NAME with gradle daemon (use --no-daemon).')
-        }
+        println("$NAME: This is a gradle Build Shell. The variable 'project' is bound to your root project.")
+        println("$NAME: Run e.g. 'project.ext.properties' to inspect your project.")
 
-        def shell = new org.codehaus.groovy.tools.shell.Groovysh()
+        Groovysh shell = new org.codehaus.groovy.tools.shell.Groovysh()
+        // this hacks into Groovysh internal API and may break in the future.
         shell.interp.context.variables.put("project", project)
         shell.run()
     }
