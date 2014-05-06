@@ -73,18 +73,37 @@ Features
 
 - Run a shell where project variable is the same as in build.gradle file
 - Run a shell with application classes (Prototype)
+- AppShell: Configure SourceSet
+- Disable Tasks (become hidden)
 
-Wishlist
---------
-- Cleaner handling of configurations and sourceSets
+Wishlist / Brainstorming
+------------------------
+
+- Cleaner handling of configurations (extend runtime, testRuntime)
 - Configure ApplicationShell Task JavaExec params
 - Configure ApplicationShell Task Groovy Version
 - Configure ApplicationShell Broken Ansi Keyboard (may require Groovy 2.3.2)
 - Define ApplicationShell initial commands, import (may require Groovy 2.3.2)
-- Automatically go quiet
 - Better checking whether Daemon or Parallel mode is on
+- Tutorials / Examples
+    - Spring Container
+    - mongodb
+    - hibernate
+    - running unit tests without creating fixture again?
+    - MBeans
+    - REST call HTML / JSON processing
 - Release to bintray / Maven central
+- Check shell on Windows / MacOS
+- Automatically go quiet
+- Print gradle info on task execution keeping the grooovysh prompt below that, somehow.
+- Support for class reloading when application sources changes
+- Support for class reloading when gradle sources changes
+- Support for running tasks multiple times forcefully
+- Maven groovysh plugin
+- Gradle/Maven scala shell plugin
+- Gradle/Maven clojure shell plugin
 - Promote to standard gradle plugin
+
 
 
 Installing the plugin
