@@ -30,7 +30,30 @@ If you have the gradle daemon configured, also add --no-daemon
     $ gradle -q shell
     $ gradle -q buildshell
 
-Things you can do with the shell:
+
+Configuring the Plugin
+----------------------
+
+    groovysh {
+
+        // false to disable the buildshell task
+        enableBuildShell = true
+        // false to disable the buildshell task
+        enableAppShell = true
+
+        buildShell {
+        }
+
+        shell {
+            // default is 'main'
+            sourceSetName = 'test'
+        }
+    }
+
+
+
+Some things you can do with the shell
+-------------------------------------
 
 - Instantiate a Spring Container (provided you add Spring dependencies to your project)
 - Instantiate a Database connection, write business entities etc.

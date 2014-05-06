@@ -1,6 +1,5 @@
 package com.tkruse.gradle.groovysh
 
-import org.gradle.api.NamedDomainObjectContainer
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
@@ -15,7 +14,16 @@ class GroovyshPlugin
     {
         project.repositories.jcenter()
         project.extensions.create(NAME, GroovyshPluginExtension)
+        project.groovysh.extensions.create(BuildShellTask.NAME, BuildShellTaskExtension)
+        project.groovysh.extensions.create(ApplicationShellTask.NAME, ApplicationShellTaskExtension)
 
+        // need to have extensions read
+        project.afterEvaluate {
+            setupTasks(project)
+        }
+    }
+
+    void setupTasks(final Project project) {
         if (project.groovysh.enableBuildShell) {
             project.configurations.create(BuildShellTask.CONFIGURATION_NAME)
             project.tasks.create(BuildShellTask.NAME, BuildShellTask.class)

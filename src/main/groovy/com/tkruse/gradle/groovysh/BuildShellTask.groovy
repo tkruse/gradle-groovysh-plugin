@@ -2,8 +2,6 @@ package com.tkruse.gradle.groovysh
 
 import org.codehaus.groovy.tools.shell.Groovysh
 import org.gradle.api.DefaultTask
-import org.gradle.api.Task
-import org.gradle.api.GradleException
 import org.gradle.api.tasks.TaskAction
 
 class BuildShellTask
@@ -20,10 +18,10 @@ class BuildShellTask
         this.outputs.upToDateWhen { false }
     }
 
+
     @TaskAction
     void exec()
     {
-
         GroovyshPlugin.checkDeamon(project)
         GroovyshPlugin.checkQuiet(project)
 
@@ -33,6 +31,19 @@ class BuildShellTask
         Groovysh shell = new org.codehaus.groovy.tools.shell.Groovysh()
         // this hacks into Groovysh internal API and may break in the future.
         shell.interp.context.variables.put("project", project)
+
+        // convenience access
+        shell.interp.context.variables.put("ant", project.ant)
+        shell.interp.context.variables.put("artifacts", project.artifacts)
+        shell.interp.context.variables.put("buildDir", project.buildDir)
+        shell.interp.context.variables.put("configurations", project.configurations)
+        shell.interp.context.variables.put("components", project.components)
+        shell.interp.context.variables.put("extensions", project.extensions)
+        shell.interp.context.variables.put("dependecies", project.dependencies)
+        shell.interp.context.variables.put("repositories", project.repositories)
+        shell.interp.context.variables.put("rootDir", project.rootDir)
+        shell.interp.context.variables.put("rootProject", project.rootProject)
+
         shell.run()
     }
 }
