@@ -96,13 +96,13 @@ Features
 
 - Run a shell where project variable is the same as in build.gradle file
 - Run a shell with application classes (Prototype)
-- AppShell: Configure SourceSet
+- AppShell: Configure SourceSet (test or main)
 - Disable Tasks (become hidden)
+- AppShell uses independent configuration (extends runtime or testRuntime)
 
 Wishlist / Brainstorming
 ------------------------
 
-- Cleaner handling of configurations (extend runtime, testRuntime)
 - Configure ApplicationShell Task JavaExec params
 - Configure ApplicationShell Task Groovy Version
 - Configure ApplicationShell Broken Ansi Keyboard (may require Groovy 2.3.2)

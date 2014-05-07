@@ -1,7 +1,7 @@
-package com.tkruse.gradle.groovysh
+package com.tkruse.gradle.groovysh;
 
 class ApplicationShellTaskExtension
 {
 
-    def sourceSetName = 'main';
+    String sourceSetName = "main";
 }
