@@ -20,7 +20,7 @@ This plugin is **Work In Progress**, expect some rough edges.
 ## Prerequisites
 
 * [Java](http://www.java.com/)
-* [Gradle](http://www.gradle.org)
+* [Gradle](http://www.gradle.org) (From gradle wrapper is fine)
 
 - **NO GROOVY INSTALLATION REQUIRED**
 - **NO CHANGE TO YOUR JAVA CODE REQUIRED**
@@ -42,6 +42,8 @@ If you have the gradle daemon configured, also add ```--no-daemon```
 gradle -q shell
 gradle -q buildshell
 ```
+
+When using the gradle wrapped, that would be ```./gradlew``` instead.
 
 ## Configuring the Plugin
 
@@ -76,8 +78,8 @@ groovysh {
 
 ## Features
 
-- Run a shell where ```project``` variable is the same as in ```build.gradle``` file
-- Run a shell with application classes (Prototype)
+- Run a shell where the ```project``` variable is the same as in ```build.gradle``` file
+- Run a shell with application classes
 - AppShell: Configure SourceSet (test or main)
 - Disable Tasks (become hidden)
 - AppShell uses independent configuration (extends runtime or testRuntime)
@@ -141,8 +143,8 @@ groovy:000> project.tasks.clean.execute() // only executes once
 ### Caveats
 
 
-Notice that the groovy version for the build shell is the same as for gradle (1.8.6), whereas for the application
-shell a much more recent version of groovy (2.3.x) can be used. As a consequence the application shell is much prettier,
+Notice that the Groovy version for the build shell is the same as for gradle (1.8.6), whereas for the application
+shell a much more recent version of Groovy (2.3.x) can be used. As a consequence the application shell is much prettier,
 and the allowed syntax is different.
 
 Also if you are new to groovysh, the number one quirk to know is that you **must not** declare variables, e.g.:
@@ -182,29 +184,21 @@ Bring some patience for the unit tests.
 A better way will be provided as this plugin matures.
 
 
-## Getting a shell without depending on this plugin:
+### Getting a shell without installing this plugin:
 
 See the docs at:
  - [Manual Build Shell README](doc/InstallBuildShellManually.md)
  - [Manual App Shell README](doc/InstallAppShellManually.md)
-
-
-## Building the Plugin
-
-To build the plugin, just type the following commmand:
-
-```bash
-./gradlew clean build
-```
+Or just install Groovy and run ```groovysh``` with a suitable classpath.
 
 ## Compatibility
 
 TODO: Extend with time
 
-* Java Versions (7)
+* Java Versions (6?, 7, 8)
 
 * Operating Systems (Ubuntu Precise)
 
-* Gradle versions (1.9)
+* Gradle versions (1.8?, 1.9, 1.10?, 1.11?, 1.12?)
 
 * Groovy Versions (2.2.2)

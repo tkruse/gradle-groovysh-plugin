@@ -1,6 +1,6 @@
 # Installing a Build Shell manually
 
-In case you do not wish to depend on the gradle-groovysh-plugin for one reason or another, here is how you can obtain
+In case you do not wish to depend on the gradle-groovysh-plugin for any reason, here is how you can obtain
 the same results:
 
 ```Groovy
@@ -38,5 +38,5 @@ task('buildshell') {
 }
 ```
 
-Remember that this will give you a shell for the Groovy version of gradle (1.8.6 for Gradle 1.12 at the time of writing this), which is
+Remember that this will give you a shell for the Groovy version of Gradle (e.g. Groovy 1.8.6 for Gradle 1.12), which is
 much less usable than the latest Groovy shell.

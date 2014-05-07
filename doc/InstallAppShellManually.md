@@ -1,6 +1,6 @@
 # Installing an Application Shell manually
 
-In case you do not wish to depend on the gradle-groovysh-plugin for one reason or another, here is how you can obtain
+In case you do not wish to depend on the gradle-groovysh-plugin for any reason, here is how you can obtain
 the same results:
 
 In your ```build.gradle```:
@@ -41,7 +41,7 @@ task shell(dependsOn: 'testClasses', type: JavaExec) {
 }
 ```
 
-Also create the file shell.ShellMain.java (or whatever you want to call it, used as main = ... in task shell):
+Also create the file shell.ShellMain.java (or whatever you want to call it, used as ```main = ...``` in task ```shell```):
 
 ```Java
 package shell;
@@ -58,4 +58,4 @@ class ShellMain {
 }
 ```
 
-You can also use a groovy Class, of course.
+You can also use a Groovy Class, of course.
