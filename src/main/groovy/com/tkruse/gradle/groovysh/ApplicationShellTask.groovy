@@ -46,13 +46,58 @@ class ApplicationShellTask
         FileCollection appClasspath = sourceSets.getByName(sourceSetName).runtimeClasspath;
         FileCollection shellClasspath = project.configurations.appShellConf.getAsFileTree();
         this.classpath = appClasspath + shellClasspath;
+        FileCollection extraClasspath = project.groovysh.shell.extraClasspath;
+        if (extraClasspath != null) {
+            this.classpath = this.classpath + extraClasspath;
+        }
 
-        this.standardInput = System.in;
         //this.main = 'com.tkruse.gradle.groovysh.ShellMain'
         this.main = 'org.codehaus.groovy.tools.shell.Main';
-        // this.jvmArgs =
-        // this.args =
-        // this.workingDir =
+        List<String> jvmArgs = project.groovysh.shell.jvmArgs
+        if (jvmArgs != null && jvmArgs.size() > 0) {
+            this.jvmArgs = jvmArgs
+        }
+        List<String> args = project.groovysh.shell.args
+        if (args != null && args.size() > 0) {
+            this.args = args
+        }
+        File workingDir = project.groovysh.shell.workingDir
+        if (workingDir != null) {
+            this.workingDir = workingDir
+        }
+
+        FileCollection bootstrapClasspath = project.groovysh.shell.bootstrapClasspath
+        if (bootstrapClasspath != null) {
+            this.bootstrapClasspath = bootstrapClasspath
+        }
+
+        this.enableAssertions = project.groovysh.shell.enableAssertions
+
+        Map<String, Object> environment = project.groovysh.shell.environment
+        if (environment != null) {
+            this.environment = environment
+        }
+        OutputStream errorOutput = project.groovysh.shell.errorOutput
+        if (errorOutput != null) {
+            this.errorOutput = errorOutput
+        }
+        String maxHeapSize = project.groovysh.shell.maxHeapSize
+        if (maxHeapSize != null) {
+            this.maxHeapSize = maxHeapSize
+        }
+        InputStream standardInput = project.groovysh.shell.standardInput
+        if (standardInput != null) {
+            this.standardInput = standardInput
+        }
+        OutputStream standardOutput = project.groovysh.shell.standardOutput
+        if (standardOutput != null) {
+            this.standardOutput = standardOutput
+        }
+        Map<String, Object> systemProperties = project.groovysh.shell.systemProperties
+        if (systemProperties != null) {
+            this.systemProperties = systemProperties
+        }
+
     }
 
     @Override

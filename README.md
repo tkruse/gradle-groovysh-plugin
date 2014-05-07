@@ -61,6 +61,12 @@ groovysh {
     shell {
         // default is 'main'
         sourceSetName = 'test'
+        extraClasspath = configurations.runtime.asFileTree
+        workingDir = file('src/main/webapp')
+        jvmArgs = ['-Xmx1024m']
+        /* arguments to groovysh */
+        // args = ['--terminal=none']
+        /* ... the other params of gradle JavaExec can also be used */
     }
 }
 ```
@@ -75,10 +81,10 @@ groovysh {
 - AppShell: Configure SourceSet (test or main)
 - Disable Tasks (become hidden)
 - AppShell uses independent configuration (extends runtime or testRuntime)
+- AppShell: Configure Task JavaExec params
 
 ### Wishlist / Brainstorming / TODOs
 
-- Configure ApplicationShell Task JavaExec params
 - Configure ApplicationShell Task Groovy Version
 - Configure ApplicationShell Broken Ansi Keyboard (may require Groovy 2.3.2)
 - Define ApplicationShell initial commands, imports (may require Groovy 2.3.2)
