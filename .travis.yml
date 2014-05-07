@@ -1,6 +1,11 @@
 language: groovy
-install: ./gradlew assemble
-script: ./gradlew clean build
+jdk:
+  - oraclejdk7
+  - oraclejdk8
+  - openjdk6
+  - openjdk7
+install: ./gradlew assemble --stacktrace
+script: ./gradlew clean build --stacktrace
 notifications:
   email: false
 branches:
