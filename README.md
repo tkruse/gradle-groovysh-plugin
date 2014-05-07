@@ -19,7 +19,7 @@ This plugin is **Work In Progress**, expect some rough edges.
 
 ## Prerequisites
 
-* [Java 7](http://www.java.com/)
+* [Java](http://www.java.com/)
 * [Gradle](http://www.gradle.org)
 
 - **NO GROOVY INSTALLATION REQUIRED**
@@ -89,6 +89,8 @@ groovysh {
 - Configure ApplicationShell Broken Ansi Keyboard (may require Groovy 2.3.2)
 - Define ApplicationShell initial commands, imports (may require Groovy 2.3.2)
 - Better checking whether Daemon or Parallel mode is on
+- Clarify whether to use Groovy indy jar
+- Java 8 check compatibility
 - Tutorials / Examples
     - Spring Container
     - mongodb
@@ -176,6 +178,7 @@ and a settings.gradle:
 include 'gradle-groovysh-plugin'
 ```
 
+Bring some patience for the unit tests.
 A better way will be provided as this plugin matures.
 
 
