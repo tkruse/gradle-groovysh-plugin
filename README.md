@@ -84,16 +84,21 @@ groovysh {
 - Disable Tasks (become hidden)
 - AppShell uses independent configuration (extends runtime or testRuntime)
 - AppShell: Configure Task JavaExec params
+- Checks whether Daemon or Parallel mode is on
 
 ### Wishlist / Brainstorming / TODOs
 
 - Configure ApplicationShell Task Groovy Version
 - Configure ApplicationShell Broken Ansi Keyboard (may require Groovy 2.3.2)
 - Define ApplicationShell initial commands, imports (may require Groovy 2.3.2)
-- Better checking whether Daemon or Parallel mode is on
+- Provide a buildshell task via GradleConnector and tooling API
 - Clarify whether to use Groovy indy jar
+- Check project with ASM dependency
+- Run without building classes for Groovy classpath?
 - Java 8 check compatibility
-- Tutorials / Examples
+- test multiple gradle & groovy versions
+- Tutorials / Examples / sampleProjects
+    - Contributing
     - Spring Container
     - mongodb
     - hibernate
@@ -101,6 +106,8 @@ groovysh {
     - MBeans
     - REST call HTML / JSON processing
     - FileSets
+    - Unit tests repeat
+    - gradle tooling API
 - Release to bintray / Maven central
 - Check shell on Windows / MacOS
 - Automatically go quiet
@@ -138,6 +145,8 @@ groovy:000> project.sourceSets.main.getCompileTaskName()
 ===> compileMain
 groovy:000> project.tasks.compileJava.execute() // only executes once
 groovy:000> project.tasks.clean.execute() // only executes once
+groovy:000> project.gradle.startParameter
+===> StartParameter{taskNames=[buildshell], ...}
 ```
 
 ### Caveats

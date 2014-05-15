@@ -94,11 +94,14 @@ class ApplicationShellTask extends JavaExec {
         if (systemProperties != null) {
             this.systemProperties = systemProperties
         }
-
     }
 
     @Override
     void exec() {
+        TaskHelper.checkDaemon(project, NAME)
+        TaskHelper.checkQuiet(project, NAME)
+        TaskHelper.checkParallel(project, NAME)
+
         println("$GroovyshPlugin.NAME: This is a gradle Application Shell.")
         println("$GroovyshPlugin.NAME: You can import your application classes and act on them.")
         super.exec()
