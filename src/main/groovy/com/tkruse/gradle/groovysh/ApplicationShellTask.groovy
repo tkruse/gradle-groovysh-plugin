@@ -1,7 +1,7 @@
 package com.tkruse.gradle.groovysh
 
 import org.gradle.api.file.FileCollection
-import org.gradle.api.internal.tasks.DefaultSourceSetContainer
+import org.gradle.api.tasks.SourceSetContainer
 import org.gradle.api.tasks.JavaExec
 
 
@@ -20,7 +20,7 @@ class ApplicationShellTask extends JavaExec {
         //            throw new IllegalStateException(
         //            "$NAME: appShell can only be used with Projects having sourceSets (use apply plugin: 'java')")
         //        }
-        DefaultSourceSetContainer sourceSets = project.sourceSets
+        SourceSetContainer sourceSets = project.sourceSets
 
         String extendedRuntime = 'runtime'
         String classTaskDependency = 'classes'
