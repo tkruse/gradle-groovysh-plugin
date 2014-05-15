@@ -1,8 +1,7 @@
-package com.tkruse.gradle.groovysh;
+package com.tkruse.gradle.groovysh
 
-class GroovyshPluginExtension
-{
+class GroovyshPluginExtension {
 
-    boolean enableBuildShell = true;
-    boolean enableAppShell = true;
+    boolean enableBuildShell = true
+    boolean enableAppShell = true
 }
