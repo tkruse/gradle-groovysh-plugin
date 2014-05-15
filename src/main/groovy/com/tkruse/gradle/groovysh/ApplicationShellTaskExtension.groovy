@@ -3,6 +3,7 @@ package com.tkruse.gradle.groovysh
 import org.gradle.api.file.FileCollection
 
 class ApplicationShellTaskExtension {
+    String groovyVersion = '2.3.0'
     String sourceSetName = 'main'
     FileCollection extraClasspath
     List<String> jvmArgs

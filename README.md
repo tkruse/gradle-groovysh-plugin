@@ -68,7 +68,9 @@ groovysh {
         jvmArgs = ['-Xmx1024m']
         /* arguments to groovysh */
         // args = ['--terminal=none']
+        // groovyVersion = '2.3.0'
         /* ... the other params of gradle JavaExec can also be used */
+
     }
 }
 ```
@@ -85,17 +87,18 @@ groovysh {
 - AppShell uses independent configuration (extends runtime or testRuntime)
 - AppShell: Configure Task JavaExec params
 - Checks whether Daemon or Parallel mode is on
+- Configure ApplicationShell Task Groovy Version
 
 ### Wishlist / Brainstorming / TODOs
 
-- Configure ApplicationShell Task Groovy Version
-- Configure ApplicationShell Broken Ansi Keyboard (may require Groovy 2.3.2)
+- Fix ApplicationShell Broken Ansi Keyboard (may require Groovy 2.3.2)
 - Define ApplicationShell initial commands, imports (may require Groovy 2.3.2)
 - Provide a buildshell task via GradleConnector and tooling API
 - Clarify whether to use Groovy indy jar
 - Check project with ASM dependency
 - Run without building classes for Groovy classpath?
 - Java 8 check compatibility
+- Fix classpath issues for Groovy <= 2.2.0
 - test multiple gradle & groovy versions
 - Tutorials / Examples / sampleProjects
     - Contributing
@@ -210,4 +213,4 @@ TODO: Extend with time
 
 * Gradle versions (1.8?, 1.9, 1.10?, 1.11?, 1.12?)
 
-* Groovy Versions (2.2.2)
+* Groovy Versions (>= 2.2.1)

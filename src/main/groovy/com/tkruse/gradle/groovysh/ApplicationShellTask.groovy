@@ -33,10 +33,7 @@ class ApplicationShellTask extends JavaExec {
         project.configurations.create(ApplicationShellTask.CONFIGURATION_NAME)
         project.configurations.appShellConf { extendsFrom(project.configurations.findByName(extendedRuntime)) }
 
-        // TODO: Configure groovy version / consider indy?
-        project.dependencies.add(ApplicationShellTask.CONFIGURATION_NAME, 'org.codehaus.groovy:groovy-all:2.2.2')
-        project.dependencies.add(ApplicationShellTask.CONFIGURATION_NAME, 'commons-cli:commons-cli:1.2')
-        project.dependencies.add(ApplicationShellTask.CONFIGURATION_NAME, 'jline:jline:2.11')
+        TaskHelper.addGroovyDependencies(project, project.groovysh.shell.groovyVersion)
 
         //println("using sourceSet $sourceSetName")
         this.dependsOn(classTaskDependency)
