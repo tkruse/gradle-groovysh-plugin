@@ -2,9 +2,11 @@ package com.tkruse.gradle.groovysh
 
 import org.gradle.api.Project
 import org.gradle.api.tasks.JavaExec
+import org.junit.Test
 
-class ApplicationShellTaskTest extends GroovyTestCase {
+class ApplicationShellTaskTest {
 
+    @Test
     void testExecTest() {
         Project project = TestHelper.createProjectWithPlugin()
         project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.7')
@@ -19,6 +21,7 @@ class ApplicationShellTaskTest extends GroovyTestCase {
         assert shellTask.classpath.asPath.contains('junit')
     }
 
+    @Test
     void testExecMain() {
         Project project = TestHelper.createProjectWithPlugin()
         project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.7')
@@ -32,6 +35,7 @@ class ApplicationShellTaskTest extends GroovyTestCase {
         assert !shellTask.classpath.asPath.contains('junit')
     }
 
+    @Test
     void testExecMainWithArgs() {
         Project project = TestHelper.createProjectWithPlugin()
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
