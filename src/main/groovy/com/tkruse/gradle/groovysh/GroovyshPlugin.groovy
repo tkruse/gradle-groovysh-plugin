@@ -14,6 +14,7 @@ class GroovyshPlugin implements Plugin<Project> {
         project.repositories.jcenter()
         project.extensions.create(NAME, GroovyshPluginExtension)
         project.groovysh.extensions.create(BuildDevShellTask.NAME, BuildDevShellTaskExtension)
+        project.groovysh.extensions.create(BuildShellTask.NAME, BuildShellTaskExtension)
         project.groovysh.extensions.create(ApplicationShellTask.NAME, ApplicationShellTaskExtension)
 
         // need to have extensions read
@@ -38,8 +39,15 @@ class GroovyshPlugin implements Plugin<Project> {
                 loader.addURL(file.toURL())
             }
         }
+        if (project.groovysh.enableBuildShell) {
+            try {
+                project.tasks.create(BuildShellTask.NAME, BuildShellTask)
+            } catch (InvalidUserDataException e) {
+                // task already exists, not 100 lines of stacktrace needed to understand
+                throw new GradleScriptException("$NAME: Cannot create task ${BuildShellTask.NAME}", e)
+            }
+        }
         if (project.groovysh.enableAppShell) {
-            //NamedDomainObjectContainer cont = project.configurations.create(ApplicationShellTask.CONFIGURATION_NAME)
             if (project.configurations.names.contains('runtime')) {
                 try {
                     project.tasks.create(ApplicationShellTask.NAME, ApplicationShellTask)
@@ -47,7 +55,6 @@ class GroovyshPlugin implements Plugin<Project> {
                     // task already exists, not 100 lines of stacktrace needed to understand
                     throw new GradleScriptException("$NAME: Cannot create task ${ApplicationShellTask.NAME}", e)
                 }
-                //project.dependencies.add(BuildShellTask.CONFIGURATION_NAME, "jline:jline:1.0")
             }
         }
     }

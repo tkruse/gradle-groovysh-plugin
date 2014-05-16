@@ -10,7 +10,6 @@ abstract class ShellTask extends JavaExec {
     protected ShellTask(final String taskConfigurationName) {
         this.group = 'help'
         this.outputs.upToDateWhen { false }
-        println('Config name ' + taskConfigurationName)
         // use an independent configuration for the task dependencies, so that application compile is not influenced
         project.configurations.create(taskConfigurationName)
         TaskHelper.addGroovyDependencies(project, taskConfigurationName, taskExtension.groovyVersion)
@@ -24,6 +23,9 @@ abstract class ShellTask extends JavaExec {
         List<String> args = taskExtension.args
         if (args != null && args.size() > 0) {
             this.args = args
+        } else {
+            // TODO: fix keyboard problems in a better way
+            this.args = ['--terminal=none']
         }
         File workingDir = taskExtension.workingDir
         if (workingDir != null) {
@@ -69,8 +71,6 @@ abstract class ShellTask extends JavaExec {
         TaskHelper.checkQuiet(project)
         TaskHelper.checkParallel(project)
 
-        println('This is a gradle Application Shell.')
-        println('You can import your application classes and act on them.')
         super.exec()
     }
 }

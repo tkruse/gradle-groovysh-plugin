@@ -18,10 +18,6 @@ class ApplicationShellTask extends ShellTask {
         this.description = 'starts a groovysh shell with the classpath set as runtime configuration output'
 
         String sourceSetName = project.groovysh.shell.sourceSetName
-        if (!project.hasProperty('sourceSets')) {
-            throw new IllegalStateException(
-                "$NAME: App Shell can only be used with Projects having sourceSets (use apply plugin: 'java')")
-        }
         SourceSetContainer sourceSets = project.sourceSets
 
         String extendedRuntime = 'runtime'
@@ -42,5 +38,12 @@ class ApplicationShellTask extends ShellTask {
         if (extraClasspath != null) {
             this.classpath = this.classpath + extraClasspath
         }
+    }
+
+    @Override
+    void exec() {
+        println('This is a gradle Application Shell.')
+        println('You can import your application classes and act on them.')
+        super.exec()
     }
 }

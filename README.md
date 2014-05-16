@@ -5,13 +5,15 @@
 This plugin provides gradle tasks that start an interactive groovy shells, based on
 the '[groovysh](http://groovy.codehaus.org/Groovy+Shell)' command that ships with any [Groovy](http://groovy.codehaus.org/) version.
 
-The main particular feature is an Application shell, meaning a shell where your application
+The main feature is an Application shell, meaning a shell where your application
 classes (Java or other JVM language) can be imported, instantiated and run. This allows you to interact
 directly with your database-layer, service layer, running application, etc. without having to
 change a line of your code.
 
-The other particular feature is that a build shell has a variable ```project``` which represents
+Another particular feature is a build development shell that has a variable ```project``` which represents
 your gradle project, allowing you to introspect your project after it has been instantiated.
+
+Finally there is a build shell, which allows to connect to a gradle project using the gradle tooling API to run builds.
 
 
 This plugin is **Work In Progress**, expect some rough edges.
@@ -40,6 +42,7 @@ If you have the gradle daemon configured, also add ```--no-daemon```
 
 ```bash
 gradle -q shell
+gradle -q buildShell
 gradle -q buildDevShell
 ```
 
@@ -132,7 +135,26 @@ groovysh {
 - Instantiate a Database connection, write business entities etc.
 - Run your algorithms interactively
 
-### Somethings you can do with the ```buildDevShell```:
+### Some things you can do with the ```buildShell```
+
+```Groovy
+groovy:000> import org.gradle.tooling.*
+===> org.gradle.tooling.*
+groovy:000> import org.gradle.tooling.model.*
+===> org.gradle.tooling.model.*
+groovy:000> connector = GradleConnector.newConnector();
+===> org.gradle.tooling.internal.consumer.DefaultGradleConnector@6d3666fb
+groovy:000> connector.forProjectDirectory(new File("."))
+groovy:000> connection = connector.connect();
+===> org.gradle.tooling.internal.consumer.DefaultProjectConnection@598b4d64
+groovy:000> project = connection.getModel(GradleProject.class);
+===> GradleProject{path=':'}
+groovy:000> launcher = connection.newBuild();
+===> org.gradle.tooling.internal.consumer.DefaultBuildLauncher@3a370a0
+groovy:000> launcher.run();
+```
+
+### Some things you can do with the ```buildDevShell```:
 
 ```Groovy
 groovy:000> project.tasks
@@ -176,21 +198,7 @@ groovy:000> x
 ## Installing the plugin
 
 
-For now, clone this repository as ```buildSrc``` subfolder of your gradle root project.
-Alternatively, you can clone it into the ```buildSrc``` subfolder and add this buildgradle in the buildSrc folder:
-
-```Groovy
-apply plugin: "java"
-dependencies {
-    runtime subprojects.collect { owner.project(it.path) }
-}
-```
-
-and a settings.gradle:
-
-```Groovy
-include 'gradle-groovysh-plugin'
-```
+Clone this repository as ```buildSrc``` subfolder of your gradle root project.
 
 Bring some patience for the unit tests.
 A better way will be provided as this plugin matures.
