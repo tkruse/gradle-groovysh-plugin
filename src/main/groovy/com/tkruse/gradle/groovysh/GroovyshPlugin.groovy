@@ -13,7 +13,7 @@ class GroovyshPlugin implements Plugin<Project> {
     void apply( final Project project ) {
         project.repositories.jcenter()
         project.extensions.create(NAME, GroovyshPluginExtension)
-        project.groovysh.extensions.create(BuildShellTask.NAME, BuildShellTaskExtension)
+        project.groovysh.extensions.create(BuildDevShellTask.NAME, BuildDevShellTaskExtension)
         project.groovysh.extensions.create(ApplicationShellTask.NAME, ApplicationShellTaskExtension)
 
         // need to have extensions read
@@ -23,18 +23,18 @@ class GroovyshPlugin implements Plugin<Project> {
     }
 
     static void setupTasks(final Project project) {
-        if (project.groovysh.enableBuildShell) {
-            project.configurations.create(BuildShellTask.CONFIGURATION_NAME)
+        if (project.groovysh.enableBuildDevShell) {
+            project.configurations.create(BuildDevShellTask.CONFIGURATION_NAME)
             try {
-                project.tasks.create(BuildShellTask.NAME, BuildShellTask)
+                project.tasks.create(BuildDevShellTask.NAME, BuildDevShellTask)
             } catch (InvalidUserDataException e) {
                 // task already exists, not 100 lines of stacktrace needed to understand
-                throw new GradleScriptException("$NAME: Cannot create task ${BuildShellTask.NAME}", e)
+                throw new GradleScriptException("$NAME: Cannot create task ${BuildDevShellTask.NAME}", e)
             }
             URLClassLoader loader = GroovyObject.classLoader
             // groovy < 2.2.0 groovysh runs on jline 1.0
-            project.dependencies.add(BuildShellTask.CONFIGURATION_NAME, 'jline:jline:1.0')
-            project.configurations.getByName(BuildShellTask.CONFIGURATION_NAME).each { File file ->
+            project.dependencies.add(BuildDevShellTask.CONFIGURATION_NAME, 'jline:jline:1.0')
+            project.configurations.getByName(BuildDevShellTask.CONFIGURATION_NAME).each { File file ->
                 loader.addURL(file.toURL())
             }
         }

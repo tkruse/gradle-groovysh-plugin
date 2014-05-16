@@ -40,7 +40,7 @@ If you have the gradle daemon configured, also add ```--no-daemon```
 
 ```bash
 gradle -q shell
-gradle -q buildshell
+gradle -q buildDevShell
 ```
 
 When using the gradle wrapped, that would be ```./gradlew``` instead.
@@ -52,12 +52,12 @@ To change the defaults, use a configuration block as below. All parts are option
 ```Groovy
 groovysh {
 
-    // false to disable the buildshell task
-    enableBuildShell = true
-    // false to disable the buildshell task
+    // false to disable the buildDevShell task
+    enablebuildDevShell = true
+    // false to disable the buildDevShell task
     enableAppShell = true
 
-    buildShell {
+    buildDevShell {
     }
 
     shell {
@@ -132,7 +132,7 @@ groovysh {
 - Instantiate a Database connection, write business entities etc.
 - Run your algorithms interactively
 
-### Somethings you can do with the ```buildshell```:
+### Somethings you can do with the ```buildDevShell```:
 
 ```Groovy
 groovy:000> project.tasks
@@ -149,7 +149,7 @@ groovy:000> project.sourceSets.main.getCompileTaskName()
 groovy:000> project.tasks.compileJava.execute() // only executes once
 groovy:000> project.tasks.clean.execute() // only executes once
 groovy:000> project.gradle.startParameter
-===> StartParameter{taskNames=[buildshell], ...}
+===> StartParameter{taskNames=[buildDevShell], ...}
 ```
 
 ### Caveats
@@ -199,7 +199,7 @@ A better way will be provided as this plugin matures.
 ### Getting a shell without installing this plugin:
 
 See the docs at:
- - [Manual Build Shell README](doc/InstallBuildShellManually.md)
+ - [Manual Build Shell README](doc/InstallBuildDevShellManually.md)
  - [Manual App Shell README](doc/InstallAppShellManually.md)
 Or just install Groovy and run ```groovysh``` with a suitable classpath.
 

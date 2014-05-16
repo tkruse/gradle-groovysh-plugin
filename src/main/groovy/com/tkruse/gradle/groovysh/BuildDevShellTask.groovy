@@ -4,12 +4,12 @@ import org.codehaus.groovy.tools.shell.Groovysh
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
-class BuildShellTask extends DefaultTask {
+class BuildDevShellTask extends DefaultTask {
 
-    static final String NAME = 'buildShell'
-    static final String CONFIGURATION_NAME = 'buildShellConf'
+    static final String NAME = 'buildDevShell'
+    static final String CONFIGURATION_NAME = 'buildDevShellConf'
 
-    BuildShellTask() {
+    BuildDevShellTask() {
         this.group = 'help'
         this.description = 'starts a groovysh shell to introspect the gradle setup itself'
         this.outputs.upToDateWhen { false }

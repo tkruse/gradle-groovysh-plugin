@@ -10,20 +10,20 @@ class GroovyshPluginTest {
     @Test
     void testApplyNoJava() {
         Project project = ProjectBuilder.builder().build()
-        project.apply plugin: 'groovysh'
-        Plugin plugin = project.plugins.getPlugin('groovysh')
+        project.apply plugin: GroovyshPlugin.NAME
+        Plugin plugin = project.plugins.getPlugin(GroovyshPlugin.NAME)
         assert plugin instanceof GroovyshPlugin
-        assert project.tasks.findByName('buildShell') == null
-        assert project.tasks.findByName('shell') == null
+        assert project.tasks.findByName(BuildDevShellTask.NAME) == null
+        assert project.tasks.findByName(ApplicationShellTask.NAME) == null
 
-        project.groovysh.enableBuildShell = true
+        project.groovysh.enableBuildDevShell = true
         project.groovysh.enableAppShell = true
         // simulate AfterEvaluate
         ((GroovyshPlugin) plugin).setupTasks(project)
 
-        assert project.tasks.findByName('buildShell') != null
-        assert project.tasks.findByName('shell') == null
-        assert project.tasks.buildShell instanceof BuildShellTask
+        assert project.tasks.findByName(BuildDevShellTask.NAME) != null
+        assert project.tasks.findByName(ApplicationShellTask.NAME) == null
+        assert project.tasks.buildDevShell instanceof BuildDevShellTask
         //assert project.tasks.shell instanceof ApplicationShellTask
     }
 
@@ -31,13 +31,13 @@ class GroovyshPluginTest {
     void testApplyJava() {
         Project project = TestHelper.createProjectWithPlugin()
         TestHelper.setupTasks(project)
-        assert project.tasks.findByName('buildShell') != null
-        assert project.tasks.findByName('shell') != null
-        assert project.tasks.buildShell instanceof BuildShellTask
+        assert project.tasks.findByName(BuildDevShellTask.NAME) != null
+        assert project.tasks.findByName(ApplicationShellTask.NAME) != null
+        assert project.tasks.buildDevShell instanceof BuildDevShellTask
         assert project.tasks.shell instanceof ApplicationShellTask
 
         assert project.configurations.appShellConf != null
-        assert project.configurations.buildShellConf != null
+        assert project.configurations.buildDevShellConf != null
     }
 
 

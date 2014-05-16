@@ -1,6 +1,6 @@
 package com.tkruse.gradle.groovysh
 
-class BuildShellTaskExtension {
+class BuildDevShellTaskExtension {
 
     String sourceSetName = 'main'
 

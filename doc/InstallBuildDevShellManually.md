@@ -21,7 +21,7 @@ configurations.addToClassLoader.each {File file ->
   loader.addURL(file.toURL())
 }
 
-task('buildshell') {
+task('buildShell') {
   // This task is useful for learning gradle and making changes to the gradle files
   group 'help'
   description 'Runs an interactive shell for gradle. Experimental.'
