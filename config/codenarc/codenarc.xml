@@ -73,7 +73,8 @@
         <exclude name="CrapMetric"/>
     </ruleset-ref>
     <ruleset-ref path="rulesets/unnecessary.xml">
-        <!--<exclude name="UnnecessaryPackageReference"/>-->
+        <exclude name="UnnecessaryReturnKeyword"/>
+        <exclude name="UnnecessaryGetter"/>
     </ruleset-ref>
     <ruleset-ref path="rulesets/unused.xml"/>
 </ruleset>

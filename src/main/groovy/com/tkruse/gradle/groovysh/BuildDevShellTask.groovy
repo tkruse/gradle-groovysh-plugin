@@ -18,9 +18,9 @@ class BuildDevShellTask extends DefaultTask {
 
     @TaskAction
     void exec() {
-        TaskHelper.checkDaemon(project, NAME)
-        TaskHelper.checkQuiet(project, NAME)
-        TaskHelper.checkParallel(project, NAME)
+        TaskHelper.checkDaemon(project)
+        TaskHelper.checkQuiet(project)
+        TaskHelper.checkParallel(project)
 
         println("$GroovyshPlugin.NAME: This is a gradle Build-Shell. The variable 'project' is bound to your project.")
         println("$GroovyshPlugin.NAME: Run e.g. 'project.ext.properties' to inspect your project.")
