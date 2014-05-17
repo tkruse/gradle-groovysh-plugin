@@ -2,6 +2,5 @@ package com.tkruse.gradle.groovysh
 
 class BuildDevShellTaskExtension {
 
-    String sourceSetName = 'main'
-
+    // no extension yet, could have initial imports and commands easily.
 }

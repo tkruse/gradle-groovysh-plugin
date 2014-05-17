@@ -60,9 +60,6 @@ groovysh {
     // false to disable the buildDevShell task
     enableAppShell = true
 
-    buildDevShell {
-    }
-
     shell {
         // default is 'main'
         sourceSetName = 'test'
@@ -73,7 +70,21 @@ groovysh {
         // args = ['--terminal=none']
         // groovyVersion = '2.3.0'
         /* ... the other params of gradle JavaExec can also be used */
+    }
 
+    buildShell {
+       // groovyVersion determines the features of the shell
+       // groovyVersion = '2.3.0'
+
+       // gradle version determines version of connector in tooling API,
+       // but connector can use other gradle version to build project via
+       // connector.useGradleVersion('1.10')
+       // gradleVersion = '1.12'
+
+       /* ... params of gradle JavaExec can also be used */
+    }
+
+    buildDevShell {
     }
 }
 ```
@@ -142,16 +153,16 @@ groovy:000> import org.gradle.tooling.*
 ===> org.gradle.tooling.*
 groovy:000> import org.gradle.tooling.model.*
 ===> org.gradle.tooling.model.*
-groovy:000> connector = GradleConnector.newConnector();
+groovy:000> connector = GradleConnector.newConnector()
 ===> org.gradle.tooling.internal.consumer.DefaultGradleConnector@6d3666fb
 groovy:000> connector.forProjectDirectory(new File("."))
-groovy:000> connection = connector.connect();
+groovy:000> connection = connector.connect()
 ===> org.gradle.tooling.internal.consumer.DefaultProjectConnection@598b4d64
-groovy:000> project = connection.getModel(GradleProject.class);
+groovy:000> project = connection.getModel(GradleProject.class)
 ===> GradleProject{path=':'}
-groovy:000> launcher = connection.newBuild();
+groovy:000> launcher = connection.newBuild()
 ===> org.gradle.tooling.internal.consumer.DefaultBuildLauncher@3a370a0
-groovy:000> launcher.run();
+groovy:000> launcher.run()
 ```
 
 ### Some things you can do with the ```buildDevShell```:

@@ -16,7 +16,7 @@ class BuildShellTask extends ShellTask {
         super(CONFIGURATION_NAME)
         this.description = 'starts a groovysh shell with the with a gradleConnector connected to the Project'
 
-        project.dependencies.add(CONFIGURATION_NAME, 'org.gradle:gradle-tooling-api:1.12')
+        project.dependencies.add(CONFIGURATION_NAME, 'org.gradle:gradle-tooling-api:' + taskExtension.gradleVersion)
 
         FileCollection shellClasspath = project.configurations.buildShellConf.asFileTree
         this.classpath = shellClasspath
