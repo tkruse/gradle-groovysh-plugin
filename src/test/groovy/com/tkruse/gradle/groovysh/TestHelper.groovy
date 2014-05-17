@@ -9,7 +9,7 @@ class TestHelper {
         Project project = ProjectBuilder.builder().build()
         project.apply plugin: 'java'
         project.apply plugin: GroovyshPlugin.NAME
-        project
+        return project
     }
 
     static void setupTasks(final Project project) {

@@ -7,13 +7,13 @@ import org.junit.Test
 class ApplicationShellTaskTest {
 
     @Test
-    void testExecTest() {
+    void testConfigureTest() {
         Project project = TestHelper.createProjectWithPlugin()
         project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.7')
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         project.groovysh.shell.sourceSetName = 'test'
         TestHelper.setupTasks(project)
-        JavaExec shellTask = (JavaExec) project.tasks.findByName('shell')
+        JavaExec shellTask = (JavaExec) project.tasks.findByName(ApplicationShellTask.NAME)
         assert shellTask != null
         assert shellTask.dependsOn.contains('testClasses')
         assert shellTask.classpath.asPath.contains('groovy')
@@ -22,12 +22,12 @@ class ApplicationShellTaskTest {
     }
 
     @Test
-    void testExecMain() {
+    void testConfigureMain() {
         Project project = TestHelper.createProjectWithPlugin()
         project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.7')
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         TestHelper.setupTasks(project)
-        JavaExec shellTask = (JavaExec) project.tasks.findByName('shell')
+        JavaExec shellTask = (JavaExec) project.tasks.findByName(ApplicationShellTask.NAME)
         assert shellTask != null
         assert shellTask.dependsOn.contains('classes')
         assert shellTask.classpath.asPath.contains('groovy')
@@ -36,14 +36,29 @@ class ApplicationShellTaskTest {
     }
 
     @Test
-    void testExecMainWithArgs() {
+    void testGroovyVersions() {
+        for (version in ['2.2.1', '2.2.2', '2.3.0']) {
+            Project project = TestHelper.createProjectWithPlugin()
+            project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
+
+            project.groovysh.shell.groovyVersion = version
+            TestHelper.setupTasks(project)
+            List<String> dependencyVersions =
+                    project.configurations.appShellConf.dependencies.asList().collect { it.name + it.version }
+            assert dependencyVersions.contains('jline2.11')
+            assert dependencyVersions.contains('commons-cli1.2')
+            assert dependencyVersions.contains('groovy-all' + version)
+        }
+    }
+
+    @Test
+    void testConfigureMainWithArgs() {
         Project project = TestHelper.createProjectWithPlugin()
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         project.groovysh.shell.args = ['foo']
         project.groovysh.shell.jvmArgs = ['-Xms512m']
         project.groovysh.shell.workingDir = project.file('subfolder')
         project.groovysh.shell.extraClasspath = project.files('lib/junit.jar')
-
 
         project.groovysh.shell.bootstrapClasspath = project.files('lib/foo.jar')
         project.groovysh.shell.enableAssertions = true
@@ -59,9 +74,14 @@ class ApplicationShellTaskTest {
         project.groovysh.shell.systemProperties = ['BAR': 'FOO']
 
         TestHelper.setupTasks(project)
-        JavaExec shellTask = (JavaExec) project.tasks.findByName('shell')
+        JavaExec shellTask = (JavaExec) project.tasks.findByName(ApplicationShellTask.NAME)
 
         assert shellTask != null
+        List<String> dependencyVersions =
+                project.configurations.appShellConf.dependencies.asList().collect { it.name + it.version }
+        assert dependencyVersions.contains('jline2.11')
+        assert dependencyVersions.contains('commons-cli1.2')
+        assert dependencyVersions.contains('groovy-all2.3.0')
         assert shellTask.dependsOn.contains('classes')
         assert shellTask.classpath.asPath.contains('groovy')
         assert shellTask.classpath.asPath.contains('junit')
