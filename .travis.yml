@@ -4,8 +4,13 @@ jdk:
   - oraclejdk8
   - openjdk6
   - openjdk7
-install: ./gradlew assemble --stacktrace
-script: ./gradlew clean build --stacktrace
+env:
+  - GRADLE=gradle/gradle1.9/gradlew
+  - GRADLE=gradle/gradle1.10/gradlew
+  - GRADLE=gradle/gradle1.11/gradlew
+  - GRADLE=gradle/gradle1.12/gradlew
+install: $GRADLE assemble --stacktrace
+script: .$GRADLE clean build --stacktrace
 notifications:
   email: false
 branches:
