@@ -30,17 +30,19 @@ class BuildDevShellTask extends DefaultTask {
         shell.interp.context.variables.put('project', project)
 
         // convenience access
-        shell.interp.context.variables.put('ant', project.ant)
-        shell.interp.context.variables.put('artifacts', project.artifacts)
-        shell.interp.context.variables.put('buildDir', project.buildDir)
-        shell.interp.context.variables.put('configurations', project.configurations)
-        shell.interp.context.variables.put('components', project.components)
-        shell.interp.context.variables.put('dependecies', project.dependencies)
-        shell.interp.context.variables.put('extensions', project.extensions)
-        shell.interp.context.variables.put('gradle', project.gradle)
-        shell.interp.context.variables.put('repositories', project.repositories)
-        shell.interp.context.variables.put('rootDir', project.rootDir)
-        shell.interp.context.variables.put('rootProject', project.rootProject)
+        for (String varname in ['ant',
+                                'artifacts',
+                                'buildDir',
+                                'configurations',
+                                'components',
+                                'dependecies',
+                                'extensions',
+                                'gradle',
+                                'repositories',
+                                'rootDir',
+                                'rootProject']) {
+            shell.interp.context.variables.put(varname, project.getProperties().get(varname))
+        }
 
         shell.run()
     }
