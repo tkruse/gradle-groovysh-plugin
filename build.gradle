@@ -2,6 +2,16 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'codenarc'
+apply plugin: 'bintray'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3'
+    }
+}
 
 repositories {
     jcenter()
@@ -9,10 +19,14 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0'
+
+def compatibilityVersion = 1.7
+sourceCompatibility = compatibilityVersion
+targetCompatibility = compatibilityVersion
+
 
 codenarcMain.maxPriority2Violations = 3
-
 codenarcTest.maxPriority2Violations = 1
 
 
@@ -57,8 +71,31 @@ dependencies {
     compile "jline:jline:1.0"
     compile('org.codehaus.groovy:groovy-all:2.2.2') { force = true }
     runtime('commons-cli:commons-cli:1.2')
-//    compile("jline:jline:2.11") {
-//        exclude(group: 'junit', module: 'junit')
-//    }
     testCompile("junit:junit-dep:4.11")
+}
+
+publishing {
+    publications {
+        mavenJava( MavenPublication ) {
+            from components.java
+            artifact sourcesJar
+            artifact groovydocJar
+        }
+    }
+}
+
+bintray {
+    user = project.hasProperty( 'bintrayUser' ) ? project.getProperty( 'bintrayUser' ) : null
+    key = project.hasProperty( 'bintrayKey' ) ? project.getProperty( 'bintrayKey' ) : null
+    publications = ['mavenJava']
+
+    pkg {
+        repo = 'maven'
+        name = 'gradle-groovysh-plugin'
+        desc = 'A gradle plugin to start command-line shells with your Application classes.'
+        licenses = ['Apache-2.0']
+        labels = ['groovysh', 'groovy', 'shell']
+    }
+
+    // dryRun = true
 }

@@ -2,6 +2,7 @@
 build/
 .gradle/
 gradle/gradle1*
+gradle.properties
 *.iws
 *.ids
 *.iml

@@ -95,13 +95,13 @@ groovysh {
 
 ## Features
 
-- Run a shell task with application classes
-- Run a buildShell task with gradle on the classpath
-- Run a buildDevShell task where the ```project``` variable is the same as in ```build.gradle``` file
-- shell task: Configure SourceSet (test or main)
-- shell task uses independent configuration (extends runtime or testRuntime)
-- shell task: Configure Task JavaExec params
-- Configure shell and buildShell Tasks Groovy Version
+- Run a ```shell``` task with application classes
+- Run a ```buildShell``` task with gradle on the classpath
+- Run a ```buildDevShell``` task where the ```project``` variable is the same as in ```build.gradle``` file
+- ```shell``` task: Configure SourceSet (test or main)
+- ```shell``` task uses independent configuration (extends runtime or testRuntime)
+- ```shell``` task: Configure Task JavaExec params
+- Configure ```shell``` and ```buildShell``` Tasks Groovy Version
 - Checks whether Daemon or Parallel mode is on
 - Tasks can be disabled
 
@@ -206,10 +206,30 @@ groovy:000> x
 
 ## Installing the plugin
 
+Define the buildscript-time dependency on the plugin.
 
-Clone this repository as ```buildSrc``` subfolder of your gradle root project.
+```Groovy
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:0.1.0'
+    }
+}
+```
 
-Bring some patience for the unit tests.
+Include the plugin in your build.gradle file like this:
+
+    apply plugin: 'groovysh'
+
+Currently your project needs to also have the java plugin applied for the ```shell``` task.
+
+## Installing the plugin to modify it and contribute
+
+Clone this repository as ```buildSrc``` subfolder of a gradle root project.
+
+Bring some patience for the unit tests and checks, or disable them.
 A better way will be provided as this plugin matures.
 
 
