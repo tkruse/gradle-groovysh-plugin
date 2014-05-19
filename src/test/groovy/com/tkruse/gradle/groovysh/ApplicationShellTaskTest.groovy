@@ -41,7 +41,7 @@ class ApplicationShellTaskTest {
             Project project = TestHelper.createProjectWithPlugin()
             project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
 
-            project.groovysh.shell.groovyVersion = version
+            project.groovysh.groovyVersion = version
             TestHelper.setupTasks(project)
             List<String> dependencyVersions =
                     project.configurations.appShellConf.dependencies.asList().collect { it.name + it.version }

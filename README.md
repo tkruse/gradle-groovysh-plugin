@@ -60,6 +60,9 @@ groovysh {
     // false to disable the buildDevShell task
     enableAppShell = true
 
+    // groovyVersion determines the features of the shell and buildShell tasks
+    // groovyVersion = '2.3.0'
+
     shell {
         // default is 'main'
         sourceSetName = 'test'
@@ -73,8 +76,6 @@ groovysh {
     }
 
     buildShell {
-       // groovyVersion determines the features of the shell
-       // groovyVersion = '2.3.0'
 
        // gradle version determines version of connector in tooling API,
        // but connector can use other gradle version to build project via
@@ -94,20 +95,19 @@ groovysh {
 
 ## Features
 
-- Run a shell where the ```project``` variable is the same as in ```build.gradle``` file
-- Run a shell with application classes
-- AppShell: Configure SourceSet (test or main)
-- Disable Tasks (become hidden)
-- AppShell uses independent configuration (extends runtime or testRuntime)
-- AppShell: Configure Task JavaExec params
+- Run a shell task with application classes
+- Run a buildShell task with gradle on the classpath
+- Run a buildDevShell task where the ```project``` variable is the same as in ```build.gradle``` file
+- shell task: Configure SourceSet (test or main)
+- shell task uses independent configuration (extends runtime or testRuntime)
+- shell task: Configure Task JavaExec params
+- Configure shell and buildShell Tasks Groovy Version
 - Checks whether Daemon or Parallel mode is on
-- Configure ApplicationShell Task Groovy Version
+- Tasks can be disabled
 
 ### Wishlist / Brainstorming / TODOs
 
-- Fix ApplicationShell Broken Ansi Keyboard (may require Groovy 2.3.2)
 - Define ApplicationShell initial commands, imports (may require Groovy 2.3.2)
-- Provide a buildshell task via GradleConnector and tooling API
 - Clarify whether to use Groovy indy jar
 - Check project with ASM dependency
 - Run without building classes for Groovy classpath?
@@ -136,8 +136,6 @@ groovysh {
 - Gradle/Maven scala shell plugin
 - Gradle/Maven clojure shell plugin
 - Promote to standard gradle plugin
-
-
 
 
 ### Some things you can do with the ```shell```

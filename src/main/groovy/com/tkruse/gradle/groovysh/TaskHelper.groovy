@@ -52,7 +52,7 @@ class TaskHelper {
 //                project.dependencies.add(configurationName, 'org.fusesource.jansi:jansi:1.10')
 //                project.dependencies.add(configurationName, 'jline:jline:2.10')
                 //break
-                String msg = "Unsupported Groovy minor version '$groovyVersion'"
+                String msg = "Unsupported Groovy version '$groovyVersion'"
                 println(msg)
                 throw new IllegalStateException(msg)
             case ~/2\.2\.[0-9].*/:
@@ -60,13 +60,28 @@ class TaskHelper {
                 project.dependencies.add(configurationName, 'jline:jline:2.11')
                 break
             default:
-                String msg = "Unknown Groovy minor version '$groovyVersion'"
+                String msg = "Unknown Groovy version '$groovyVersion'"
                 println(msg)
                 throw new IllegalStateException(msg)
         }
         project.dependencies.add(configurationName, 'commons-cli:commons-cli:1.2')
         project.dependencies.add(configurationName,
                 "org.codehaus.groovy:groovy-all:${groovyVersion}")
+    }
+
+    static File generatePatchedMain(final Project project, final String className) {
+        Properties properties = new Properties()
+        String propFileName = '/com.tkruse.gradle.groovysh/TaskHelper.properties'
+        InputStream inputStream = TaskHelper.getResourceAsStream(propFileName)
+        properties.load(inputStream)
+
+        project.buildDir.mkdir()
+        File genDir = new File(project.buildDir, 'groovyshSrc')
+        genDir.mkdir()
+        File genFile = new File(genDir, className + '.java')
+        genFile.delete()
+        genFile << properties.getProperty('mainTemplate')
+        return genFile
     }
 
 }

@@ -10,12 +10,11 @@ abstract class ShellTask extends JavaExec {
     protected ShellTask(final String taskConfigurationName) {
         this.group = 'help'
         this.outputs.upToDateWhen { false }
+        this.dependsOn(PatchedMainCompileTask.NAME)
         // use an independent configuration for the task dependencies, so that application compile is not influenced
         project.configurations.create(taskConfigurationName)
-        TaskHelper.addGroovyDependencies(project, taskConfigurationName, taskExtension.groovyVersion)
+        TaskHelper.addGroovyDependencies(project, taskConfigurationName, project.groovysh.groovyVersion)
 
-        //this.main = 'com.tkruse.gradle.groovysh.ShellMain'
-        this.main = 'org.codehaus.groovy.tools.shell.Main'
         List<String> jvmArgs = taskExtension.jvmArgs
         if (jvmArgs != null && jvmArgs.size() > 0) {
             this.jvmArgs = jvmArgs
@@ -23,9 +22,6 @@ abstract class ShellTask extends JavaExec {
         List<String> args = taskExtension.args
         if (args != null && args.size() > 0) {
             this.args = args
-        } else {
-            // TODO: fix keyboard problems in a better way
-            this.args = ['--terminal=none']
         }
         File workingDir = taskExtension.workingDir
         if (workingDir != null) {
@@ -71,6 +67,10 @@ abstract class ShellTask extends JavaExec {
         TaskHelper.checkQuiet(project)
         TaskHelper.checkParallel(project)
 
+        String className = 'PatchedMain'
+        this.classpath = this.classpath.add(project.files(new File(project.buildDir, 'groovyshClasses')))
+        //this.main = 'org.codehaus.groovy.tools.shell.Main'
+        this.main = className
         super.exec()
     }
 }
