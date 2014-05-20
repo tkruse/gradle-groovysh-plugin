@@ -10,13 +10,14 @@ classes (Java or other JVM language) can be imported, instantiated and run. This
 directly with your database-layer, service layer, running application, etc. without having to
 change a line of your code.
 
+There is also build shell, which allows to connect to a gradle project using the gradle tooling API to run builds.
+
 Another particular feature is a build development shell that has a variable ```project``` which represents
-your gradle project, allowing you to introspect your project after it has been instantiated.
+your gradle project, allowing you to introspect your project after it has been instantiated. This can be useful
+for developing custom gradle plugins, or debugging large setups.
 
-Finally there is a build shell, which allows to connect to a gradle project using the gradle tooling API to run builds.
 
-
-This plugin is **Work In Progress**, expect some rough edges.
+This plugin is **Work In Progress**, expect some rough edges, but please do report troubles you face.
 
 
 ## Prerequisites
@@ -24,41 +25,47 @@ This plugin is **Work In Progress**, expect some rough edges.
 * [Java](http://www.java.com/)
 * [Gradle](http://www.gradle.org) (From gradle wrapper is fine)
 
-- **NO GROOVY INSTALLATION REQUIRED**
+- **NO GROOVY INSTALLATION REQUIRED** (gradle will fetch it like any other dependency)
 - **NO CHANGE TO YOUR JAVA CODE REQUIRED**
 
 
+When using the gradle wrapped, that would be ```./gradlew``` instead.
 
-## Using the Plugin
+## Installing the plugin
 
-In your buildgradle, apply the plugin:
+Define the buildscript-time dependency on the plugin.
 
 ```Groovy
-apply plugin: 'groovysh'
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:0.1.0'
+    }
+}
 ```
 
-Invoke either shell task with option ```-q```.
-If you have the gradle daemon configured, also add ```--no-daemon```
+Include the plugin in your build.gradle file like this:
 
-```bash
-gradle -q shell
-gradle -q buildShell
-gradle -q buildDevShell
-```
+    apply plugin: 'groovysh'
 
-When using the gradle wrapped, that would be ```./gradlew``` instead.
+Currently your project needs to also have the java plugin applied for the ```shell``` task.
 
 ## Configuring the Plugin
 
-To change the defaults, use a configuration block as below. All parts are optional.
+No configuration is required. To change the defaults, use a configuration block as below. All parts are optional.
 
 ```Groovy
 groovysh {
 
+
+    // false to disable the shell task
+    enableAppShell = true
+    // false to disable the shell task
+    enableBuildShell = true
     // false to disable the buildDevShell task
     enablebuildDevShell = true
-    // false to disable the buildDevShell task
-    enableAppShell = true
 
     // groovyVersion determines the features of the shell and buildShell tasks
     // groovyVersion = '2.3.0'
@@ -90,7 +97,22 @@ groovysh {
 }
 ```
 
+## Using the Plugin
 
+In your buildgradle, apply the plugin:
+
+```Groovy
+apply plugin: 'groovysh'
+```
+
+Invoke either shell task with option ```-q```.
+If you have the gradle daemon configured, also add ```--no-daemon```
+
+```bash
+gradle -q shell
+gradle -q buildShell
+gradle -q buildDevShell
+```
 
 
 ## Features
@@ -203,27 +225,6 @@ groovy:000> x
 ===> 3
 ```
 
-
-## Installing the plugin
-
-Define the buildscript-time dependency on the plugin.
-
-```Groovy
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:0.1.0'
-    }
-}
-```
-
-Include the plugin in your build.gradle file like this:
-
-    apply plugin: 'groovysh'
-
-Currently your project needs to also have the java plugin applied for the ```shell``` task.
 
 ## Installing the plugin to modify it and contribute
 
