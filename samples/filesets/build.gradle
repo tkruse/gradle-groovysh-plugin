@@ -1,0 +1,38 @@
+apply plugin: 'java'
+// if plugin groovysh not found, add project to samples/settings.gradle
+apply plugin: 'groovysh'
+
+// For an independent project, you would need the lines below. in this case they are in the parent folder
+
+//buildscript {
+//    repositories {
+//        jcenter()
+//        dependencies {
+//            classpath 'com.tkruse.gradle:gradle-groovysh-plugin:<version>'
+//        }
+//    }
+//}
+
+
+test {
+    testLogging {
+        exceptionFormat 'full'
+    }
+}
+
+
+// Some nasty copy tasks specs below
+task copyTask(type: Copy) {
+    from 'src/main/resources'
+    into "$buildDir/result"
+}
+
+task copyTask2(type: Copy) {
+    from copyTask
+    into "$buildDir/result2"
+    into("$buildDir/libs") {
+        from configurations.testRuntime
+    }
+}
+
+

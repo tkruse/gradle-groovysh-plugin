@@ -9,12 +9,12 @@ import org.gradle.tooling.model.GradleProject
 @TypeChecked
 class LauncherHelper {
 
-    static BuildLauncher getLauncheForProject(final String projectName) {
+    static BuildLauncher getLauncheForProject(final String projectName, String[] tasks = ['shell']) {
         GradleConnector connector = GradleConnector.newConnector()
         connector.forProjectDirectory(new File(projectName))
         ProjectConnection connection = connector.connect()
         BuildLauncher launcher = connection.newBuild()
-        launcher.forTasks('shell')
+        launcher.forTasks(tasks)
         return launcher
     }
 }
