@@ -34,7 +34,6 @@ This plugin is **Work In Progress**, expect some rough edges, but please do repo
 Include the plugin in your build.gradle file like this:
 
 ```Groovy
-
 apply plugin: 'groovysh'
 
 buildscript {
@@ -45,56 +44,23 @@ buildscript {
         classpath 'com.tkruse.gradle:gradle-groovysh-plugin:0.1.0'
     }
 }
+
 ```
-
-
 
 Currently your project needs to also have the java plugin applied for the ```shell``` task.
 
 ## Configuring the Plugin
 
-No configuration is required. To change the defaults, use a configuration block as below. All parts are optional.
+No configuration is required. To change the defaults, see [Configuration](doc/Configuration.md)
 
+If you encounter groovy version mismatches, explicitly set your system version (until I find a clean way to fix this).
 ```Groovy
 groovysh {
-
-
-    // false to disable the shell task
-    enableAppShell = true
-    // false to disable the shell task
-    enableBuildShell = true
-    // false to disable the buildDevShell task
-    enablebuildDevShell = true
-
-    // groovyVersion determines the features of the shell and buildShell tasks
-    // groovyVersion = '2.3.0'
-
-    shell {
-        // default is 'main'
-        sourceSetName = 'test'
-        extraClasspath = configurations.runtime.asFileTree
-        workingDir = file('src/main/webapp')
-        jvmArgs = ['-Xmx1024m']
-        /* arguments to groovysh */
-        // args = ['--terminal=none']
-        // groovyVersion = '2.3.0'
-        /* ... the other params of gradle JavaExec can also be used */
-    }
-
-    buildShell {
-
-       // gradle version determines version of connector in tooling API,
-       // but connector can use other gradle version to build project via
-       // connector.useGradleVersion('1.10')
-       // gradleVersion = '1.12'
-
-       /* ... params of gradle JavaExec can also be used */
-    }
-
-    buildDevShell {
-    }
+    // groovyVersion determines the features of the shell and buildShell tasks.
+    groovyVersion = '2.3.1'
 }
 ```
+
 
 ## Using the Plugin
 
@@ -110,50 +76,6 @@ When using the gradle wrapper, that would be ```./gradlew``` instead.
 
 You can find samples in the samples subfolder.
 
-
-## Features
-
-- Run a ```shell``` task with application classes
-- Run a ```buildShell``` task with gradle on the classpath
-- Run a ```buildDevShell``` task where the ```project``` variable is the same as in ```build.gradle``` file
-- ```shell``` task: Configure SourceSet (test or main)
-- ```shell``` task uses independent configuration (extends runtime or testRuntime)
-- ```shell``` task: Configure Task JavaExec params
-- Configure ```shell``` and ```buildShell``` Tasks Groovy Version
-- Checks whether Daemon or Parallel mode is on
-- Tasks can be disabled
-
-### Wishlist / Brainstorming / TODOs
-
-- Define ApplicationShell initial commands, imports (may require Groovy 2.3.2)
-- Clarify whether to use Groovy indy jar
-- Check project with ASM dependency
-- Run without building classes for Groovy classpath?
-- Java 8 check compatibility
-- Fix classpath issues for Groovy <= 2.2.0
-- test multiple gradle & groovy versions
-- Tutorials / Examples / sampleProjects
-    - Contributing
-    - Spring Container
-    - mongodb
-    - hibernate
-    - running unit tests without creating fixture again?
-    - MBeans
-    - REST call HTML / JSON processing
-    - FileSets
-    - Unit tests repeat
-    - gradle tooling API
-- Release to bintray / Maven central
-- Check shell on Windows / MacOS
-- Automatically go quiet
-- Print gradle info on task execution keeping the grooovysh prompt below that, somehow.
-- Support for class reloading when application sources changes
-- Support for class reloading when gradle sources changes
-- Support for running tasks multiple times forcefully
-- Maven groovysh plugin
-- Gradle/Maven scala shell plugin
-- Gradle/Maven clojure shell plugin
-- Promote to standard gradle plugin
 
 
 ### Some things you can do with the ```shell```
@@ -221,6 +143,9 @@ groovy:000> x
 ===> 3
 ```
 
+## TODOs
+
+see [Configuration](doc/TODO.md)
 
 ## Installing the plugin to modify it and contribute
 
@@ -235,9 +160,7 @@ Or just install Groovy and run ```groovysh``` with a suitable classpath.
 
 ## Compatibility
 
-TODO: Extend with time
-
-* Java Versions (6?, 7, 8)
+* Java Versions (6?, 7, 8?)
 
 * Operating Systems (Ubuntu Precise)
 
