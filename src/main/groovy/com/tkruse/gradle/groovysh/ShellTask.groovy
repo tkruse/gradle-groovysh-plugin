@@ -59,6 +59,10 @@ abstract class ShellTask extends JavaExec {
         if (systemProperties != null) {
             this.systemProperties = systemProperties
         }
+
+
+        //this.main = 'org.codehaus.groovy.tools.shell.Main'
+        this.main = PatchedMainCompileTask.PATCH_CLASS_NAME
     }
 
     @Override
@@ -66,11 +70,12 @@ abstract class ShellTask extends JavaExec {
         TaskHelper.checkDaemon(project)
         TaskHelper.checkQuiet(project)
         TaskHelper.checkParallel(project)
-
-        String className = 'PatchedMain'
-        this.classpath = this.classpath.add(project.files(new File(project.buildDir, 'groovyshClasses')))
-        //this.main = 'org.codehaus.groovy.tools.shell.Main'
-        this.main = className
-        super.exec()
+        this.classpath = this.classpath + project.files(new File(project.buildDir, 'groovyshClasses'))
+        try {
+            super.exec()
+        } catch (Exception e) {
+            logger.error('Invoking JavaExec for groovysh failed, classpath ' + this.classpath.asPath, e)
+            throw e
+        }
     }
 }
