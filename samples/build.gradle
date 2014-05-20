@@ -7,7 +7,8 @@ description = 'Contains samples for integration testing and as showcases.'
 buildscript {
     repositories {
         flatDir {
-            // build result in plugin main folder, must run gradle jar there to use unreleased versions
+            // build result in plugin main folder (one up from here),
+            // must run 'gradle jar' *there* to use unreleased versions
             dirs "$rootDir/../build/libs"
         }
         dependencies {

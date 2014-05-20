@@ -1,4 +1,5 @@
 apply plugin: 'java'
+// if plugin groovysh not found, add project to samples/settings.gradle
 apply plugin: 'groovysh'
 
 
