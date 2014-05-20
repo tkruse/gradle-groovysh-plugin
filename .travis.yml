@@ -10,7 +10,9 @@ env:
   - GRADLE=gradle/gradle1.11/gradlew
   - GRADLE=gradle/gradle1.12/gradlew
 install: $GRADLE assemble --stacktrace
-script:  $GRADLE clean build --stacktrace
+script:
+  - $GRADLE clean build --stacktrace
+  - $GRADLE -p samples clean check --stacktrace
 notifications:
   email: false
 branches:

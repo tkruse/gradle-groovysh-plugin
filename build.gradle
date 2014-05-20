@@ -4,6 +4,13 @@ apply plugin: 'maven-publish'
 apply plugin: 'codenarc'
 apply plugin: 'bintray'
 
+
+/**** Uncomment this to get faster build times ****/
+
+//build.dependsOn.remove("check")
+
+/**************************************************/
+
 buildscript {
     repositories {
         jcenter()

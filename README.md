@@ -29,13 +29,14 @@ This plugin is **Work In Progress**, expect some rough edges, but please do repo
 - **NO CHANGE TO YOUR JAVA CODE REQUIRED**
 
 
-When using the gradle wrapped, that would be ```./gradlew``` instead.
-
 ## Installing the plugin
 
-Define the buildscript-time dependency on the plugin.
+Include the plugin in your build.gradle file like this:
 
 ```Groovy
+
+apply plugin: 'groovysh'
+
 buildscript {
     repositories {
         jcenter()
@@ -46,9 +47,7 @@ buildscript {
 }
 ```
 
-Include the plugin in your build.gradle file like this:
 
-    apply plugin: 'groovysh'
 
 Currently your project needs to also have the java plugin applied for the ```shell``` task.
 
@@ -99,12 +98,6 @@ groovysh {
 
 ## Using the Plugin
 
-In your buildgradle, apply the plugin:
-
-```Groovy
-apply plugin: 'groovysh'
-```
-
 Invoke either shell task with option ```-q```.
 If you have the gradle daemon configured, also add ```--no-daemon```
 
@@ -113,6 +106,9 @@ gradle -q shell
 gradle -q buildShell
 gradle -q buildDevShell
 ```
+When using the gradle wrapper, that would be ```./gradlew``` instead.
+
+You can find samples in the samples subfolder.
 
 
 ## Features
@@ -228,11 +224,7 @@ groovy:000> x
 
 ## Installing the plugin to modify it and contribute
 
-Clone this repository as ```buildSrc``` subfolder of a gradle root project.
-
-Bring some patience for the unit tests and checks, or disable them.
-A better way will be provided as this plugin matures.
-
+See - [Dev setup](doc/Contributing.md)
 
 ### Getting a shell without installing this plugin:
 
@@ -249,6 +241,6 @@ TODO: Extend with time
 
 * Operating Systems (Ubuntu Precise)
 
-* Gradle versions (1.8?, 1.9, 1.10?, 1.11?, 1.12?)
+* Gradle versions (1.8?, 1.9, 1.10, 1.11, 1.12)
 
 * Groovy Versions (>= 2.2.1)

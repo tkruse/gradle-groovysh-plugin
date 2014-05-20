@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'groovysh'
+
+
+
+// For an independent project, you would need the lines below. in this case they are in the parent folder
+
+//buildscript {
+//    repositories {
+//        jcenter()
+//        dependencies {
+//            classpath 'com.tkruse.gradle:gradle-groovysh-plugin:<version>'
+//        }
+//    }
+//}
+
+dependencies {
+    testCompile("junit:junit-dep:4.11") { force = true }
+}
+
+
+test {
+    testLogging {
+        exceptionFormat 'full'
+    }
+}

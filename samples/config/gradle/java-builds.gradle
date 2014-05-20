@@ -1,0 +1,47 @@
+/**
+ * By extracting this to a separate script rather than using allprojects / subprojects,
+ * the gradle builds become decoupled (hopefully), allowing some parallel work (hopefully)
+ */
+
+apply plugin: 'java'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
+
+/** CODE QUALITY CHECKS */
+
+pmd {
+    sourceSets = [sourceSets.main]
+    ruleSets = ['basic', 'braces', 'design',
+                'unusedcode', 'sunsecure',
+                'imports', 'finalizers',
+                'coupling', 'codesize', 'clone']
+}
+
+checkstyleMain {
+    configProperties = ['baseDir': "$rootDir"]
+    ignoreFailures = true
+    configFile = new File(rootDir, 'config/checkstyle/checkstyle.xml')
+}
+
+checkstyleTest {
+    configProperties = ['baseDir': "$rootDir"]
+    ignoreFailures = true
+    configFile = new File(rootDir, 'config/checkstyle/checkstyle.xml')
+}
+
+findbugs {
+    effort = 'max'
+    reportLevel = 'medium'
+    ignoreFailures = true
+    excludeFilter = new File(rootDir, 'config/findbugs/excludeFilter.xml')
+}
+
+//force compile tasks to use utf-8
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-Xlint:unchecked'
+    options.compilerArgs << '-Xlint:deprecation'
+}
+
+
