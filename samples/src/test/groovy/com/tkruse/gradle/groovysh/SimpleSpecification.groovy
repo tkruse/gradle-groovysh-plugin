@@ -13,7 +13,7 @@ public class SimpleSpecification extends Specification {
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()
         ByteArrayInputStream bytesIn = new ByteArrayInputStream(
-                'import com.example.Example\ne = new Example()\n:quit'.bytes)
+                'import com.example.Example\ne = new Example()'.bytes)
 
         launcher.standardOutput = bytesOut
         launcher.standardError = bytesOut
