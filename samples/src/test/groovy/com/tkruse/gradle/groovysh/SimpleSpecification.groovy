@@ -25,7 +25,7 @@ public class SimpleSpecification extends Specification {
         then:
         assert bytesErr.toString() == ''
         assert bytesOut.toString() =~ ('Groovy Shell')
-        assert bytesOut.toString().contains('import com.example.Example')
+        assert bytesOut.toString().contains('com.example.Example')
         assert !bytesOut.toString().contains('Exception')
 
     }

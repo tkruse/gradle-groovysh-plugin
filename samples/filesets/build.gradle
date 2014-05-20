@@ -30,9 +30,8 @@ task copyTask(type: Copy) {
 task copyTask2(type: Copy) {
     from copyTask
     into "$buildDir/result2"
-    into("$buildDir/libs") {
-        from configurations.testRuntime
-    }
+    exclude '**/*staging*'
+    include '**/*.md'
 }
 
 

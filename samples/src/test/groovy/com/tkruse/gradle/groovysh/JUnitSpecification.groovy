@@ -30,7 +30,7 @@ println \'runs:\' + result.getRunCount()
         then:
         assert bytesErr.toString() == ''
         assert bytesOut.toString() =~ ('Groovy Shell')
-        assert bytesOut.toString().contains('import com.example.ExampleTest')
+        assert bytesOut.toString().contains('com.example.ExampleTest')
         assert bytesOut.toString().contains('runs:1')
         assert !bytesOut.toString().contains('Exception')
 

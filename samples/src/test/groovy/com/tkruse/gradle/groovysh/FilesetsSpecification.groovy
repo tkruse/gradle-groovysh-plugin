@@ -12,10 +12,10 @@ public class FilesetsSpecification extends Specification {
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()
         String input = '''\
-println '1:' + project.tasks.copyTask2.getInputs().getFiles().collect{it.name}
-println '2:' + project.tasks.copyTask.getInputs().getFiles().collect{it.name}
+println '1:' + project.tasks.copyTask2.getInputs().getFiles().collect({it.name}).sort()
+println '2:' + project.tasks.copyTask.getInputs().getFiles().collect({it.name}).sort()
 project.tasks.copyTask.execute()
-println '3:' + project.tasks.copyTask2.getInputs().getFiles().collect{it.name}
+println '3:' + project.tasks.copyTask2.getInputs().getFiles().collect({it.name}).sort()
         '''
         ByteArrayInputStream bytesIn = new ByteArrayInputStream(input.bytes)
 
@@ -30,8 +30,8 @@ println '3:' + project.tasks.copyTask2.getInputs().getFiles().collect{it.name}
         assert bytesErr.toString() == ''
         assert bytesOut.toString() =~ ('Groovy Shell')
         assert bytesOut.toString().contains('1:[]')
-        assert bytesOut.toString().contains('2:[takeMe.md, notMe-staging.txt, takeme.txt]')
-        assert bytesOut.toString().contains('3:[takeMe.md, notMe-staging.txt, takeme.txt]')
+        assert bytesOut.toString().contains('2:[notMe-staging.txt, takeMe.md, takeme.txt]')
+        assert bytesOut.toString().contains('3:[takeMe.md]')
         assert !bytesOut.toString().contains('Exception')
 
     }
