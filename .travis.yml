@@ -2,7 +2,6 @@ language: groovy
 jdk:
   - oraclejdk7
   - oraclejdk8
-  - openjdk6
   - openjdk7
 env:
   - GRADLE=gradle/gradle1.9/gradlew
