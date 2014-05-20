@@ -11,8 +11,8 @@ env:
   - GRADLE=gradle/gradle1.12/gradlew
 install: $GRADLE assemble --stacktrace
 script:
-  - $GRADLE clean build --stacktrace
-  - $GRADLE -p samples clean check --stacktrace
+  - TERM=dumb $GRADLE clean build --stacktrace
+  - TERM=dumb $GRADLE -p samples clean check --stacktrace
 notifications:
   email: false
 branches:

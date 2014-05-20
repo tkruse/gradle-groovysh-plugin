@@ -5,7 +5,6 @@
 
 apply plugin: 'java'
 apply plugin: 'pmd'
-apply plugin: 'findbugs'
 apply plugin: 'checkstyle'
 
 /** CODE QUALITY CHECKS */
@@ -28,13 +27,6 @@ checkstyleTest {
     configProperties = ['baseDir': "$rootDir"]
     ignoreFailures = true
     configFile = new File(rootDir, 'config/checkstyle/checkstyle.xml')
-}
-
-findbugs {
-    effort = 'max'
-    reportLevel = 'medium'
-    ignoreFailures = true
-    excludeFilter = new File(rootDir, 'config/findbugs/excludeFilter.xml')
 }
 
 //force compile tasks to use utf-8
