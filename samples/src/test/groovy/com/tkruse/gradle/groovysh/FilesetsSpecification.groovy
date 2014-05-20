@@ -3,7 +3,7 @@ package com.tkruse.gradle.groovysh
 import org.gradle.tooling.BuildLauncher
 import spock.lang.Specification
 
-public class FilesetsSpecification extends Specification {
+class FilesetsSpecification extends Specification {
 
     def "Run test"() {
         setup:

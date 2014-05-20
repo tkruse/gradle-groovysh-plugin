@@ -1,10 +1,9 @@
 package com.tkruse.gradle.groovysh
 
-import groovy.transform.TypeChecked
-import spock.lang.*
-import org.gradle.tooling.*
+import org.gradle.tooling.BuildLauncher
+import spock.lang.Specification
 
-public class SimpleSpecification extends Specification {
+class SimpleSpecification extends Specification {
 
     def "import custom class"() {
         setup:

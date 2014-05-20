@@ -3,7 +3,7 @@ package com.tkruse.gradle.groovysh
 import org.gradle.tooling.BuildLauncher
 import spock.lang.Specification
 
-public class JUnitSpecification extends Specification {
+class JUnitSpecification extends Specification {
 
     def "Run test"() {
         setup:
