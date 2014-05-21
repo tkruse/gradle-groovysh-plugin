@@ -32,6 +32,9 @@ allprojects {
     }
 }
 
+tasks.withType(CodeNarc) { codeNarcTask ->
+    codeNarcTask.ignoreFailures = true
+}
 
 dependencies {
     // mandatory dependencies for using Spock

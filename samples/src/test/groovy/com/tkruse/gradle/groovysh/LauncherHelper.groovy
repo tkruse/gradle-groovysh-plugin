@@ -4,7 +4,6 @@ import groovy.transform.TypeChecked
 import org.gradle.tooling.BuildLauncher
 import org.gradle.tooling.GradleConnector
 import org.gradle.tooling.ProjectConnection
-import org.gradle.tooling.model.GradleProject
 
 @TypeChecked
 class LauncherHelper {

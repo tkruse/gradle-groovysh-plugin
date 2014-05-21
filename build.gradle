@@ -36,6 +36,9 @@ targetCompatibility = compatibilityVersion
 codenarcMain.maxPriority2Violations = 3
 codenarcTest.maxPriority2Violations = 1
 
+tasks.withType(CodeNarc) { codeNarcTask ->
+    codeNarcTask.ignoreFailures = true
+}
 
 jar {
     manifest {
