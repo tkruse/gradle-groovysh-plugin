@@ -7,7 +7,7 @@ class JUnitSpecification extends Specification {
 
     def "Run test"() {
         setup:
-        BuildLauncher launcher = LauncherHelper.getLauncheForProject('junit')
+        BuildLauncher launcher = LauncherHelper.getLauncherForProject('junit')
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()

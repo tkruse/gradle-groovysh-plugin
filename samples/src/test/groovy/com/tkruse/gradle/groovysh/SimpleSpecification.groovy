@@ -7,7 +7,7 @@ class SimpleSpecification extends Specification {
 
     def "import custom class"() {
         setup:
-        BuildLauncher launcher = LauncherHelper.getLauncheForProject('simple')
+        BuildLauncher launcher = LauncherHelper.getLauncherForProject('simple')
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()

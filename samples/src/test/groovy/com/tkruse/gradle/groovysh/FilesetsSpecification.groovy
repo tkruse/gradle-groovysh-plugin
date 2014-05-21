@@ -7,7 +7,8 @@ class FilesetsSpecification extends Specification {
 
     def "Run test"() {
         setup:
-        BuildLauncher launcher = LauncherHelper.getLauncheForProject('filesets', ['clean', 'buildDevShell'] as String[])
+        BuildLauncher launcher = LauncherHelper.getLauncherForProject('filesets',
+                ['clean', 'buildDevShell'] as String[])
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()
