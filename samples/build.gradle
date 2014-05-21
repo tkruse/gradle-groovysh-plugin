@@ -30,10 +30,10 @@ allprojects {
     repositories {
         jcenter()
     }
-}
 
-tasks.withType(CodeNarc) { codeNarcTask ->
-    codeNarcTask.ignoreFailures = true
+    tasks.withType(CodeNarc) { codeNarcTask ->
+        codeNarcTask.ignoreFailures = true
+    }
 }
 
 dependencies {

@@ -47,9 +47,6 @@
     <ruleset-ref path="rulesets/convention.xml"/>
     <ruleset-ref path="rulesets/design.xml"/>
     <ruleset-ref path="rulesets/dry.xml">
-        <rule-config name="DuplicateStringLiteral">
-            <property name="doNotApplyToClassNames" value="*Spec"/>
-        </rule-config>
         <rule-config name="DuplicateNumberLiteral">
             <property name="doNotApplyToClassNames" value="*Spec"/>
         </rule-config>
@@ -59,18 +56,23 @@
         <rule-config name="DuplicateListLiteral">
             <property name="doNotApplyToClassNames" value="*Spec"/>
         </rule-config>
+        <exclude name="DuplicateStringLiteral"/>
     </ruleset-ref>
-    <ruleset-ref path="rulesets/exceptions.xml"/>
+    <ruleset-ref path="rulesets/exceptions.xml">
+        <exclude name="CatchException"/>
+    </ruleset-ref>
     <ruleset-ref path="rulesets/formatting.xml"/>
     <ruleset-ref path="rulesets/generic.xml"/>
     <ruleset-ref path="rulesets/grails.xml"/>
-    <ruleset-ref path="rulesets/groovyism.xml"/>
-
+    <ruleset-ref path="rulesets/groovyism.xml">
+        <exclude name="GetterMethodCouldBeProperty"/>
+    </ruleset-ref>
     <ruleset-ref path="rulesets/junit.xml"/>
     <!--<ruleset-ref path="rulesets/logging.xml"/>-->
     <ruleset-ref path="rulesets/serialization.xml"/>
     <ruleset-ref path="rulesets/size.xml">
         <exclude name="CrapMetric"/>
+        <exclude name="AbcMetric"/>
     </ruleset-ref>
     <ruleset-ref path="rulesets/unnecessary.xml">
         <exclude name="UnnecessaryReturnKeyword"/>
