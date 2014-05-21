@@ -145,7 +145,7 @@ groovy:000> x
 
 ## TODOs
 
-see [Configuration](doc/TODO.md)
+see [TODO](doc/TODO.md)
 
 ## Installing the plugin to modify it and contribute
 
