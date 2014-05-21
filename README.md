@@ -74,7 +74,7 @@ gradle -q buildDevShell
 ```
 When using the gradle wrapper, that would be ```./gradlew``` instead.
 
-You can find samples in the samples subfolder.
+You can find samples in the [samples subfolder](samples/README.md).
 
 
 
