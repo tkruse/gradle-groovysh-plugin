@@ -8,7 +8,7 @@ This is a gradle Application Shell.
 You can import your application classes and act on them.
 Groovy Shell (2.3.1, JVM: 1.7.0_55)
 Type ':help' or ':h' for help.
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------
 groovy:000> import org.junit.runner.JUnitCore
 ===> org.junit.runner.JUnitCore
 groovy:000> jCore = new JUnitCore()
