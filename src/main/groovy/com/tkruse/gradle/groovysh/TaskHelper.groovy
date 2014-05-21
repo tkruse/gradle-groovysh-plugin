@@ -2,6 +2,7 @@ package com.tkruse.gradle.groovysh
 
 import org.gradle.api.Project
 import org.gradle.api.logging.LogLevel
+import org.gradle.api.artifacts.Dependency
 
 class TaskHelper {
 
@@ -34,10 +35,12 @@ class TaskHelper {
     static void addGroovyDependencies(final Project project,
                                       final String configurationName,
                                       final String groovyVersion) {
+        List<Dependency> deps = project.configurations.getByName(configurationName).allDependencies
+                .collect { Dependency it -> it }
         switch (groovyVersion) {
             case ~/1\.8\.[0-9].*/:
-                project.dependencies.add(configurationName, 'org.fusesource.jansi:jansi:1.6')
-                project.dependencies.add(configurationName, 'jline:jline:1.0')
+                addIfMissing(project, configurationName, deps, 'org.fusesource.jansi', 'jansi', '1.6')
+                addIfMissing(project, configurationName, deps, 'jline', 'jline', '1.0')
                 break
             case ~/0\.[0-9]\.[0-9].*/:
             case ~/1\.[0-9]\.[0-9].*/:
@@ -57,16 +60,35 @@ class TaskHelper {
                 throw new IllegalStateException(msg)
             case ~/2\.2\.[0-9].*/:
             case ~/2\.3\.[0-9].*/:
-                project.dependencies.add(configurationName, 'jline:jline:2.11')
+                addIfMissing(project, configurationName, deps, 'jline', 'jline', '2.11')
                 break
             default:
                 String msg = "Unknown Groovy version '$groovyVersion'"
                 println(msg)
                 throw new IllegalStateException(msg)
         }
-        project.dependencies.add(configurationName, 'commons-cli:commons-cli:1.2')
-        project.dependencies.add(configurationName,
-                "org.codehaus.groovy:groovy-all:${groovyVersion}")
+        addIfMissing(project, configurationName, deps, 'commons-cli', 'commons-cli', '1.2')
+        addIfMissing(project, configurationName, deps, 'org.codehaus.groovy', 'groovy-all', groovyVersion, 'groovy')
+    }
+
+    static void addIfMissing(final Project project, final String configurationName, final List<Dependency> deps,
+                     final String group, final String module, final String version, String altModule = null) {
+        boolean found = false
+        for (Dependency dep : deps) {
+            println(dep)
+            if (dep.group == group) {
+                if ((dep.name == module) || ((altModule != null && dep.name == altModule))) {
+                    found = true
+                    if (dep.version != version) {
+                        println("WARNING, groovy version $dep.version mismatches \
+desired groovysh version $version for $group:$module")
+                    }
+                }
+            }
+        }
+        if (!found) {
+            project.dependencies.add(configurationName, "$group:$module:$version")
+        }
     }
 
     static File generatePatchedMain(final Project project, final String className) {

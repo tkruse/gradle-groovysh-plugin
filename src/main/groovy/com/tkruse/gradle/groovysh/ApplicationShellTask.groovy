@@ -14,7 +14,7 @@ class ApplicationShellTask extends ShellTask {
     }
 
     ApplicationShellTask() {
-        super(CONFIGURATION_NAME)
+        super()
         this.description = 'starts a groovysh shell with the classpath set as runtime configuration output'
 
         String sourceSetName = project.groovysh.shell.sourceSetName
@@ -38,6 +38,11 @@ class ApplicationShellTask extends ShellTask {
         if (extraClasspath != null) {
             this.classpath = this.classpath + extraClasspath
         }
+    }
+
+    @Override
+    String getConfigurationName() {
+        return CONFIGURATION_NAME
     }
 
     @Override

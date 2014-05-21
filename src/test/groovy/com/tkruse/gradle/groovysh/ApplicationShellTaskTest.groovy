@@ -13,6 +13,7 @@ class ApplicationShellTaskTest {
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         project.groovysh.shell.sourceSetName = 'test'
         TestHelper.setupTasks(project)
+        project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
         JavaExec shellTask = (JavaExec) project.tasks.findByName(ApplicationShellTask.NAME)
         assert shellTask != null
         assert shellTask.dependsOn.contains('testClasses')
@@ -27,6 +28,7 @@ class ApplicationShellTaskTest {
         project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.7')
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         TestHelper.setupTasks(project)
+        project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
         JavaExec shellTask = (JavaExec) project.tasks.findByName(ApplicationShellTask.NAME)
         assert shellTask != null
         assert shellTask.dependsOn.contains('classes')
@@ -43,8 +45,10 @@ class ApplicationShellTaskTest {
 
             project.groovysh.groovyVersion = version
             TestHelper.setupTasks(project)
+            project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
             List<String> dependencyVersions =
-                    project.configurations.appShellConf.dependencies.asList().collect { it.name + it.version }
+                    project.configurations.getByName(ApplicationShellTask.CONFIGURATION_NAME)
+                            .dependencies.asList().collect { it.name + it.version }
             assert dependencyVersions.contains('jline2.11')
             assert dependencyVersions.contains('commons-cli1.2')
             assert dependencyVersions.contains('groovy-all' + version)
@@ -74,6 +78,7 @@ class ApplicationShellTaskTest {
         project.groovysh.shell.systemProperties = ['BAR': 'FOO']
 
         TestHelper.setupTasks(project)
+        project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
         JavaExec shellTask = (JavaExec) project.tasks.findByName(ApplicationShellTask.NAME)
 
         assert shellTask != null

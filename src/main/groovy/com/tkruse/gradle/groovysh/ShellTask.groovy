@@ -7,13 +7,12 @@ abstract class ShellTask extends JavaExec {
 
     abstract ShellTaskExtension getTaskExtension()
 
-    protected ShellTask(final String taskConfigurationName) {
+    protected ShellTask() {
         this.group = 'help'
         this.outputs.upToDateWhen { false }
         this.dependsOn(PatchedMainCompileTask.NAME)
         // use an independent configuration for the task dependencies, so that application compile is not influenced
-        project.configurations.create(taskConfigurationName)
-        TaskHelper.addGroovyDependencies(project, taskConfigurationName, project.groovysh.groovyVersion)
+        project.configurations.create(getConfigurationName())
 
         List<String> jvmArgs = taskExtension.jvmArgs
         if (jvmArgs != null && jvmArgs.size() > 0) {
@@ -65,8 +64,16 @@ abstract class ShellTask extends JavaExec {
         this.main = PatchedMainCompileTask.PATCH_CLASS_NAME
     }
 
+    void addGroovyDependencies() {
+        String taskConfigurationName = getConfigurationName()
+        TaskHelper.addGroovyDependencies(project, taskConfigurationName, project.groovysh.groovyVersion)
+    }
+
+    abstract String getConfigurationName()
+
     @Override
     void exec() {
+        addGroovyDependencies()
         TaskHelper.checkDaemon(project)
         TaskHelper.checkQuiet(project)
         TaskHelper.checkParallel(project)
