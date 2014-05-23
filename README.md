@@ -125,6 +125,7 @@ groovy:000> project.gradle.startParameter
 
 ### Caveats
 
+#### Grovysh variable declarations
 
 Notice that the Groovy version for the build shell is the same as for gradle (1.8.6), whereas for the application
 shell a much more recent version of Groovy (2.3.x) can be used. As a consequence the application shell is much prettier,
@@ -142,6 +143,12 @@ groovy:000> x = 3
 groovy:000> x
 ===> 3
 ```
+
+#### Gradle project lock
+
+While a shell is running that was started from a project, gradle may lock the project,
+and other tools may not work well during that time (e.g. IntelliJ gradle update).
+Stopping the shell frees the lock again.
 
 ## TODOs
 

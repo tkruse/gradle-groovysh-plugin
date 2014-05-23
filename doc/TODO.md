@@ -1,33 +1,29 @@
 # Wishlist / Brainstorming / TODOs
 
 - Define ApplicationShell initial commands, imports (may require Groovy 2.3.2)
-- Clarify whether to use Groovy indy jar
+- Prepopulate Variables for buildShell connection
+- Allow defining multiple ApplicationShells
 - Check project with ASM dependency
+- Clarify whether to use Groovy indy jar
 - Run without building classes for Groovy classpath?
-- Java 8 check compatibility
+- Release to Maven central
+- Groovysh Tips and tricks
 - Fix classpath issues for Groovy <= 2.2.0
-- test multiple gradle & groovy versions
 - Tutorials / Examples / sampleProjects
-    - Contributing
-    - Spring Container
-    - mongodb
     - hibernate
     - running unit tests without creating fixture again?
-    - MBeans
+    - JMX / MBeans
     - REST call HTML / JSON processing
     - FileSets
     - Unit tests repeat
     - gradle tooling API
-- Release to bintray / Maven central
 - Check shell on Windows / MacOS
 - Automatically go quiet
 - Print gradle info on task execution keeping the grooovysh prompt below that, somehow.
 - Support for class reloading when application sources changes
 - Support for class reloading when gradle sources changes
 - Support for running tasks multiple times forcefully
-- Maven groovysh plugin
-- Gradle/Maven scala shell plugin
-- Gradle/Maven clojure shell plugin
+- Maven groovysh plugin (GMavenPLus has a buildShell)
 - Promote to standard gradle plugin
 
 
