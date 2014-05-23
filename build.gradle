@@ -1,6 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
-apply plugin: 'maven-publish'
+apply plugin: 'signing'
 apply plugin: 'codenarc'
 apply plugin: 'bintray'
 
@@ -32,6 +32,7 @@ def compatibilityVersion = 1.7
 sourceCompatibility = compatibilityVersion
 targetCompatibility = compatibilityVersion
 
+// ********* Testing & Checks
 
 codenarcMain.maxPriority2Violations = 3
 codenarcTest.maxPriority2Violations = 1
@@ -40,35 +41,6 @@ tasks.withType(CodeNarc) { codeNarcTask ->
     codeNarcTask.ignoreFailures = true
 }
 
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Groovysh plugin',
-                'Implementation-Version': version,
-                'Built-By': System.getProperty('user.name'),
-                'Built-Date': new Date(),
-                'Built-JDK': System.getProperty('java.version'),
-                'Built-Gradle': gradle.gradleVersion
-    }
-}
-
-task sourcesJar( type: Jar ) {
-    classifier 'sources'
-    from sourceSets.main.allSource
-}
-
-task groovydocJar( type: Jar ) {
-    classifier 'javadoc'
-    from groovydoc
-}
-
-artifacts {
-    archives sourcesJar
-    archives groovydocJar
-}
-
-task wrapper(type: Wrapper, description: 'Generates the gradle wrapper.') {
-    gradleVersion = '1.12'
-}
 
 test {
     testLogging {
@@ -84,16 +56,95 @@ dependencies {
     testCompile("junit:junit-dep:4.11")
 }
 
-publishing {
-    publications {
-        mavenJava( MavenPublication ) {
-            from components.java
-            artifact sourcesJar
-            artifact groovydocJar
+// ********* Maven Central
+// https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide
+// http://central.sonatype.org/pages/releasing-the-deployment.html
+// http://yennicktrevels.com/blog/2013/10/11/automated-gradle-project-deployment-to-sonatype-oss-repository/
+
+task sourcesJar( type: Jar ) {
+    classifier 'sources'
+    from sourceSets.main.allSource
+}
+
+task groovydocJar( type: Jar ) {
+    classifier 'javadoc'
+    from groovydoc
+}
+
+task javadocJar (type: Jar, dependsOn: javadoc) { // (1)
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+
+artifacts {
+    archives sourcesJar
+    archives groovydocJar
+    archives javadocJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+/*
+ * run with gradle uploadArchives
+ */
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(
+                        userName: project.getProperty('sonatypeUsername'),
+                        password: project.getProperty('sonatypePassword'))
+            }
+            pom.project {
+                name project.name
+                packaging 'jar'
+                description project.description
+                url 'https://github.com/tkruse/gradle-groovysh-plugin'
+                scm {
+                    url 'https://github.com/tkruse/gradle-groovysh-plugin'
+                    connection 'scm:git:git://tkruse/gradle-groovysh-plugin.git'
+                    developerConnection 'scm:git:ssh:git@github.com:tkruse/gradle-groovysh-plugin.git'
+                }
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/license/LICENSE-2.0.txt'
+                        distribution 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'tkruse'
+                        name 'Thibault Kruse'
+                        email project.getProperty('email')
+                    }
+                }
+            }
         }
     }
 }
 
+// ********* Bintray
+// https://github.com/bintray/gradle-bintray-plugin
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Groovysh plugin',
+                'Implementation-Version': version,
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Built-Gradle': gradle.gradleVersion
+    }
+}
+
+/*
+ * Run with gradle bintrayUpload
+ */
 bintray {
     user = project.hasProperty( 'bintrayUser' ) ? project.getProperty( 'bintrayUser' ) : null
     key = project.hasProperty( 'bintrayKey' ) ? project.getProperty( 'bintrayKey' ) : null
