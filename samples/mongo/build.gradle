@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        // For an independent project, you would need the lines below. in this case they are in the parent folder
+//            classpath 'com.tkruse.gradle:gradle-groovysh-plugin:<version>'
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+// if plugin groovysh not found, add project to samples/settings.gradle
+apply plugin: 'groovysh'
+
+
+jar {
+    baseName = 'gs-accessing-mongodb-data-rest'
+    version = '0.1.0'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter:1.0.2.RELEASE")
+    compile("org.springframework.data:spring-data-mongodb:1.4.2.RELEASE")
+    compile('com.github.fakemongo:fongo:1.4.5')
+    compile("org.projectlombok:lombok:1.12.6")
+    testCompile("junit:junit")
+    testCompile("org.mockito:mockito-all:1.9.5")
+}
+
+test {
+    testLogging {
+        exceptionFormat 'full'
+    }
+}
