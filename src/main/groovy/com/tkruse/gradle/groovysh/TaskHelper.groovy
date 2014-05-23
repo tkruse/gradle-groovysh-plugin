@@ -75,7 +75,6 @@ class TaskHelper {
                      final String group, final String module, final String version, String altModule = null) {
         boolean found = false
         for (Dependency dep : deps) {
-            println(dep)
             if (dep.group == group) {
                 if ((dep.name == module) || ((altModule != null && dep.name == altModule))) {
                     found = true
