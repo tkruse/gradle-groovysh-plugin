@@ -39,7 +39,7 @@ class ApplicationShellTaskTest {
 
     @Test
     void testGroovyVersions() {
-        for (version in ['2.2.1', '2.2.2', '2.3.0', '2.3.1']) {
+        for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.1']) {
             Project project = TestHelper.createProjectWithPlugin()
             project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
 
