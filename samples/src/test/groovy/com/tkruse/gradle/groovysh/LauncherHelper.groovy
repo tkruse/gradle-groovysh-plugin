@@ -8,7 +8,7 @@ import org.gradle.tooling.ProjectConnection
 @TypeChecked
 class LauncherHelper {
 
-    static BuildLauncher getLauncherForProject(final String projectName, String[] tasks = ['shell']) {
+    static BuildLauncher getLauncherForProject(final String projectName, String[] tasks = ['clean', 'shell']) {
         GradleConnector connector = GradleConnector.newConnector()
         connector.forProjectDirectory(new File(projectName))
         ProjectConnection connection = connector.connect()

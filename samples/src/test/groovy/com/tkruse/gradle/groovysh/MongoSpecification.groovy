@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 class MongoSpecification extends Specification {
 
-    def "import custom class"() {
+    def "use repo and service"() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('mongo')
 

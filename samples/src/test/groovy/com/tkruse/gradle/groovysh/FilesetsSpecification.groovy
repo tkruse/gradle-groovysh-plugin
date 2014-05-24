@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 class FilesetsSpecification extends Specification {
 
-    def "Run test"() {
+    def "evaluate filesets of copy tasks"() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('filesets',
                 ['clean', 'buildDevShell'] as String[])
