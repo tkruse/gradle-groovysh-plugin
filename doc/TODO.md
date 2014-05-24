@@ -40,3 +40,4 @@
 - Configure ```shell``` and ```buildShell``` Tasks Groovy Version
 - Checks whether Daemon or Parallel mode is on
 - Tasks can be disabled
+- Custom tasks can be defined by extending the Task classes
