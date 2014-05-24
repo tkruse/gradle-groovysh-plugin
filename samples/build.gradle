@@ -2,6 +2,7 @@ apply plugin: 'groovy'
 apply plugin: 'java'
 apply plugin: 'groovysh'
 apply plugin: 'codenarc'
+apply from: "$rootDir/config/gradle/java-builds.gradle"
 
 description = 'Contains samples for integration testing and as showcases.'
 
@@ -19,7 +20,6 @@ buildscript {
 }
 
 allprojects {
-    apply from: "$rootDir/config/gradle/java-builds.gradle"
 
     group = 'com.tkruse.gradle'
 
