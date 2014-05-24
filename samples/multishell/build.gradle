@@ -1,0 +1,35 @@
+apply plugin: 'java'
+// if plugin groovysh not found, add project to samples/settings.gradle
+apply plugin: 'groovysh'
+
+
+
+// For an independent project, you would need the lines below. in this case they are in the parent folder
+
+//buildscript {
+//    repositories {
+//        jcenter()
+//        dependencies {
+//            classpath 'com.tkruse.gradle:gradle-groovysh-plugin:<version>'
+//        }
+//    }
+//}
+
+dependencies {
+    testCompile("junit:junit-dep:4.11") { force = true }
+}
+
+
+task mainShell(type: com.tkruse.gradle.groovysh.ApplicationShellTask) {
+    jvmArgs = ['-Xmx2048m', '-Xms2048m']
+}
+
+task testShell(type: com.tkruse.gradle.groovysh.ApplicationShellTask) {
+    sourceSetName = 'test'
+}
+
+test {
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}

@@ -5,7 +5,9 @@ import org.gradle.api.file.FileCollection
 class BuildShellTask extends ShellTask {
 
     static final String NAME = 'buildShell'
-    static final String CONFIGURATION_NAME = 'buildShellConf'
+    static final String CONFIGURATION_NAME_PREFIX = 'buildShellConf_'
+
+    String gradleVersion = '1.12'
 
     @Override
     ShellTaskExtension getTaskExtension() {
@@ -16,9 +18,9 @@ class BuildShellTask extends ShellTask {
         super()
         this.description = 'starts a groovysh shell with the with a gradleConnector connected to the Project'
 
-        project.dependencies.add(CONFIGURATION_NAME, 'org.gradle:gradle-tooling-api:' + taskExtension.gradleVersion)
+        project.dependencies.add(getConfigurationName(), 'org.gradle:gradle-tooling-api:' + taskExtension.gradleVersion)
 
-        FileCollection shellClasspath = project.configurations.buildShellConf.asFileTree
+        FileCollection shellClasspath = project.configurations.getByName(getConfigurationName()).asFileTree
         this.classpath = shellClasspath
 
         FileCollection extraClasspath = project.groovysh.shell.extraClasspath
@@ -29,7 +31,7 @@ class BuildShellTask extends ShellTask {
 
     @Override
     String getConfigurationName() {
-        return CONFIGURATION_NAME
+        return CONFIGURATION_NAME_PREFIX + getName()
     }
 
     @Override

@@ -13,6 +13,7 @@ class GroovyshPlugin implements Plugin<Project> {
     void apply( final Project project ) {
         project.repositories.jcenter()
         project.extensions.create(NAME, GroovyshPluginExtension)
+        // not sure how to create nested extentions else...
         project.groovysh.extensions.create(BuildDevShellTask.NAME, BuildDevShellTaskExtension)
         project.groovysh.extensions.create(BuildShellTask.NAME, BuildShellTaskExtension)
         project.groovysh.extensions.create(ApplicationShellTask.NAME, ApplicationShellTaskExtension)
@@ -26,6 +27,7 @@ class GroovyshPlugin implements Plugin<Project> {
     static void setupTasks(final Project project) {
         if (project.groovysh.enableBuildDevShell) {
             project.configurations.create(BuildDevShellTask.CONFIGURATION_NAME)
+
             try {
                 project.tasks.create(BuildDevShellTask.NAME, BuildDevShellTask)
             } catch (InvalidUserDataException e) {

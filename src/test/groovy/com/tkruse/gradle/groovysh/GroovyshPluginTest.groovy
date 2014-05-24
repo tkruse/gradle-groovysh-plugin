@@ -34,9 +34,11 @@ class GroovyshPluginTest {
         assert project.tasks.findByName(BuildDevShellTask.NAME) != null
         assert project.tasks.findByName(ApplicationShellTask.NAME) != null
         assert project.tasks.buildDevShell instanceof BuildDevShellTask
+        assert project.tasks.buildShell instanceof BuildShellTask
         assert project.tasks.shell instanceof ApplicationShellTask
 
-        assert project.configurations.appShellConf != null
+        assert project.configurations.appShellConf_shell != null
+        assert project.configurations.buildShellConf_buildShell != null
         assert project.configurations.buildDevShellConf != null
     }
 

@@ -24,7 +24,6 @@ groovysh {
         jvmArgs = ['-Xmx1024m']
         /* arguments to groovysh */
         // args = ['--terminal=none']
-        // groovyVersion = '2.3.0'
         /* ... the other params of gradle JavaExec can also be used */
     }
 
@@ -51,3 +50,14 @@ want to run another.
 Groovy versions <= 2.2.1 are currently not supported by the ```shell`` and
 ```buildShell``` task due to mysterious Classpath problems. the ```buildDevShell```
 task always runs with the Groovy version gradle ships with ( 1.8.6 **(;_;)** ).
+
+## Custom task configuration
+
+If you want to define multiple different tasks, such as a special task for a shell with the unit
+test dependencies in the classpath, you can extend The ApplicationShell task:
+
+```Groovy
+task testShell(type: com.tkruse.gradle.groovysh.ApplicationShellTask) {
+    sourceSetName = 'test'
+}
+```

@@ -2,13 +2,15 @@
 
 - Define ApplicationShell initial commands, imports (may require Groovy 2.3.2)
 - Prepopulate Variables for buildShell connection
-- Allow defining multiple ApplicationShells
 - Check project with ASM dependency
 - Clarify whether to use Groovy indy jar
 - Run without building classes for Groovy classpath?
 - Release to Maven central
 - Groovysh Tips and tricks
 - Fix classpath issues for Groovy <= 2.2.0
+- Fix declared vs inferred version checking
+- Fix prompt invisible after exception
+- check for invalid keys in extension (typos)
 - Tutorials / Examples / sampleProjects
     - hibernate
     - running unit tests without creating fixture again?
