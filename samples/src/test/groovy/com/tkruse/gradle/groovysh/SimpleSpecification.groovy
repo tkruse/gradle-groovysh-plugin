@@ -28,4 +28,28 @@ class SimpleSpecification extends Specification {
         assert !bytesOut.toString().contains('Exception')
 
     }
+
+    def "test buildshell"() {
+        setup:
+        BuildLauncher launcher = LauncherHelper.getLauncherForProject('simple', ['clean', 'buildShell'] as String[])
+
+        ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
+        ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()
+        ByteArrayInputStream bytesIn = new ByteArrayInputStream(
+                'connector.getClass()\n'.bytes)
+
+        launcher.standardOutput = bytesOut
+        launcher.standardError = bytesOut
+        launcher.standardInput = bytesIn
+
+        when:
+        launcher.run()
+
+        then:
+        assert bytesErr.toString() == ''
+        assert bytesOut.toString() =~ ('Groovy Shell')
+        assert bytesOut.toString().contains('class org.gradle.tooling.internal.consumer.DefaultGradleConnector')
+        assert !bytesOut.toString().contains('Exception')
+
+    }
 }

@@ -1,6 +1,5 @@
 # Wishlist / Brainstorming / TODOs
 
-- Prepopulate Variables for buildShell connection
 - Check project with ASM dependency
 - Clarify whether to use Groovy indy jar
 - Run without building classes for Groovy classpath?
@@ -30,6 +29,7 @@
 
 ## Done
 
+- Prepopulate Variables for buildShell connection
 - Define ApplicationShell initial commands or imports
 - Run a ```shell``` task with application classes
 - Run a ```buildShell``` task with gradle on the classpath

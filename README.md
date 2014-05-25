@@ -87,12 +87,6 @@ You can find samples in the [samples subfolder](samples/README.md).
 ### Some things you can do with the ```buildShell```
 
 ```Groovy
-groovy:000> import org.gradle.tooling.*
-===> org.gradle.tooling.*
-groovy:000> import org.gradle.tooling.model.*
-===> org.gradle.tooling.model.*
-groovy:000> connector = GradleConnector.newConnector()
-===> org.gradle.tooling.internal.consumer.DefaultGradleConnector@6d3666fb
 groovy:000> connector.forProjectDirectory(new File("."))
 groovy:000> connection = connector.connect()
 ===> org.gradle.tooling.internal.consumer.DefaultProjectConnection@598b4d64
