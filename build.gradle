@@ -1,6 +1,7 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
-apply plugin: 'signing'
+apply plugin: 'maven-publish' // for bintray
+apply plugin: 'signing' // for oss
 apply plugin: 'codenarc'
 apply plugin: 'bintray'
 
@@ -139,6 +140,16 @@ jar {
                 'Built-Date': new Date(),
                 'Built-JDK': System.getProperty('java.version'),
                 'Built-Gradle': gradle.gradleVersion
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact groovydocJar
+        }
     }
 }
 
