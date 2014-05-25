@@ -1,6 +1,5 @@
 # Wishlist / Brainstorming / TODOs
 
-- Define ApplicationShell initial commands, imports (may require Groovy 2.3.2)
 - Prepopulate Variables for buildShell connection
 - Check project with ASM dependency
 - Clarify whether to use Groovy indy jar
@@ -31,6 +30,7 @@
 
 ## Done
 
+- Define ApplicationShell initial commands or imports
 - Run a ```shell``` task with application classes
 - Run a ```buildShell``` task with gradle on the classpath
 - Run a ```buildDevShell``` task where the ```project``` variable is the same as in ```build.gradle``` file

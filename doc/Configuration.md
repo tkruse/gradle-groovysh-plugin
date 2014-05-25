@@ -48,7 +48,7 @@ This is mostly provided in case one of the tasks fails to configure, but you
 want to run another.
 
 Groovy versions <= 2.2.1 are currently not supported by the ```shell`` and
-```buildShell``` task due to mysterious Classpath problems. the ```buildDevShell```
+```buildShell``` task due to mysterious Classpath problems. The ```buildDevShell```
 task always runs with the Groovy version gradle ships with ( 1.8.6 **(;_;)** ).
 
 ## Custom task configuration
@@ -59,5 +59,27 @@ test dependencies in the classpath, you can extend The ApplicationShell task:
 ```Groovy
 task testShell(type: com.tkruse.gradle.groovysh.ApplicationShellTask) {
     sourceSetName = 'test'
+}
+```
+
+## Initial commands
+
+In order to speed up your daily work with a shell, you can run some commands to import frequently used 
+packages, create Instances, or even load groovy files. Note that the load command of Groovysh changed 
+from ```load``` to ```:load``` between versions.
+
+```Groovy
+groovysh {
+    shell {
+        args = ['-e', 'import com.example.Example\ne = new Example()']
+    }
+}
+```
+
+or 
+
+```Groovy
+task testShell(type: com.tkruse.gradle.groovysh.ApplicationShellTask) {
+    args = ['-e', 'import com.example.Example\ne = new Example()']
 }
 ```

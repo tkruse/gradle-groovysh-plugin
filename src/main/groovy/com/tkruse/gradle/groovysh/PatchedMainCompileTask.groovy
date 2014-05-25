@@ -4,8 +4,9 @@ import org.gradle.api.tasks.compile.JavaCompile
 
 class PatchedMainCompileTask extends JavaCompile {
 
-    static final String NAME = 'compileGroovyshMain'
+    static final String NAME = 'compileGroovyshPatchedMain'
     static final String PATCH_CLASS_NAME = 'PatchedMain'
+    static final String PATCH_CLASS_CAN_NAME = 'org.codehaus.groovy.tools.shell.' + PATCH_CLASS_NAME
     static final String CONFIGURATION_NAME = 'appShellCompileMainConf'
 
     PatchedMainCompileTask() {

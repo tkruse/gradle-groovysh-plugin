@@ -29,14 +29,13 @@ class MultiShellSpecification extends Specification {
 
     }
 
-    def "import custom class from custom task"() {
+    def "import custom class on startup from custom task"() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('multishell', ['clean', 'mainShell'] as String[])
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()
-        ByteArrayInputStream bytesIn = new ByteArrayInputStream(
-                'import com.example.Example\ne = new Example()'.bytes)
+        ByteArrayInputStream bytesIn = new ByteArrayInputStream()
 
         launcher.standardOutput = bytesOut
         launcher.standardError = bytesOut
@@ -49,6 +48,7 @@ class MultiShellSpecification extends Specification {
         assert bytesErr.toString() == ''
         assert bytesOut.toString() =~ ('Groovy Shell')
         assert bytesOut.toString().contains('com.example.Example')
+        assert bytesOut.toString().contains('e = new Example()')
         assert !bytesOut.toString().contains('Exception')
     }
 

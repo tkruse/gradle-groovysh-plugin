@@ -22,6 +22,7 @@ dependencies {
 
 task mainShell(type: com.tkruse.gradle.groovysh.ApplicationShellTask) {
     jvmArgs = ['-Xmx2048m', '-Xms2048m']
+    args = ['-e', 'import com.example.Example\ne = new Example()']
 }
 
 task testShell(type: com.tkruse.gradle.groovysh.ApplicationShellTask) {

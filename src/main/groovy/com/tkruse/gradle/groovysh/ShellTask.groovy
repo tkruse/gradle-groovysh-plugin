@@ -59,9 +59,8 @@ abstract class ShellTask extends JavaExec {
             this.systemProperties = systemProperties
         }
 
-
         //this.main = 'org.codehaus.groovy.tools.shell.Main'
-        this.main = PatchedMainCompileTask.PATCH_CLASS_NAME
+        this.main = PatchedMainCompileTask.PATCH_CLASS_CAN_NAME
     }
 
     void addGroovyDependencies() {
