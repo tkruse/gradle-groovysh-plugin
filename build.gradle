@@ -28,6 +28,7 @@ repositories {
 
 group = 'com.tkruse.gradle'
 version = '0.2.0'
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
 sourceCompatibility = compatibilityVersion
@@ -85,6 +86,7 @@ artifacts {
 }
 
 signing {
+    required { isReleaseVersion && gradle.taskGraph.hasTask("uploadArchives") }
     sign configurations.archives
 }
 
@@ -97,8 +99,8 @@ uploadArchives {
             beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
             repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
                 authentication(
-                        userName: project.getProperty('sonatypeUsername'),
-                        password: project.getProperty('sonatypePassword'))
+                    userName: (project.hasProperty( 'sonatypeUsername' ) ? project.getProperty( 'sonatypeUsername' ) : null),
+                    password: (project.hasProperty( 'sonatypePassword' ) ? project.getProperty( 'sonatypePassword' ) : null))
             }
             pom.project {
                 name project.name
@@ -121,7 +123,7 @@ uploadArchives {
                     developer {
                         id 'tkruse'
                         name 'Thibault Kruse'
-                        email project.getProperty('email')
+                        email project.hasProperty( 'email' ) ? project.getProperty( 'email' ) : null
                     }
                 }
             }
