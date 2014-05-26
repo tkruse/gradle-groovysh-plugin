@@ -27,7 +27,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '0.2.0'
+version = '0.2.0-SNAPSHOT'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -57,6 +57,15 @@ dependencies {
     runtime('commons-cli:commons-cli:1.2')
     testCompile("junit:junit-dep:4.11")
 }
+
+// ********* Not to myself: Release steps
+// run clean check locally
+// push to master
+// wait for travis to be happy
+// bump version
+// push to master
+// assemble, uploadArchives, bintrayUpload
+
 
 // ********* Maven Central
 // https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide
