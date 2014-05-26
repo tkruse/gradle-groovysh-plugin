@@ -13,6 +13,8 @@ class BuildShellTaskTest {
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         TestHelper.setupTasks(project)
         project.tasks.findByName(BuildShellTask.NAME).addGroovyDependencies()
+        project.tasks.findByName(BuildShellTask.NAME).addDependencies()
+        project.tasks.findByName(BuildShellTask.NAME).setupClasspath()
         JavaExec buildShellTask = (JavaExec) project.tasks.findByName(BuildShellTask.NAME)
         List<String> dependencyVersions =
                 project.configurations.buildShellConf_buildShell
@@ -36,6 +38,8 @@ class BuildShellTaskTest {
                 project.groovysh.buildShell.gradleVersion = gradleVersion
                 TestHelper.setupTasks(project)
                 project.tasks.findByName(BuildShellTask.NAME).addGroovyDependencies()
+                project.tasks.findByName(BuildShellTask.NAME).addDependencies()
+                project.tasks.findByName(BuildShellTask.NAME).setupClasspath()
                 List<String> dependencyVersions =
                         project.configurations.buildShellConf_buildShell
                                 .dependencies.asList().collect { it.name + it.version }
@@ -55,6 +59,8 @@ class BuildShellTaskTest {
 
         TestHelper.setupTasks(project)
         project.tasks.findByName(BuildShellTask.NAME).addGroovyDependencies()
+        project.tasks.findByName(BuildShellTask.NAME).addDependencies()
+        project.tasks.findByName(BuildShellTask.NAME).setupClasspath()
         JavaExec buildShellTask = (JavaExec) project.tasks.findByName(BuildShellTask.NAME)
 
         assert buildShellTask != null
