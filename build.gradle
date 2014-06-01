@@ -27,7 +27,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '0.2.0'
+version = '0.3.0-SNAPSHOT'
 
 def compatibilityVersion = 1.7
 sourceCompatibility = compatibilityVersion
