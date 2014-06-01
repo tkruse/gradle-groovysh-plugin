@@ -57,7 +57,7 @@ If you encounter groovy version mismatches, explicitly set your system version (
 ```Groovy
 groovysh {
     // groovyVersion determines the features of the shell and buildShell tasks.
-    groovyVersion = '2.3.1'
+    groovyVersion = '2.3.2'
 }
 ```
 
@@ -161,10 +161,10 @@ Or just install Groovy and run ```groovysh``` with a suitable classpath.
 
 ## Compatibility
 
-* Java Versions (6?, 7, 8?)
+* Java Versions (6?, 7, 8)
 
 * Operating Systems (Ubuntu Precise)
 
 * Gradle versions (1.8?, 1.9, 1.10, 1.11, 1.12)
 
-* Groovy Versions (>= 2.2.1)
+* Groovy Versions (2.x.x)
