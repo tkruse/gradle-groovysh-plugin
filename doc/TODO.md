@@ -5,7 +5,6 @@
 - Run without building classes for Groovy classpath?
 - Release to Maven central
 - Groovysh Tips and tricks
-- Fix classpath issues for Groovy <= 2.2.0
 - Fix declared vs inferred version checking
 - Fix prompt invisible after exception
 - check for invalid keys in extension (typos)
