@@ -39,25 +39,16 @@ class TaskHelper {
                 .collect { Dependency it -> it }
         switch (groovyVersion) {
             case ~/1\.8\.[0-9].*/:
-                addIfMissing(project, configurationName, deps, 'org.fusesource.jansi', 'jansi', '1.6')
-                addIfMissing(project, configurationName, deps, 'jline', 'jline', '1.0')
-                break
             case ~/0\.[0-9]\.[0-9].*/:
             case ~/1\.[0-9]\.[0-9].*/:
             case ~/2\.0\.[0-9].*/:
             case ~/2\.1\.[0-9].*/:
-                // even with dependencies below, some conflict raises groovyCastException
-                // for org.apache.commons.cli.HelpFormatter
-//                project.dependencies.add(configurationName, 'org.fusesource.jansi:jansi:1.6')
-//                project.dependencies.add(configurationName, 'jline:jline:1.0')
-                //break;
+                addIfMissing(project, configurationName, deps, 'org.fusesource.jansi', 'jansi', '1.6')
+                addIfMissing(project, configurationName, deps, 'jline', 'jline', '1.0')
+                break
             case ~/2\.2\.0.*/:
-//                project.dependencies.add(configurationName, 'org.fusesource.jansi:jansi:1.10')
-//                project.dependencies.add(configurationName, 'jline:jline:2.10')
-                //break
-                String msg = "Unsupported Groovy version '$groovyVersion'"
-                println(msg)
-                throw new IllegalStateException(msg)
+                addIfMissing(project, configurationName, deps, 'jline', 'jline', '2.11')
+                break
             case ~/2\.2\.[0-9].*/:
             case ~/2\.3\.[0-9].*/:
                 addIfMissing(project, configurationName, deps, 'jline', 'jline', '2.11')
