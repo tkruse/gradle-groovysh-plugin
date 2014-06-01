@@ -8,6 +8,10 @@ env:
   - GRADLE=gradle/gradle1.10/gradlew
   - GRADLE=gradle/gradle1.11/gradlew
   - GRADLE=gradle/gradle1.12/gradlew
+matrix:
+  exclude:
+    - jdk: oraclejdk8
+      env: GRADLE=gradle/gradle1.9/gradlew
 install: $GRADLE assemble --stacktrace
 script:
   - TERM=dumb $GRADLE clean build --stacktrace
