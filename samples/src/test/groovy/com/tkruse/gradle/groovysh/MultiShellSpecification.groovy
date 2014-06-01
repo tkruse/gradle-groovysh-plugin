@@ -5,7 +5,7 @@ import spock.lang.Specification
 
 class MultiShellSpecification extends Specification {
 
-    def "import custom class"() {
+    def testImportCustomClass() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('simple')
 
@@ -29,7 +29,7 @@ class MultiShellSpecification extends Specification {
 
     }
 
-    def "import custom class on startup from custom task"() {
+    def testImportCustomClassStartupFromCustomTask() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('multishell', ['clean', 'mainShell'] as String[])
 
@@ -52,7 +52,7 @@ class MultiShellSpecification extends Specification {
         assert !bytesOut.toString().contains('Exception')
     }
 
-    def "import custom class from custom test task"() {
+    def testImportCustomClassTestTask() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('multishell', ['clean', 'testShell'] as String[])
 
