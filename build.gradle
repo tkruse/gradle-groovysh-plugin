@@ -27,7 +27,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '0.3.0'
+version = '0.4.0-SNAPSHOT'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -100,7 +100,10 @@ signing {
 }
 
 /*
- * run with gradle uploadArchives
+ * run with gradle uploadArchives.
+ * then go to
+ * https://oss.sonatype.org/#stagingRepositories
+ * check all is good. If not, find the repo, select, close, wait until closed, then release
  */
 uploadArchives {
     repositories {
@@ -166,6 +169,7 @@ publishing {
 
 /*
  * Run with gradle bintrayUpload
+ * then go to https://bintray.com/tkruse/maven/gradle-groovysh-plugin and hit publish
  */
 bintray {
     user = project.hasProperty( 'bintrayUser' ) ? project.getProperty( 'bintrayUser' ) : null
