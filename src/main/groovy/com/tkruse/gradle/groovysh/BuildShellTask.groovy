@@ -32,19 +32,9 @@ connector = GradleConnector.newConnector()
 
     @Override
     void exec() {
-        List<Dependency> deps = project.configurations.getByName(getConfigurationName()).allDependencies
-                .collect { Dependency it -> it }
-        TaskHelper.addIfMissing(project, getConfigurationName(),
-                deps, 'org.gradle', 'gradle-tooling-api', taskExtension.gradleVersion)
-        TaskHelper.addIfMissing(project, getConfigurationName(), deps, 'org.slf4j', 'slf4j-simple', '1.7.7')
+        addGradleDependencies()
 
-        FileCollection shellClasspath = project.configurations.getByName(getConfigurationName()).asFileTree
-        this.classpath = shellClasspath
-
-        FileCollection extraClasspath = project.groovysh.shell.extraClasspath
-        if (extraClasspath != null) {
-            this.classpath = this.classpath + extraClasspath
-        }
+        setupClasspath()
 
         this.args = FIXEDARGS + this.args
 
@@ -57,5 +47,23 @@ project = connection.getModel(GradleProject)
 launcher = connection.newBuild()
 ''')
         super.exec()
+    }
+
+    void setupClasspath() {
+        FileCollection shellClasspath = project.configurations.getByName(getConfigurationName()).asFileTree
+        this.classpath = shellClasspath
+
+        FileCollection extraClasspath = project.groovysh.shell.extraClasspath
+        if (extraClasspath != null) {
+            this.classpath = this.classpath + extraClasspath
+        }
+    }
+
+    void addGradleDependencies() {
+        List<Dependency> deps = project.configurations.getByName(getConfigurationName()).allDependencies
+                .collect { Dependency it -> it }
+        TaskHelper.addIfMissing(project, getConfigurationName(),
+                deps, 'org.gradle', 'gradle-tooling-api', taskExtension.gradleVersion)
+        TaskHelper.addIfMissing(project, getConfigurationName(), deps, 'org.slf4j', 'slf4j-simple', '1.7.7')
     }
 }
