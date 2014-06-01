@@ -30,7 +30,8 @@ connector = GradleConnector.newConnector()
         return CONFIGURATION_NAME_PREFIX + getName()
     }
 
-    void addDependencies() {
+
+    void addGradleDependencies() {
         List<Dependency> deps = project.configurations.getByName(getConfigurationName()).allDependencies
                 .collect { Dependency it -> it }
         TaskHelper.addIfMissing(project, getConfigurationName(),
@@ -50,7 +51,7 @@ connector = GradleConnector.newConnector()
 
     @Override
     void exec() {
-        addDependencies()
+        addGradleDependencies()
         setupClasspath()
         this.args = FIXEDARGS + this.args
 
@@ -64,4 +65,5 @@ launcher = connection.newBuild()
 ''')
         super.exec()
     }
+
 }

@@ -1,7 +1,6 @@
 package com.tkruse.gradle.groovysh
 
 import org.gradle.api.Project
-import org.gradle.api.tasks.JavaExec
 import org.junit.Test
 
 class ApplicationShellTaskTest {
@@ -14,7 +13,7 @@ class ApplicationShellTaskTest {
         project.groovysh.shell.setSourceSetName('test')
         TestHelper.setupTasks(project)
         project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
-        JavaExec shellTask = (JavaExec) project.tasks.findByName(ApplicationShellTask.NAME)
+        ApplicationShellTask shellTask = (ApplicationShellTask) project.tasks.findByName(ApplicationShellTask.NAME)
         assert shellTask != null
         assert shellTask.dependsOn.contains('testClasses')
         assert shellTask.classpath.asPath.contains('groovy')
@@ -29,7 +28,7 @@ class ApplicationShellTaskTest {
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         TestHelper.setupTasks(project)
         project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
-        JavaExec shellTask = (JavaExec) project.tasks.findByName(ApplicationShellTask.NAME)
+        ApplicationShellTask shellTask = (ApplicationShellTask) project.tasks.findByName(ApplicationShellTask.NAME)
         assert shellTask != null
         assert shellTask.dependsOn.contains('classes')
         assert shellTask.classpath.asPath.contains('groovy')
@@ -39,7 +38,7 @@ class ApplicationShellTaskTest {
 
     @Test
     void testGroovyVersions() {
-        for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.1']) {
+        for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.2']) {
             Project project = TestHelper.createProjectWithPlugin()
             project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
 
@@ -78,14 +77,14 @@ class ApplicationShellTaskTest {
 
         TestHelper.setupTasks(project)
         project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
-        JavaExec shellTask = (JavaExec) project.tasks.findByName(ApplicationShellTask.NAME)
+        ApplicationShellTask shellTask = (ApplicationShellTask) project.tasks.findByName(ApplicationShellTask.NAME)
 
         assert shellTask != null
         List<String> dependencyVersions =
                 project.configurations.appShellConf_shell.dependencies.asList().collect { it.name + it.version }
         assert dependencyVersions.contains('jline2.11')
         assert dependencyVersions.contains('commons-cli1.2')
-        assert dependencyVersions.contains('groovy-all2.3.1')
+        assert dependencyVersions.contains('groovy-all2.3.2')
         assert shellTask.dependsOn.contains('classes')
         assert shellTask.classpath.asPath.contains('groovy')
         assert shellTask.classpath.asPath.contains('junit')

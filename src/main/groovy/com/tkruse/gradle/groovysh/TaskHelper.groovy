@@ -46,9 +46,6 @@ class TaskHelper {
                 addIfMissing(project, configurationName, deps, 'org.fusesource.jansi', 'jansi', '1.6')
                 addIfMissing(project, configurationName, deps, 'jline', 'jline', '1.0')
                 break
-            case ~/2\.2\.0.*/:
-                addIfMissing(project, configurationName, deps, 'jline', 'jline', '2.11')
-                break
             case ~/2\.2\.[0-9].*/:
             case ~/2\.3\.[0-9].*/:
                 addIfMissing(project, configurationName, deps, 'jline', 'jline', '2.11')
@@ -62,6 +59,9 @@ class TaskHelper {
         addIfMissing(project, configurationName, deps, 'org.codehaus.groovy', 'groovy-all', groovyVersion, 'groovy')
     }
 
+    /**
+     * adds given dependency to project dependencies if that group+module is not already declared
+     */
     static void addIfMissing(final Project project, final String configurationName, final List<Dependency> deps,
                      final String group, final String module, final String version, String altModule = null) {
         boolean found = false

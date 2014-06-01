@@ -63,7 +63,7 @@ abstract class ShellTask extends JavaExec {
         this.main = PatchedMainCompileTask.PATCH_CLASS_CAN_NAME
     }
 
-    void addGroovyDependencies() {
+    protected void addGroovyDependencies() {
         String taskConfigurationName = getConfigurationName()
         TaskHelper.addGroovyDependencies(project, taskConfigurationName, project.groovysh.groovyVersion)
     }
