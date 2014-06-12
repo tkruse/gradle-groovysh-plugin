@@ -7,7 +7,9 @@ class SimpleGroovySpecification extends Specification {
 
     def testImportCustomclass() {
         setup:
-        BuildLauncher launcher = LauncherHelper.getLauncherForProject('simpleGroovy')
+        BuildLauncher launcher = LauncherHelper.getLauncherForProject('simpleGroovy',
+                ['clean', 'shell'] as String[],
+                ["-PgroovyVersion=$groovyVersion"] as String[])
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()
@@ -27,5 +29,7 @@ class SimpleGroovySpecification extends Specification {
         assert bytesOut.toString().contains('com.example.Example')
         assert !bytesOut.toString().contains('Exception')
 
+        where:
+        groovyVersion << ['2.0.0', '2.0.8', '2.1.0', '2.1.9', '2.2.0', '2.2.1', '2.2.2', '2.3.3']
     }
 }

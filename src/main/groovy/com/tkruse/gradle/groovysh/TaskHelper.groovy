@@ -37,7 +37,11 @@ class TaskHelper {
                                       final String groovyVersion) {
         List<Dependency> deps = project.configurations.getByName(configurationName).allDependencies
                 .collect { Dependency it -> it }
-        switch (groovyVersion) {
+        String actualGroovyVersion = getActualGroovyVersion(deps)
+        if (actualGroovyVersion == null) {
+            actualGroovyVersion = groovyVersion
+        }
+        switch (actualGroovyVersion) {
             case ~/1\.8\.[0-9].*/:
             case ~/0\.[0-9]\.[0-9].*/:
             case ~/1\.[0-9]\.[0-9].*/:
@@ -51,12 +55,23 @@ class TaskHelper {
                 addIfMissing(project, configurationName, deps, 'jline', 'jline', '2.11')
                 break
             default:
-                String msg = "Unknown Groovy version '$groovyVersion'"
+                String msg = "Unknown Groovy version '$actualGroovyVersion'"
                 println(msg)
                 throw new IllegalStateException(msg)
         }
         addIfMissing(project, configurationName, deps, 'commons-cli', 'commons-cli', '1.2')
-        addIfMissing(project, configurationName, deps, 'org.codehaus.groovy', 'groovy-all', groovyVersion, 'groovy')
+        addIfMissing(project, configurationName, deps, 'org.codehaus.groovy', 'groovy-all', actualGroovyVersion, 'groovy')
+    }
+
+    static String getActualGroovyVersion(final List<Dependency> deps) {
+        for (Dependency dep : deps) {
+            if (dep.group == 'org.codehaus.groovy') {
+                if ((dep.name == 'groovy-all') || (dep.name == 'groovy')) {
+                    return dep.version
+                }
+            }
+        }
+        return null
     }
 
     /**
@@ -67,7 +82,7 @@ class TaskHelper {
         boolean found = false
         for (Dependency dep : deps) {
             if (dep.group == group) {
-                if ((dep.name == module) || ((altModule != null && dep.name == altModule))) {
+                if ((dep.name == module) || ((altModule != null) && (dep.name == altModule))) {
                     found = true
                     if (dep.version != version) {
                         println("WARNING, groovy version $dep.version mismatches \

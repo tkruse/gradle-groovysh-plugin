@@ -16,7 +16,7 @@ apply plugin: 'groovysh'
 //}
 
 groovysh {
-    groovyVersion = project.hasProperty('groovyVersion') ? project.getProperty('groovyVersion') : null
+    groovyVersion = project.hasProperty('groovyVersion') ? project.getProperty('groovyVersion') : '2.3.3'
 }
 
 dependencies {

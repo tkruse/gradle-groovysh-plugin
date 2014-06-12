@@ -15,8 +15,12 @@ apply plugin: 'groovysh'
 //    }
 //}
 
+project.ext {
+    groovyVersion = project.hasProperty('groovyVersion') ? project.getProperty('groovyVersion') : '2.3.3'
+}
+
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.2.1'
+    compile "org.codehaus.groovy:groovy-all:$groovyVersion"
     testCompile("junit:junit-dep:4.11") { force = true }
 }
 
