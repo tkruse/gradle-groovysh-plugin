@@ -27,7 +27,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '0.4.0'
+version = '0.5.0-SNAPSHOT'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -58,13 +58,15 @@ dependencies {
     testCompile("junit:junit-dep:4.11")
 }
 
-// ********* Not to myself: Release steps
+// ********* Note to myself: Release steps
 // run clean check locally
+// update README.md and CHANGELOG
 // push to master
 // wait for travis to be happy
 // bump version
 // push to master
 // assemble, uploadArchives, bintrayUpload
+// Click publish on bintray site
 
 
 // ********* Maven Central

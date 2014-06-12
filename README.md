@@ -41,7 +41,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:0.2.0'
+        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:0.4.0'
     }
 }
 

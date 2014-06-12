@@ -1,6 +1,18 @@
 Changelog
 =========
 
+Version 0.4.0 *(2014-05-25)*
+----------------------------
+
+* fix #4 issues with old groovy version and special keys
+* default groovy 2.3.3
+
+Version 0.3.0 *(2014-05-25)*
+----------------------------
+
+* default groovy 2.3.2
+* Allow groovy versions < 2.2.1
+
 Version 0.2.0 *(2014-05-25)*
 ----------------------------
 
