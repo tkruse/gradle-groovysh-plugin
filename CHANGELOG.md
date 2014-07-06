@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.0.0 *(2014-05-25)*
+----------------------------
+
+* qualified plugin Id (to comply with gradle portal)
+
+
 Version 0.4.0 *(2014-05-25)*
 ----------------------------
 

@@ -8,12 +8,12 @@ class TestHelper {
     static Project createProjectWithPlugin() {
         Project project = ProjectBuilder.builder().build()
         project.apply plugin: 'java'
-        project.apply plugin: GroovyshPlugin.NAME
+        project.apply plugin: GroovyshPlugin.PlUGIN_ID
         return project
     }
 
     static void setupTasks(final Project project) {
-        Plugin plugin = project.plugins.getPlugin(GroovyshPlugin.NAME)
+        Plugin plugin = project.plugins.getPlugin(GroovyshPlugin.PlUGIN_ID)
         assert plugin instanceof GroovyshPlugin
         // simulate AfterEvaluate
         ((GroovyshPlugin) plugin).setupTasks(project)

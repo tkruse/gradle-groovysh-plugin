@@ -1,6 +1,6 @@
 apply plugin: 'groovy'
 apply plugin: 'java'
-apply plugin: 'groovysh'
+apply plugin: 'com.github.tkruse.groovysh'
 apply plugin: 'codenarc'
 apply from: "$rootDir/config/gradle/java-builds.gradle"
 
@@ -14,7 +14,7 @@ buildscript {
             dirs "$rootDir/../build/libs"
         }
         dependencies {
-            classpath 'com.tkruse.gradle:gradle-groovysh-plugin:0.5.0-SNAPSHOT'
+            classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.0-SNAPSHOT'
         }
     }
 }

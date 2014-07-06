@@ -1,6 +1,6 @@
 apply plugin: 'java'
 // if plugin groovysh not found, add project to samples/settings.gradle
-apply plugin: 'groovysh'
+apply plugin: 'com.github.tkruse.groovysh'
 
 // For an independent project, you would need the lines below. in this case they are in the parent folder
 

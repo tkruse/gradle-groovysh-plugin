@@ -34,18 +34,19 @@ This plugin is **Work In Progress**, expect some rough edges, but please do repo
 Include the plugin in your build.gradle file like this:
 
 ```Groovy
-apply plugin: 'groovysh'
+apply plugin: 'com.github.tkruse.groovysh'
 
 buildscript {
     repositories {
         jcenter()
     }
     dependencies {
-        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:0.4.0'
+        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.0'
     }
 }
-
 ```
+
+The plugin id has changed with version 1.0.0 due to the requirements of gradle-portal.
 
 Currently your project needs to also have the java plugin applied for the ```shell``` task.
 

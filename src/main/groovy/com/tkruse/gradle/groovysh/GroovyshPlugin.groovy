@@ -7,6 +7,7 @@ import org.gradle.api.Project
 
 class GroovyshPlugin implements Plugin<Project> {
 
+    public static final String PlUGIN_ID = 'com.github.tkruse.groovysh'
     public static final String NAME = 'groovysh'
 
     @Override

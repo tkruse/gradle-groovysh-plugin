@@ -10,8 +10,8 @@ class GroovyshPluginTest {
     @Test
     void testApplyNoJava() {
         Project project = ProjectBuilder.builder().build()
-        project.apply plugin: GroovyshPlugin.NAME
-        Plugin plugin = project.plugins.getPlugin(GroovyshPlugin.NAME)
+        project.apply plugin: GroovyshPlugin.PlUGIN_ID
+        Plugin plugin = project.plugins.getPlugin(GroovyshPlugin.PlUGIN_ID)
         assert plugin instanceof GroovyshPlugin
         assert project.tasks.findByName(BuildDevShellTask.NAME) == null
         assert project.tasks.findByName(ApplicationShellTask.NAME) == null

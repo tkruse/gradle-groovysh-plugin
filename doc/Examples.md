@@ -3,7 +3,7 @@
 code:
 
     apply plugin: 'java'
-    apply plugin: 'groovysh'
+    apply plugin: 'com.github.tkruse.groovysh'
 
     ...
 
