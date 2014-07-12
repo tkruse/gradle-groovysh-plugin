@@ -4,6 +4,7 @@ Changelog
 Version 1.0.0 *(2014-05-25)*
 ----------------------------
 
+* gradle 2.0 compatibility tests
 * qualified plugin Id (to comply with gradle portal)
 
 

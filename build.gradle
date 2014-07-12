@@ -52,8 +52,12 @@ test {
 
 dependencies {
     compile gradleApi()
-    compile "jline:jline:1.0"
-    compile('org.codehaus.groovy:groovy-all:2.2.2') { force = true }
+    if (GradleVersion.current().getVersion().startsWith('1')) {
+        compile "jline:jline:1.0"
+    } else {
+        compile "jline:jline:2.11"
+    }
+    compile('org.codehaus.groovy:groovy-all:2.3.3') { force = true }
     runtime('commons-cli:commons-cli:1.2')
     testCompile("junit:junit-dep:4.11")
 }

@@ -17,8 +17,6 @@ import org.gradle.tooling.model.*
 connector = GradleConnector.newConnector()
 ''']
 
-    String gradleVersion = '1.12'
-
     @Override
     ShellTaskExtension getTaskExtension() {
         return project.groovysh.buildShell

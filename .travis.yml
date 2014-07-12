@@ -8,17 +8,19 @@ env:
   - GRADLE=gradle/gradle1.10/gradlew
   - GRADLE=gradle/gradle1.11/gradlew
   - GRADLE=gradle/gradle1.12/gradlew
+  - GRADLE=gradle/gradle2.0/gradlew
 matrix:
   exclude:
     - jdk: oraclejdk8
       env: GRADLE=gradle/gradle1.9/gradlew
-install: $GRADLE assemble --stacktrace
+install: ./gradlew   assemble --stacktrace
 script:
-  - TERM=dumb $GRADLE clean build --stacktrace
+# building with gradlew 1.12 for backwards compatibility
+  - TERM=dumb ./gradlew clean build --stacktrace
   - TERM=dumb $GRADLE -p samples clean check --stacktrace
 notifications:
   email: false
 branches:
   only:
     - master
-
+    - develop

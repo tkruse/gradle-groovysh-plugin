@@ -26,13 +26,13 @@ class BuildShellTaskTest {
         assert buildShellTask.classpath.asPath.contains('groovy')
         assert buildShellTask.classpath.asPath.contains('slf4j')
         assert !buildShellTask.classpath.asPath.contains('junit')
-        assert dependencyVersions.contains('gradle-tooling-api1.12')
+        assert dependencyVersions.contains('gradle-tooling-api2.0')
     }
 
     @Test
     void testGroovyVersions() {
         for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.3']) {
-            for (String gradleVersion in ['1.9', '1.10', '1.11', '1.12']) {
+            for (String gradleVersion in ['1.9', '1.10', '1.11', '1.12', '2.0']) {
                 Project project = TestHelper.createProjectWithPlugin()
                 project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
 
@@ -57,7 +57,7 @@ class BuildShellTaskTest {
     void testConfigureMainWithGradleVersion() {
         Project project = TestHelper.createProjectWithPlugin()
 
-        project.groovysh.buildShell.gradleVersion = '1.11'
+        project.groovysh.buildShell.gradleVersion = '2.0'
 
         TestHelper.setupTasks(project)
         BuildShellTask buildShellTask = (BuildShellTask) project.tasks.findByName(BuildShellTask.NAME)
@@ -70,7 +70,7 @@ class BuildShellTaskTest {
         assert dependencyVersions.contains('jline2.11')
         assert dependencyVersions.contains('commons-cli1.2')
         assert dependencyVersions.contains('groovy-all2.3.3')
-        assert dependencyVersions.contains('gradle-tooling-api1.11')
+        assert dependencyVersions.contains('gradle-tooling-api2.0')
 
     }
 }

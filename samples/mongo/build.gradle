@@ -28,7 +28,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter:1.0.2.RELEASE")
     compile("org.springframework.data:spring-data-mongodb:1.4.2.RELEASE")
     compile('com.github.fakemongo:fongo:1.4.5')
-    compile("org.projectlombok:lombok:1.12.6")
+    compile("org.projectlombok:lombok:1.14.4")
     testCompile("junit:junit")
     testCompile("org.mockito:mockito-all:1.9.5")
 }

@@ -36,10 +36,9 @@ allprojects {
 
 dependencies {
     // mandatory dependencies for using Spock
-    testCompile "org.codehaus.groovy:groovy-all:2.3.1"
+    testCompile "org.codehaus.groovy:groovy-all:2.3.3"
     testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
-    testCompile 'org.gradle:gradle-tooling-api:1.12'
-
+    testCompile 'org.gradle:gradle-tooling-api:2.0'
 }
 
 
