@@ -3,6 +3,9 @@ package com.tkruse.gradle.groovysh
 import org.gradle.tooling.BuildLauncher
 import spock.lang.Specification
 
+/**
+ * Tests the gradle API on the simple sample project
+ */
 class SimpleSpecification extends Specification {
 
     def testImportCustomClass() {

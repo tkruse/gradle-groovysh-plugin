@@ -1,12 +1,17 @@
 package com.example.config;
 
-import junit.framework.TestCase;
+import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class PersonServiceTest extends TestCase {
+/**
+ * example test
+ */
+public class PersonServiceTest {
 
+    @Test
     public void testNormalizeNames() throws Exception {
         PersonRepository mockRepo = mock(PersonRepository.class);
         Person person = spy(new Person("testfn", "testln"));

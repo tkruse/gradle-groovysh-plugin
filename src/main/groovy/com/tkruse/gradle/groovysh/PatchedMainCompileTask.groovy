@@ -2,6 +2,9 @@ package com.tkruse.gradle.groovysh
 
 import org.gradle.api.tasks.compile.JavaCompile
 
+/**
+ * JavaCompile Task specialized to compile java generated into build space
+ */
 class PatchedMainCompileTask extends JavaCompile {
 
     static final String NAME = 'compileGroovyshPatchedMain'

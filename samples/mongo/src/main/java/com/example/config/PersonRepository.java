@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * example repository
+ */
 @Repository
 public interface PersonRepository extends MongoRepository<Person, String> {
 

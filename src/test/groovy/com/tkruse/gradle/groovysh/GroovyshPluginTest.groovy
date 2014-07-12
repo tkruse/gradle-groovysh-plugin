@@ -5,13 +5,17 @@ import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Test
 
+/**
+ * plugin test
+ * tests plugin setup. Stronger execution tests are in samples subfolder.
+ */
 class GroovyshPluginTest {
 
     @Test
     void testApplyNoJava() {
         Project project = ProjectBuilder.builder().build()
-        project.apply plugin: GroovyshPlugin.PlUGIN_ID
-        Plugin plugin = project.plugins.getPlugin(GroovyshPlugin.PlUGIN_ID)
+        project.apply(plugin:GroovyshPlugin.PLUGIN_ID)
+        Plugin plugin = project.plugins.getPlugin(GroovyshPlugin.PLUGIN_ID)
         assert plugin instanceof GroovyshPlugin
         assert project.tasks.findByName(BuildDevShellTask.NAME) == null
         assert project.tasks.findByName(ApplicationShellTask.NAME) == null
@@ -41,6 +45,5 @@ class GroovyshPluginTest {
         assert project.configurations.buildShellConf_buildShell != null
         assert project.configurations.buildDevShellConf != null
     }
-
 
 }

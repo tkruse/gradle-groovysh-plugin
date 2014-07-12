@@ -3,6 +3,9 @@ package com.tkruse.gradle.groovysh
 import org.gradle.api.Project
 import org.junit.Test
 
+/**
+ * Tests task setup. Stronger execution tests are in samples subfolder.
+ */
 class BuildShellTaskTest {
 
     @Test

@@ -5,9 +5,12 @@ import org.gradle.api.InvalidUserDataException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 
+/**
+ * Plugin main class
+ */
 class GroovyshPlugin implements Plugin<Project> {
 
-    public static final String PlUGIN_ID = 'com.github.tkruse.groovysh'
+    public static final String PLUGIN_ID = 'com.github.tkruse.groovysh'
     public static final String NAME = 'groovysh'
 
     @Override

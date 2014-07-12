@@ -2,6 +2,9 @@ package com.example
 
 import org.junit.Test
 
+/**
+ * example test
+ */
 class ExampleTest {
 
     @Test

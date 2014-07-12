@@ -6,6 +6,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
+/**
+ * Spring Application
+ */
 @Configuration
 @EnableMongoRepositories // scans this package by default
 @ComponentScan(basePackageClasses = Application.class)

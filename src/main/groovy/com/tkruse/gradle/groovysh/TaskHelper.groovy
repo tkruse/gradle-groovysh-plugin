@@ -4,6 +4,9 @@ import org.gradle.api.Project
 import org.gradle.api.logging.LogLevel
 import org.gradle.api.artifacts.Dependency
 
+/**
+ * Utils for shell tasks execution
+ */
 class TaskHelper {
 
     private final static String DAEMON_PROP = 'org.gradle.daemon'
@@ -60,7 +63,8 @@ class TaskHelper {
                 throw new IllegalStateException(msg)
         }
         addIfMissing(project, configurationName, deps, 'commons-cli', 'commons-cli', '1.2')
-        addIfMissing(project, configurationName, deps, 'org.codehaus.groovy', 'groovy-all', actualGroovyVersion, 'groovy')
+        addIfMissing(project, configurationName, deps,
+                'org.codehaus.groovy', 'groovy-all', actualGroovyVersion, 'groovy')
     }
 
     static String getActualGroovyVersion(final List<Dependency> deps) {

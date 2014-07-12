@@ -3,6 +3,9 @@ package com.tkruse.gradle.groovysh
 import org.gradle.tooling.BuildLauncher
 import spock.lang.Specification
 
+/**
+ * Tests the gradle API on the mongo sample project
+ */
 class MongoSpecification extends Specification {
 
     def testMongoDbRepoAndService() {
@@ -13,6 +16,7 @@ class MongoSpecification extends Specification {
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()
         String input = '''\
 import com.example.config.*
+
 ctx = Application.run()
 repo = ctx.getBean(PersonRepository)
 service = ctx.getBean(PersonService)

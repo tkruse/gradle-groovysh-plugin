@@ -3,6 +3,9 @@ package com.tkruse.gradle.groovysh
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.file.FileCollection
 
+/**
+ * A task that starts a groovysh shell with the gradle tooling api onthe classpath
+ */
 class BuildShellTask extends ShellTask {
 
     static final String NAME = 'buildShell'
@@ -10,6 +13,7 @@ class BuildShellTask extends ShellTask {
     static final List<String> FIXEDARGS = ['-e', '''\
 import org.gradle.tooling.*
 import org.gradle.tooling.model.*
+
 connector = GradleConnector.newConnector()
 ''']
 
@@ -29,7 +33,6 @@ connector = GradleConnector.newConnector()
     String getConfigurationName() {
         return CONFIGURATION_NAME_PREFIX + getName()
     }
-
 
     void addGradleDependencies() {
         List<Dependency> deps = project.configurations.getByName(getConfigurationName()).allDependencies

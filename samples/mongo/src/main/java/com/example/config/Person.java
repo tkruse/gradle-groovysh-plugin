@@ -4,6 +4,9 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
+/**
+ * example bean
+ */
 @ToString
 @EqualsAndHashCode
 public class Person {
@@ -18,7 +21,6 @@ public class Person {
 
     private String firstName;
     private String lastName;
-
 
     public String getId() {
         return id;

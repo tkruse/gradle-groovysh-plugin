@@ -10,7 +10,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'idea'
 apply plugin: 'spring-boot'
 // if plugin groovysh not found, add project to samples/settings.gradle
 apply plugin: 'com.github.tkruse.groovysh'

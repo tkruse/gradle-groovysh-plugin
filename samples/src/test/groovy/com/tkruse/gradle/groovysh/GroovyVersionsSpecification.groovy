@@ -3,6 +3,9 @@ package com.tkruse.gradle.groovysh
 import org.gradle.tooling.BuildLauncher
 import spock.lang.Specification
 
+/**
+ * Tests the gradle API on the groovyVersions sample project
+ */
 class GroovyVersionsSpecification extends Specification {
 
     def testGroovyshVersion(String groovyVersion) {

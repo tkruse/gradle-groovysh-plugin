@@ -10,6 +10,9 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
 import org.springframework.data.mongodb.repository.support.MongoRepositoryFactory;
 
+/**
+ * In-memory DB config
+ */
 @Configuration
 public class FongoDatabaseConfig extends AbstractMongoConfiguration {
 

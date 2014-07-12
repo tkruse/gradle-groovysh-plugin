@@ -3,6 +3,9 @@ package com.tkruse.gradle.groovysh
 import org.gradle.api.file.FileCollection
 import org.gradle.api.tasks.JavaExec
 
+/**
+ * Superclass of shell tasks
+ */
 abstract class ShellTask extends JavaExec {
 
     abstract ShellTaskExtension getTaskExtension()

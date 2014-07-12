@@ -5,6 +5,9 @@ import org.gradle.tooling.BuildLauncher
 import org.gradle.tooling.GradleConnector
 import org.gradle.tooling.ProjectConnection
 
+/**
+ * Helper utils for tests
+ */
 @TypeChecked
 class LauncherHelper {
 

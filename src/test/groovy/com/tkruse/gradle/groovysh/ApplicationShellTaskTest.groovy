@@ -3,6 +3,9 @@ package com.tkruse.gradle.groovysh
 import org.gradle.api.Project
 import org.junit.Test
 
+/**
+ * Tests task setup. Stronger execution tests are in samples subfolder.
+ */
 class ApplicationShellTaskTest {
 
     @Test
@@ -64,7 +67,7 @@ class ApplicationShellTaskTest {
 
         project.groovysh.shell.bootstrapClasspath = project.files('lib/foo.jar')
         project.groovysh.shell.enableAssertions = true
-        project.groovysh.shell.environment = ['FOO': 'BAR']
+        project.groovysh.shell.environment = ['FOO':'BAR']
 
         ByteArrayOutputStream bos1 = new ByteArrayOutputStream()
         project.groovysh.shell.errorOutput = bos1
@@ -73,7 +76,7 @@ class ApplicationShellTaskTest {
         project.groovysh.shell.standardInput = bis
         ByteArrayOutputStream bos2 = new ByteArrayOutputStream()
         project.groovysh.shell.standardOutput = bos2
-        project.groovysh.shell.systemProperties = ['BAR': 'FOO']
+        project.groovysh.shell.systemProperties = ['BAR':'FOO']
 
         TestHelper.setupTasks(project)
         project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
@@ -94,12 +97,12 @@ class ApplicationShellTaskTest {
 
         assert shellTask.bootstrapClasspath.asPath.contains('lib/foo.jar')
         assert shellTask.enableAssertions
-        assert shellTask.environment == ['FOO': 'BAR']
+        assert shellTask.environment == ['FOO':'BAR']
         assert shellTask.errorOutput == bos1
         assert shellTask.maxHeapSize == '1024m'
         assert shellTask.standardInput == bis
         assert shellTask.standardOutput == bos2
-        assert shellTask.systemProperties == ['BAR': 'FOO']
+        assert shellTask.systemProperties == ['BAR':'FOO']
 
     }
 }

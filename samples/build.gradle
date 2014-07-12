@@ -1,7 +1,5 @@
 apply plugin: 'groovy'
-apply plugin: 'java'
 apply plugin: 'com.github.tkruse.groovysh'
-apply plugin: 'codenarc'
 apply from: "$rootDir/config/gradle/java-builds.gradle"
 
 description = 'Contains samples for integration testing and as showcases.'

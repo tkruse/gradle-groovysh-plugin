@@ -4,6 +4,9 @@ import org.gradle.api.artifacts.Configuration
 import org.gradle.api.file.FileCollection
 import org.gradle.api.tasks.SourceSetContainer
 
+/**
+ * A task that starts a groovy shell with the application runtime classpath configured
+ */
 class ApplicationShellTask extends ShellTask {
 
     static final String NAME = 'shell'

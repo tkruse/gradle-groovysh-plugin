@@ -2,6 +2,9 @@ package com.tkruse.gradle.groovysh
 
 import org.gradle.api.file.FileCollection
 
+/**
+ * common shell tasks configuration
+ */
 class ShellTaskExtension {
 
     String sourceSetName = 'main'

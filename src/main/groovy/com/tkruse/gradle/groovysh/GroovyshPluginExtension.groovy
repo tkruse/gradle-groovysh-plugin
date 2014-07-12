@@ -1,5 +1,8 @@
 package com.tkruse.gradle.groovysh
 
+/**
+ * config for the plugin itself
+ */
 class GroovyshPluginExtension {
 
     boolean enableBuildDevShell = true

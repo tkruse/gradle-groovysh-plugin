@@ -4,6 +4,9 @@ import org.codehaus.groovy.tools.shell.Groovysh
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction
 
+/**
+ * a task that starts the groovysh shell in the current gradle process, useful for debugging gradle builds.
+ */
 class BuildDevShellTask extends DefaultTask {
 
     static final String NAME = 'buildDevShell'
@@ -14,7 +17,6 @@ class BuildDevShellTask extends DefaultTask {
         this.description = 'starts a groovysh shell to introspect the gradle setup itself'
         this.outputs.upToDateWhen { false }
     }
-
 
     @TaskAction
     void exec() {

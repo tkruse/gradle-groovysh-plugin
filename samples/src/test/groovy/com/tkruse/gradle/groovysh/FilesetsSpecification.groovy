@@ -3,9 +3,12 @@ package com.tkruse.gradle.groovysh
 import org.gradle.tooling.BuildLauncher
 import spock.lang.Specification
 
+/**
+ * Tests the gradle API on the filesets sample project
+ */
 class FilesetsSpecification extends Specification {
 
-    def testFilesetsTasks() {
+    def testBuildDevShell() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('filesets',
                 ['clean', 'buildDevShell'] as String[])

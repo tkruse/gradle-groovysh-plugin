@@ -3,6 +3,9 @@ package com.tkruse.gradle.groovysh
 import org.gradle.tooling.BuildLauncher
 import spock.lang.Specification
 
+/**
+ * Tests the gradle API on the junit sample project
+ */
 class JUnitSpecification extends Specification {
 
     def testRunTests() {
@@ -13,8 +16,9 @@ class JUnitSpecification extends Specification {
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()
         String input = '''\
 import org.junit.runner.JUnitCore
-jCore = new JUnitCore()
 import com.example.ExampleTest
+
+jCore = new JUnitCore()
 result = jCore.run(ExampleTest.class)
 println \'runs:\' + result.getRunCount()
         '''
