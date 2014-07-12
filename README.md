@@ -46,6 +46,9 @@ buildscript {
 }
 ```
 
+*Note*: With version 0.x.x of this plugin, the plugin id was just 'groovysh', so you would have 
+to write ```apply plugin: 'groovysh'```. THis was changed in line with the gradle portal.
+
 The plugin id has changed with version 1.0.0 due to the requirements of gradle-portal.
 
 Currently your project needs to also have the java plugin applied for the ```shell``` task.
@@ -58,7 +61,7 @@ If you encounter groovy version mismatches, explicitly set your system version (
 ```Groovy
 groovysh {
     // groovyVersion determines the features of the shell and buildShell tasks.
-    groovyVersion = '2.3.3'
+    groovyVersion = '2.3.4'
 }
 ```
 

@@ -57,6 +57,7 @@ dependencies {
     } else {
         compile "jline:jline:2.11"
     }
+    /** held back by gradle 2.0 */
     compile('org.codehaus.groovy:groovy-all:2.3.3') { force = true }
     runtime('commons-cli:commons-cli:1.2')
     testCompile("junit:junit-dep:4.11")

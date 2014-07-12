@@ -1,11 +1,12 @@
 Changelog
 =========
 
-Version 1.0.0 *(2014-05-25)*
+Version 1.0.0 *(2014-06-13)*
 ----------------------------
 
-* gradle 2.0 compatibility tests
+* gradle 2.0 compatibility
 * qualified plugin Id (to comply with gradle portal)
+* groovy 2.3.4 as default
 
 
 Version 0.4.0 *(2014-05-25)*
