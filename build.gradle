@@ -52,7 +52,7 @@ test {
 
 dependencies {
     compile gradleApi()
-    if (GradleVersion.current().getVersion().startsWith('1')) {
+    if (Gradle.gradleVersion.startsWith('1')) {
         compile "jline:jline:1.0"
     } else {
         compile "jline:jline:2.11"
@@ -72,6 +72,8 @@ dependencies {
 // push to master
 // assemble, uploadArchives, bintrayUpload
 // Click publish on bintray site
+// Set bintray version attribute 'gradle-plugin', 'com.github.tkruse.groovysh:com.tkruse.gradle:gradle-groovysh-plugin'
+
 
 
 // ********* Maven Central
@@ -110,7 +112,7 @@ signing {
  * run with gradle uploadArchives.
  * then go to
  * https://oss.sonatype.org/#stagingRepositories
- * check all is good. If not, find the repo, select, close, wait until closed, then release
+ * check all is good. If so, find the repo, select, close, wait until closed, then release
  */
 uploadArchives {
     repositories {

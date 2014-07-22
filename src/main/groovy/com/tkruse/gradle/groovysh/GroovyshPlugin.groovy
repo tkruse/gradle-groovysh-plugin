@@ -4,7 +4,7 @@ import org.gradle.api.GradleScriptException
 import org.gradle.api.InvalidUserDataException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.util.GradleVersion
+import org.gradle.api.invocation.Gradle
 
 /**
  * Plugin main class
@@ -41,7 +41,7 @@ class GroovyshPlugin implements Plugin<Project> {
             }
             URLClassLoader loader = GroovyObject.classLoader
 
-            if (GradleVersion.current().getVersion().startsWith('1')) {
+            if (Gradle.gradleVersion.startsWith('1')) {
                 // gradle < 2.0 runs with groovy 1.8.6, groovysh needs jline 1.0
                 project.dependencies.add(BuildDevShellTask.CONFIGURATION_NAME, 'jline:jline:1.0')
             } else {

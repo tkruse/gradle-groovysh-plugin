@@ -1,7 +1,7 @@
 package com.tkruse.gradle.groovysh
 
 import org.gradle.api.Project
-import org.gradle.util.GradleVersion
+import org.gradle.api.invocation.Gradle
 import org.junit.Test
 
 /**
@@ -15,7 +15,7 @@ class BuildDevShellTaskTest {
         TestHelper.setupTasks(project)
         BuildDevShellTask buildDevShellTask = (BuildDevShellTask) project.tasks.findByName(BuildDevShellTask.NAME)
         assert buildDevShellTask != null
-        checkDependencies(GradleVersion.current().getVersion(), project)
+        checkDependencies(Gradle.gradleVersion, project)
     }
 
     private static void checkDependencies(String gradleVersion, Project project) {
@@ -38,6 +38,6 @@ class BuildDevShellTaskTest {
         TestHelper.setupTasks(project)
         BuildDevShellTask buildDevShellTask = (BuildDevShellTask) project.tasks.findByName(BuildDevShellTask.NAME)
         assert buildDevShellTask != null
-        checkDependencies(GradleVersion.current().getVersion(), project)
+        checkDependencies(Gradle.gradleVersion, project)
     }
 }
