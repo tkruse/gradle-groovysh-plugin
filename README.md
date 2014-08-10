@@ -68,7 +68,7 @@ groovysh {
 
 ## Using the Plugin
 
-Invoke either shell task with option ```-q```.
+Invoke either shell task with option *```-q```* (this means "quiet", else the common gradle output will get in the way).
 If you have the gradle daemon configured, also add ```--no-daemon```
 
 ```bash
