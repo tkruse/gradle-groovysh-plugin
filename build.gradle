@@ -27,7 +27,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '1.0.1'
+version = '1.0.2-SNAPSHOT'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -68,13 +68,10 @@ dependencies {
 // update README.md and CHANGELOG
 // push to develop
 // wait for travis to be happy
-// bump version
+// bump version (in README too)
 // push to master
-// assemble, uploadArchives, bintrayUpload
-// Click publish on bintray site
-// Set bintray version attribute 'gradle-plugin', 'com.github.tkruse.groovysh:com.tkruse.gradle:gradle-groovysh-plugin'
-
-
+// gradle clean assemble uploadArchives generatePomFileForMavenJavaPublication bintrayUpload
+// see instructions below
 
 // ********* Maven Central
 // https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide
@@ -154,7 +151,10 @@ uploadArchives {
 
 // ********* Bintray
 // https://github.com/bintray/gradle-bintray-plugin
-
+// Click publish on bintray site
+// Set bintray version attribute  ('Edit' button)
+// 'gradle-plugin', 'com.github.tkruse.groovysh:com.tkruse.gradle:gradle-groovysh-plugin'
+// check gradle portal after a few minutes: http://plugins.gradle.org/search?term=groovysh
 jar {
     manifest {
         attributes 'Implementation-Title': 'Gradle Groovysh plugin',

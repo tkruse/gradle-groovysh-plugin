@@ -12,7 +12,7 @@ buildscript {
             dirs "$rootDir/../build/libs"
         }
         dependencies {
-            classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.1-SNAPSHOT'
+            classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.2-SNAPSHOT'
         }
     }
 }
