@@ -13,7 +13,7 @@ class LauncherHelper {
 
     static BuildLauncher getLauncherForProject(final String projectName,
                                                String[] tasks = ['clean', 'shell'],
-                                               String[] args = []) {
+                                               String[] args = ['-q']) {
         GradleConnector connector = GradleConnector.newConnector()
         connector.forProjectDirectory(new File(projectName))
         ProjectConnection connection = connector.connect()

@@ -28,7 +28,7 @@ class TaskHelper {
     }
 
     static void checkQuiet(final Project project) {
-        if (!project.gradle.startParameter.logLevel == LogLevel.QUIET) {
+        if (project.gradle.startParameter.logLevel != LogLevel.QUIET) {
             String msg = 'Do not run with logging output. (use -q)'
             println(msg)
             throw new IllegalStateException(msg)
