@@ -38,6 +38,11 @@ targetCompatibility = compatibilityVersion
 
 codenarcMain.maxPriority2Violations = 3
 codenarcTest.maxPriority2Violations = 1
+codenarc {
+    configFile = file('config/codenarc/rules.groovy')
+    toolVersion = 0.21
+}
+
 
 tasks.withType(CodeNarc) { codeNarcTask ->
     codeNarcTask.ignoreFailures = true

@@ -30,6 +30,11 @@ checkstyleTest {
     configFile = new File(rootDir, 'config/checkstyle/checkstyle.xml')
 }
 
+codenarc {
+    configFile = new File(rootDir, 'config/codenarc/rules.groovy')
+    toolVersion = 0.21
+}
+
 //force compile tasks to use utf-8
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

@@ -74,6 +74,7 @@ abstract class ShellTask extends JavaExec {
     abstract String getConfigurationName()
 
     @Override
+    @SuppressWarnings('CatchException')
     void exec() {
         addGroovyDependencies()
         TaskHelper.checkDaemon(project)

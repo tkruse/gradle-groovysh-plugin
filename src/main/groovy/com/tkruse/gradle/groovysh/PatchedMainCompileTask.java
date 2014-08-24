@@ -37,7 +37,7 @@ public class PatchedMainCompileTask extends JavaCompile {
         Project project = getProject();
         project.getConfigurations().create(CONFIGURATION_NAME);
         TaskHelper.addGroovyDependencies(project, CONFIGURATION_NAME,
-                ((GroovyshPluginExtension)project.getExtensions().getByName(GroovyshPlugin.NAME)).getGroovyVersion());
+                ((GroovyshPluginExtension) project.getExtensions().getByName(GroovyshPlugin.NAME)).getGroovyVersion());
         File genFile = TaskHelper.generatePatchedMain(project, PATCH_CLASS_NAME);
         this.setDestinationDir(new File(project.getBuildDir(), "groovyshClasses"));
         this.setSource(genFile);

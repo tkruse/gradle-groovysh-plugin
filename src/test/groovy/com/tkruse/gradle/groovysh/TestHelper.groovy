@@ -8,6 +8,7 @@ import org.gradle.testfixtures.ProjectBuilder
  * Helper for tests
  */
 class TestHelper {
+
     static Project createProjectWithPlugin() {
         Project project = ProjectBuilder.builder().build()
         project.apply(plugin:'java')

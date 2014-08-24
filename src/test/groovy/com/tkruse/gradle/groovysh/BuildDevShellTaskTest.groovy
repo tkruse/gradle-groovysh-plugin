@@ -1,7 +1,6 @@
 package com.tkruse.gradle.groovysh
 
 import org.gradle.api.Project
-import org.gradle.api.invocation.Gradle
 import org.junit.Test
 
 /**
