@@ -27,7 +27,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '1.0.1-SNAPSHOT'
+version = '1.0.1'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -66,7 +66,7 @@ dependencies {
 // ********* Note to myself: Release steps
 // run clean check locally
 // update README.md and CHANGELOG
-// push to master
+// push to develop
 // wait for travis to be happy
 // bump version
 // push to master
