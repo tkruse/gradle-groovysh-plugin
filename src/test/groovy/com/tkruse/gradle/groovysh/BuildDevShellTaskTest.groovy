@@ -15,7 +15,7 @@ class BuildDevShellTaskTest {
         TestHelper.setupTasks(project)
         BuildDevShellTask buildDevShellTask = (BuildDevShellTask) project.tasks.findByName(BuildDevShellTask.NAME)
         assert buildDevShellTask != null
-        checkDependencies(Gradle.gradleVersion, project)
+        checkDependencies(project.gradle.gradleVersion, project)
     }
 
     private static void checkDependencies(String gradleVersion, Project project) {
@@ -38,6 +38,6 @@ class BuildDevShellTaskTest {
         TestHelper.setupTasks(project)
         BuildDevShellTask buildDevShellTask = (BuildDevShellTask) project.tasks.findByName(BuildDevShellTask.NAME)
         assert buildDevShellTask != null
-        checkDependencies(Gradle.gradleVersion, project)
+        checkDependencies(project.gradle.gradleVersion, project)
     }
 }

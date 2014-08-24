@@ -41,7 +41,7 @@ class GroovyshPlugin implements Plugin<Project> {
             }
             URLClassLoader loader = GroovyObject.classLoader
 
-            if (Gradle.gradleVersion.startsWith('1')) {
+            if (project.gradle.gradleVersion.startsWith('1')) {
                 // gradle < 2.0 runs with groovy 1.8.6, groovysh needs jline 1.0
                 project.dependencies.add(BuildDevShellTask.CONFIGURATION_NAME, 'jline:jline:1.0')
             } else {

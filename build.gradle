@@ -52,7 +52,7 @@ test {
 
 dependencies {
     compile gradleApi()
-    if (Gradle.gradleVersion.startsWith('1')) {
+    if (gradle.gradleVersion.startsWith('1')) {
         compile "jline:jline:1.0"
     } else {
         compile "jline:jline:2.11"
