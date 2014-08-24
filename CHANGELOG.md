@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.0.1 *(2014-08-24)*
+----------------------------
+
+* fix no error when running without -q
+* groovy 2.3.6 as default
+
 Version 1.0.0 *(2014-06-13)*
 ----------------------------
 

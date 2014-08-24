@@ -61,7 +61,7 @@ If you encounter groovy version mismatches, explicitly set your system version (
 ```Groovy
 groovysh {
     // groovyVersion determines the features of the shell and buildShell tasks.
-    groovyVersion = '2.3.4'
+    groovyVersion = '2.3.6'
 }
 ```
 
