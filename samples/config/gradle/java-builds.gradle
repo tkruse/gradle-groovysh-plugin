@@ -16,6 +16,8 @@ pmd {
                 'unusedcode', 'sunsecure',
                 'imports', 'finalizers',
                 'coupling', 'codesize', 'clone']
+    // version required to fix null exception with gradle 2.0
+    toolVersion = '4.3'
 }
 
 checkstyleMain {

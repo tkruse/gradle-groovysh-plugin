@@ -11,10 +11,11 @@ buildscript {
             // must run 'gradle jar' *there* to use unreleased versions
             dirs "$rootDir/../build/libs"
         }
-        dependencies {
-            classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.2-SNAPSHOT'
-        }
     }
+    dependencies {
+        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.2-SNAPSHOT'
+    }
+
 }
 
 allprojects {
