@@ -22,7 +22,7 @@ repo = ctx.getBean(PersonRepository)
 service = ctx.getBean(PersonService)
 repo.save(new Person('jane', 'dane'))
 repo.findAll()
-service.normalizeNames(repo.findByLastName('dane')[0].id)
+service.normalizeNames(repo.findByLastName('dane')[0].pId)
 repo.findAll()
 repo.deleteAll()
 '''

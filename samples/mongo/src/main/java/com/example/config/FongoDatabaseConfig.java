@@ -18,19 +18,19 @@ public class FongoDatabaseConfig extends AbstractMongoConfiguration {
 
     private static final String DB_NAME = "example";
 
-    private final Mongo mongo;
+    private final Mongo mongoInst;
 
-    private final MongoDbFactory mongoDbFactory;
+    private final MongoDbFactory dbFactory;
 
     public FongoDatabaseConfig() {
-        mongo = new Fongo("fongo").getMongo();
-        mongoDbFactory = new SimpleMongoDbFactory(mongo, DB_NAME);
+        mongoInst = new Fongo("fongo").getMongo();
+        dbFactory = new SimpleMongoDbFactory(mongoInst, DB_NAME);
     }
 
     @Bean
     @Override
-    public MongoDbFactory mongoDbFactory() throws Exception {
-        return mongoDbFactory;
+    public MongoDbFactory mongoDbFactory() {
+        return dbFactory;
     }
 
     @Override
@@ -39,19 +39,30 @@ public class FongoDatabaseConfig extends AbstractMongoConfiguration {
     }
 
     @Override
-    public Mongo mongo() throws Exception {
-        return mongo;
+    public Mongo mongo() {
+        return mongoInst;
     }
 
     @Bean
     @Override
-    public MongoTemplate mongoTemplate() throws Exception {
-        return new MongoTemplate(mongoDbFactory, mappingMongoConverter());
+    @SuppressWarnings("PMD.AvoidCatchingGenericException")
+    public MongoTemplate mongoTemplate() {
+        try {
+            return new MongoTemplate(dbFactory, mappingMongoConverter());
+        } catch (final Exception exc) {
+            throw new WrappedFongoException(exc);
+        }
     }
 
     @Bean
-    public MongoRepositoryFactory mongoRepositoryFactory() throws Exception {
+    public MongoRepositoryFactory mongoRepositoryFactory() {
         return new MongoRepositoryFactory(mongoTemplate());
     }
 
+
+    private static final class WrappedFongoException extends RuntimeException {
+        public WrappedFongoException(final Exception exc) {
+            super(exc);
+        }
+    }
 }

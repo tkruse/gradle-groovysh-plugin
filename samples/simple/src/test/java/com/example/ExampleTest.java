@@ -11,7 +11,7 @@ public class ExampleTest {
 
     @Test
     public void testHelloWorld() {
-        Example example = new Example();
+        final Example example = new Example();
         assertEquals(example.helloWorld(), "Hello World");
     }
 

@@ -12,25 +12,25 @@ import org.springframework.data.annotation.Id;
 public class Person {
 
     @Id
-    private String id;
-
-    public Person(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+    private String pId;
 
     private String firstName;
     private String lastName;
 
-    public String getId() {
-        return id;
+    public Person(final String firstName, final String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public String getPId() {
+        return pId;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(final String firstName) {
         this.firstName = firstName;
     }
 
@@ -38,7 +38,7 @@ public class Person {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(final String lastName) {
         this.lastName = lastName;
     }
 }

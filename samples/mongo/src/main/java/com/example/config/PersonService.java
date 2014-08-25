@@ -13,12 +13,16 @@ public class PersonService {
     PersonRepository personRepository;
 
     @Autowired
-    public PersonService(PersonRepository personRepository) {
+    public PersonService(final PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
 
-    public void normalizeNames(String id) {
-        Person person = personRepository.findById(id);
+    public void normalizeNames(final String personId) {
+        final Person person = personRepository.findByPId(personId);
+        savePerson(person);
+    }
+
+    private void savePerson(final Person person) {
         person.setFirstName(StringUtils.capitalize(person.getFirstName()));
         person.setLastName(StringUtils.capitalize(person.getLastName()));
         personRepository.save(person);

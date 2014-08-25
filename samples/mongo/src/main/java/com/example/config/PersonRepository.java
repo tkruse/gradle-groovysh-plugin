@@ -13,6 +13,6 @@ public interface PersonRepository extends MongoRepository<Person, String> {
 
     List<Person> findByLastName(String name);
 
-    Person findById(String id);
+    Person findByPId(String personId);
 
 }
