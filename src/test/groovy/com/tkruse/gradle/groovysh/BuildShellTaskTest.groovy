@@ -10,7 +10,7 @@ class BuildShellTaskTest {
 
     @Test
     void testConfigureMain() {
-        Project project = TestHelper.createProjectWithPlugin()
+        Project project = TestHelper.createProjectWithPluginAndJava()
         project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.7')
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         TestHelper.setupTasks(project)
@@ -33,7 +33,7 @@ class BuildShellTaskTest {
     void testGroovyVersions() {
         for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.6']) {
             for (String gradleVersion in ['1.9', '1.10', '1.11', '1.12', '2.0']) {
-                Project project = TestHelper.createProjectWithPlugin()
+                Project project = TestHelper.createProjectWithPluginAndJava()
                 project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
 
                 project.groovysh.groovyVersion = version
@@ -55,7 +55,7 @@ class BuildShellTaskTest {
 
     @Test
     void testConfigureMainWithGradleVersion() {
-        Project project = TestHelper.createProjectWithPlugin()
+        Project project = TestHelper.createProjectWithPluginAndJava()
 
         project.groovysh.buildShell.gradleVersion = '2.0'
 

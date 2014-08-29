@@ -10,7 +10,7 @@ class ApplicationShellTaskTest {
 
     @Test
     void testConfigureTest() {
-        Project project = TestHelper.createProjectWithPlugin()
+        Project project = TestHelper.createProjectWithPluginAndJava()
         project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.7')
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         project.groovysh.shell.setSourceSetName('test')
@@ -26,7 +26,7 @@ class ApplicationShellTaskTest {
 
     @Test
     void testConfigureMain() {
-        Project project = TestHelper.createProjectWithPlugin()
+        Project project = TestHelper.createProjectWithPluginAndJava()
         project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.7')
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         TestHelper.setupTasks(project)
@@ -42,7 +42,7 @@ class ApplicationShellTaskTest {
     @Test
     void testGroovyVersions() {
         for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.6']) {
-            Project project = TestHelper.createProjectWithPlugin()
+            Project project = TestHelper.createProjectWithPluginAndJava()
             project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
 
             project.groovysh.groovyVersion = version
@@ -58,7 +58,7 @@ class ApplicationShellTaskTest {
 
     @Test
     void testConfigureMainWithArgs() {
-        Project project = TestHelper.createProjectWithPlugin()
+        Project project = TestHelper.createProjectWithPluginAndJava()
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         project.groovysh.shell.args = ['foo']
         project.groovysh.shell.jvmArgs = ['-Xms512m']

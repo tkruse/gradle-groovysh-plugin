@@ -2,7 +2,6 @@ package com.tkruse.gradle.groovysh
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Test
 
 /**
@@ -13,8 +12,7 @@ class GroovyshPluginTest {
 
     @Test
     void testApplyNoJava() {
-        Project project = ProjectBuilder.builder().build()
-        project.apply(plugin:GroovyshPlugin.PLUGIN_ID)
+        Project project = TestHelper.createProjectWithPlugin()
         Plugin plugin = project.plugins.getPlugin(GroovyshPlugin.PLUGIN_ID)
         assert plugin instanceof GroovyshPlugin
         assert project.tasks.findByName(BuildDevShellTask.NAME) == null
@@ -33,7 +31,7 @@ class GroovyshPluginTest {
 
     @Test
     void testApplyJava() {
-        Project project = TestHelper.createProjectWithPlugin()
+        Project project = TestHelper.createProjectWithPluginAndJava()
         TestHelper.setupTasks(project)
         assert project.tasks.findByName(BuildDevShellTask.NAME) != null
         assert project.tasks.findByName(ApplicationShellTask.NAME) != null

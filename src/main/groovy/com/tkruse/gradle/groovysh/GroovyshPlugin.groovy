@@ -15,7 +15,6 @@ class GroovyshPlugin implements Plugin<Project> {
 
     @Override
     void apply( final Project project ) {
-        project.repositories.jcenter()
         project.extensions.create(NAME, GroovyshPluginExtension)
         // not sure how to create nested extentions else...
         project.groovysh.extensions.create(BuildDevShellTask.NAME, BuildDevShellTaskExtension)

@@ -9,10 +9,18 @@ import org.gradle.testfixtures.ProjectBuilder
  */
 class TestHelper {
 
+    static Project createProjectWithPluginAndJava() {
+        Project project = createProjectWithPlugin()
+        project.apply(plugin:'java')
+        return project
+    }
+
     static Project createProjectWithPlugin() {
         Project project = ProjectBuilder.builder().build()
-        project.apply(plugin:'java')
         project.apply(plugin:GroovyshPlugin.PLUGIN_ID)
+        // not good for people behind proxies, do not put this in plugin class
+        project.repositories.jcenter()
+
         return project
     }
 

@@ -10,7 +10,7 @@ class BuildDevShellTaskTest {
 
     @Test
     void testConfigureMain() {
-        Project project = TestHelper.createProjectWithPlugin()
+        Project project = TestHelper.createProjectWithPluginAndJava()
         TestHelper.setupTasks(project)
         BuildDevShellTask buildDevShellTask = (BuildDevShellTask) project.tasks.findByName(BuildDevShellTask.NAME)
         assert buildDevShellTask != null
@@ -30,7 +30,7 @@ class BuildDevShellTaskTest {
 
     @Test
     void testConfigureMainWithGradleVersion() {
-        Project project = TestHelper.createProjectWithPlugin()
+        Project project = TestHelper.createProjectWithPluginAndJava()
 
         project.groovysh.buildShell.gradleVersion = '2.0'
 
