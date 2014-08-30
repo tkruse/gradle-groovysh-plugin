@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.0.2 *(2014-08-30)*
+----------------------------
+
+* fix #6 plugin should not add jcenter repo to project
+
 Version 1.0.1 *(2014-08-24)*
 ----------------------------
 
