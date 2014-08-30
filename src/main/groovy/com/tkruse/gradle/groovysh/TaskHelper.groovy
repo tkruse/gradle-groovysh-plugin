@@ -89,7 +89,7 @@ class TaskHelper {
                 if ((dep.name == module) || ((altModule != null) && (dep.name == altModule))) {
                     found = true
                     if (dep.version != version) {
-                        println("WARNING, groovy version $dep.version mismatches \
+                        println("WARNING, version $dep.version mismatches \
 desired groovysh version $version for $group:$module")
                     }
                 }

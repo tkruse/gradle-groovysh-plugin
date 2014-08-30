@@ -46,7 +46,7 @@ buildscript {
 }
 ```
 
-*Note*: With version 0.x.x of this plugin, the plugin id was just 'groovysh', so you would have 
+*Note*: With version 0.x.x of this plugin, the plugin id was just 'groovysh', so you would have
 to write ```apply plugin: 'groovysh'```. THis was changed in line with the gradle portal.
 
 The plugin id has changed with version 1.0.0 due to the requirements of gradle-portal.
@@ -80,6 +80,8 @@ When using the gradle wrapper, that would be ```./gradlew``` instead.
 
 You can find samples in the [samples subfolder](samples/README.md).
 
+Note that before running the shell, your project will be build first (compileJava task), which may also mean
+downloading its dependencies, so it can take a while for the shell to appear.
 
 
 ### Some things you can do with the ```shell```
