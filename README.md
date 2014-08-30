@@ -45,9 +45,10 @@ buildscript {
     }
 }
 ```
+(```mavenCentral()``` instead of jcenter also works)
 
 *Note*: With version 0.x.x of this plugin, the plugin id was just 'groovysh', so you would have
-to write ```apply plugin: 'groovysh'```. THis was changed in line with the gradle portal.
+to write ```apply plugin: 'groovysh'```. This was changed in line with the gradle portal.
 
 The plugin id has changed with version 1.0.0 due to the requirements of gradle-portal.
 
