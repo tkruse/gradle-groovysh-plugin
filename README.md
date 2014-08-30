@@ -174,3 +174,13 @@ Or just install Groovy and run ```groovysh``` with a suitable classpath.
 * Gradle versions (1.8?, 1.9, 1.10, 1.11, 1.12, 2.0)
 
 * Groovy Versions (2.x.x)
+
+## FAQ
+
+* Why do I have to add '-q' every time?
+
+The gradle progress logging gets in the way of the output else, no API exists to remove that (see GRADLE-1147).
+
+* My Unix prompt does not work after program exit, typed text remains invisible.
+
+This is known to happen with jline1.12. Run ```reset``` in that shell as workaround.
