@@ -28,7 +28,7 @@ class TaskHelper {
     }
 
     static void checkQuiet(final Project project) {
-      // Cannot use project.logging.level, it returns null (gradle 1.12)
+        // Cannot use project.logging.level, it returns null (gradle 1.12)
         if (project.gradle.startParameter.logLevel != LogLevel.QUIET) {
             String msg = 'Do not run with logging output. (use -q)'
             println(msg)

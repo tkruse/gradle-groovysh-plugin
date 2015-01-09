@@ -1,6 +1,11 @@
 Changelog
 =========
 
+Version 1.0.3 *(2015-01-09)*
+----------------------------
+
+Maintenance release. Update dependency version, default Groovy is 2.3.9
+
 Version 1.0.2 *(2014-08-30)*
 ----------------------------
 

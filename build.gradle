@@ -3,7 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'maven-publish' // for bintray
 apply plugin: 'signing' // for oss
 apply plugin: 'codenarc'
-apply plugin: 'bintray'
+apply plugin: 'com.jfrog.bintray'
 
 
 /**** Uncomment this to get faster build times ****/
@@ -17,7 +17,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:0.3'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
+        classpath 'org.codehaus.groovy:groovy-backports-compat23:2.3.9'
     }
 }
 
@@ -62,8 +63,16 @@ dependencies {
     } else {
         compile "jline:jline:2.11"
     }
-    /** held back by gradle 2.0 */
-    compile('org.codehaus.groovy:groovy-all:2.3.3') { force = true }
+    if (gradle.gradleVersion.startsWith('1')) {
+       // no conflict
+       compile('org.codehaus.groovy:groovy-all:2.3.9') { force = true }
+    } else if (gradle.gradleVersion.startsWith('2.0')) {
+       compile('org.codehaus.groovy:groovy-all:2.3.3') { force = true }
+    } else if (gradle.gradleVersion.startsWith('2')) {
+       // confirmed with gradle 2.1 and 2.2.1
+       compile('org.codehaus.groovy:groovy-all:2.3.6') { force = true }
+    }
+
     runtime('commons-cli:commons-cli:1.2')
     testCompile("junit:junit-dep:4.11")
 }
