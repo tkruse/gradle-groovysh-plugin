@@ -9,6 +9,8 @@ env:
   - GRADLE=gradle/gradle1.11/gradlew
   - GRADLE=gradle/gradle1.12/gradlew
   - GRADLE=gradle/gradle2.0/gradlew
+  - GRADLE=gradle/gradle2.1/gradlew
+  - GRADLE=gradle/gradle2.2.1/gradlew
 matrix:
   exclude:
     - jdk: oraclejdk8
