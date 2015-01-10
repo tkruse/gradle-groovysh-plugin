@@ -1,6 +1,7 @@
 # Gradle plugin providing a Groovy Shell
 
 [![Build Status](https://travis-ci.org/tkruse/gradle-groovysh-plugin.svg)](https://travis-ci.org/tkruse/gradle-groovysh-plugin)
+[![Download](https://api.bintray.com/packages/tkruse/maven/gradle-groovysh-plugin/images/download.svg) ](https://bintray.com/tkruse/maven/gradle-groovysh-plugin/_latestVersion)
 
 This plugin provides gradle tasks that start an interactive groovy shells, based on
 the '[groovysh](http://groovy.codehaus.org/Groovy+Shell)' command that ships with any [Groovy](http://groovy.codehaus.org/) version.

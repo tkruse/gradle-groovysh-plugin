@@ -166,7 +166,7 @@ uploadArchives {
 // ********* Bintray
 // https://github.com/bintray/gradle-bintray-plugin
 // Click publish on bintray site
-// Set bintray version attribute  ('Edit' button)
+// Set bintray version attribute  ('Edit' button on *version*, not package)
 // 'gradle-plugin', 'com.github.tkruse.groovysh:com.tkruse.gradle:gradle-groovysh-plugin'
 // check gradle portal after a few minutes: http://plugins.gradle.org/search?term=groovysh
 jar {
