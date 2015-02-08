@@ -28,7 +28,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '1.0.4'
+version = '1.0.5-SNAPSHOT'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -77,20 +77,6 @@ dependencies {
     testCompile("junit:junit-dep:4.11")
 }
 
-// ********* Note to myself: Release steps
-// run clean check locally
-// update README.md and CHANGELOG
-// push to develop
-// wait for travis to be happy
-// bump version (in README too)
-// push to master
-// gradle clean assemble uploadArchives generatePomFileForMavenJavaPublication bintrayUpload
-// see instructions below
-
-// ********* Maven Central
-// https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide
-// http://central.sonatype.org/pages/releasing-the-deployment.html
-// http://yennicktrevels.com/blog/2013/10/11/automated-gradle-project-deployment-to-sonatype-oss-repository/
 
 task sourcesJar( type: Jar ) {
     classifier 'sources'
@@ -108,10 +94,32 @@ task javadocJar (type: Jar, dependsOn: javadoc) { // (1)
 }
 
 
+// ********* Note to myself: Release steps
+// run clean check locally
+// update README.md and CHANGELOG
+// push to develop
+// wait for travis to be happy
+// bump version (in README too)
+// push to master
+// ./gradlew clean assemble uploadArchives generatePomFileForMavenJavaPublication bintrayUpload
+// Then see instructions below
+
+
 artifacts {
     archives sourcesJar
     archives groovydocJar
     archives javadocJar
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Groovysh plugin',
+                'Implementation-Version': version,
+                'Built-By': System.getProperty('user.name'),
+                'Built-Date': new Date(),
+                'Built-JDK': System.getProperty('java.version'),
+                'Built-Gradle': gradle.gradleVersion
+    }
 }
 
 signing {
@@ -119,11 +127,16 @@ signing {
     sign configurations.archives
 }
 
-/*
+/************ Maven central
  * run with gradle uploadArchives.
  * then go to
  * https://oss.sonatype.org/#stagingRepositories
  * check all is good. If so, find the repo, select, close, wait until closed, then release
+ *
+ * Also see:
+ * https://docs.sonatype.org/display/Repository/Sonatype+OSS+Maven+Repository+Usage+Guide
+ * http://central.sonatype.org/pages/releasing-the-deployment.html
+ * http://yennicktrevels.com/blog/2013/10/11/automated-gradle-project-deployment-to-sonatype-oss-repository/
  */
 uploadArchives {
     repositories {
@@ -163,22 +176,6 @@ uploadArchives {
     }
 }
 
-// ********* Bintray
-// https://github.com/bintray/gradle-bintray-plugin
-// Click publish on bintray site
-// Set bintray version attribute  ('Edit' button on *version*, not package)
-// 'gradle-plugin', 'com.github.tkruse.groovysh:com.tkruse.gradle:gradle-groovysh-plugin'
-// check gradle portal after a few minutes: http://plugins.gradle.org/search?term=groovysh
-jar {
-    manifest {
-        attributes 'Implementation-Title': 'Gradle Groovysh plugin',
-                'Implementation-Version': version,
-                'Built-By': System.getProperty('user.name'),
-                'Built-Date': new Date(),
-                'Built-JDK': System.getProperty('java.version'),
-                'Built-Gradle': gradle.gradleVersion
-    }
-}
 
 publishing {
     publications {
@@ -190,9 +187,15 @@ publishing {
     }
 }
 
-/*
+/********* Bintray
  * Run with gradle bintrayUpload
  * then go to https://bintray.com/tkruse/maven/gradle-groovysh-plugin and hit publish
+ *
+ * Set bintray version attribute  ('Edit' button on *version*, not package)
+ * 'gradle-plugin', 'com.github.tkruse.groovysh:com.tkruse.gradle:gradle-groovysh-plugin'
+ * check gradle portal after a few minutes: http://plugins.gradle.org/search?term=groovysh
+ *
+ * also see:  https://github.com/bintray/gradle-bintray-plugin
  */
 bintray {
     user = project.hasProperty( 'bintrayUser' ) ? project.getProperty( 'bintrayUser' ) : null
