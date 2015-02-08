@@ -14,14 +14,27 @@ Shell, like Debugger and Automated testing allow interaction with a system from 
 
 Groovysh: Based onScript compiling, no eval 
 
+## Groovysh used:
 
-# Use cases
+within intellij / eclipse / grails
+Alternative: beanshell GroovyConsole
+
+## Use cases
 
 - Writing tutorials
 - Exploring API / library
+- teaching
 
-# Outlook
+## Demonstration
 
-# Summary
+- fibonacci or so
+- ratpack
+- spring boot
+- some REST API va sdk
 
-Difficult Triangle: Gradle with Groovy 1.8.6, no interaction support (toString()), Groovysh slow project
+
+## Tricks:
+
+Grapes
+Editor
+interpreter-mode

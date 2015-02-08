@@ -42,7 +42,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.2'
+        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.4'
     }
 }
 ```
@@ -63,7 +63,7 @@ If you encounter groovy version mismatches, explicitly set your system version (
 ```Groovy
 groovysh {
     // groovyVersion determines the features of the shell and buildShell tasks.
-    groovyVersion = '2.3.9'
+    groovyVersion = '2.4.0'
 }
 ```
 
@@ -173,7 +173,7 @@ Or just install Groovy and run ```groovysh``` with a suitable classpath.
 
 * Operating Systems (Ubuntu Precise)
 
-* Gradle versions (1.8?, 1.9, 1.10, 1.11, 1.12, 2.0)
+* Gradle versions (1.8?, 1.9, 1.10, 1.11, 1.12, 2.x.x)
 
 * Groovy Versions (2.x.x)
 

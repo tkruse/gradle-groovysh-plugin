@@ -14,7 +14,7 @@ groovysh {
     enablebuildDevShell = true
 
     // groovyVersion determines the features of the shell and buildShell tasks
-    // groovyVersion = '2.3.0'
+    // groovyVersion = '2.4.0'
 
     shell {
         // default is 'main'
@@ -31,8 +31,8 @@ groovysh {
 
        // gradle version determines version of connector in tooling API,
        // but connector can use other gradle version to build project via
-       // connector.useGradleVersion('1.10')
-       // gradleVersion = '2.0'
+       // connector.useGradleVersion('1.18')
+       // gradleVersion = '2.2.1'
 
        /* ... params of gradle JavaExec can also be used */
     }

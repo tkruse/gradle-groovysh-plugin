@@ -17,8 +17,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-        classpath 'org.codehaus.groovy:groovy-backports-compat23:2.3.9'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
+        classpath 'org.codehaus.groovy:groovy-backports-compat23:2.4.0'
     }
 }
 
@@ -28,7 +28,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '1.0.4-SNAPSHOT'
+version = '1.0.4'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -65,7 +65,7 @@ dependencies {
     }
     if (gradle.gradleVersion.startsWith('1')) {
        // no conflict
-       compile('org.codehaus.groovy:groovy-all:2.3.9') { force = true }
+       compile('org.codehaus.groovy:groovy-all:2.4.0') { force = true }
     } else if (gradle.gradleVersion.startsWith('2.0')) {
        compile('org.codehaus.groovy:groovy-all:2.3.3') { force = true }
     } else if (gradle.gradleVersion.startsWith('2')) {

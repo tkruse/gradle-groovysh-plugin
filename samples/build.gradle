@@ -13,7 +13,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.4-SNAPSHOT'
+        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.4'
     }
 
 }
@@ -38,7 +38,7 @@ allprojects {
 
 dependencies {
     // mandatory dependencies for using Spock
-    testCompile "org.codehaus.groovy:groovy-all:2.3.9"
+    testCompile "org.codehaus.groovy:groovy-all:2.4.0"
     testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
     testCompile 'org.gradle:gradle-tooling-api:2.2.1'
 }

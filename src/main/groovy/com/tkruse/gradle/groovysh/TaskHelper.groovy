@@ -54,8 +54,7 @@ class TaskHelper {
                 addIfMissing(project, configurationName, deps, 'org.fusesource.jansi', 'jansi', '1.6')
                 addIfMissing(project, configurationName, deps, 'jline', 'jline', '1.0')
                 break
-            case ~/2\.2\.[0-9].*/:
-            case ~/2\.3\.[0-9].*/:
+            case ~/2\.[2-4]\.[0-9].*/:
                 addIfMissing(project, configurationName, deps, 'jline', 'jline', '2.11')
                 break
             default:

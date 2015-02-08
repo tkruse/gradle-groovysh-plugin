@@ -4,17 +4,10 @@ jdk:
   - oraclejdk8
   - openjdk7
 env:
-  - GRADLE=gradle/gradle1.9/gradlew
-  - GRADLE=gradle/gradle1.10/gradlew
-  - GRADLE=gradle/gradle1.11/gradlew
   - GRADLE=gradle/gradle1.12/gradlew
   - GRADLE=gradle/gradle2.0/gradlew
   - GRADLE=gradle/gradle2.1/gradlew
   - GRADLE=gradle/gradle2.2.1/gradlew
-matrix:
-  exclude:
-    - jdk: oraclejdk8
-      env: GRADLE=gradle/gradle1.9/gradlew
 install: ./gradlew   assemble --stacktrace
 script:
 # building with gradlew 1.12 for backwards compatibility
