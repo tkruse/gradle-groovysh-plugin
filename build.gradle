@@ -99,10 +99,12 @@ task javadocJar (type: Jar, dependsOn: javadoc) { // (1)
 // update README.md and CHANGELOG
 // push to develop
 // wait for travis to be happy
-// bump version (in README too)
-// push to master
+// remove -SNAPSHOT from version (in README too)
+// git tag
+// push to master with --tags
 // ./gradlew clean assemble uploadArchives generatePomFileForMavenJavaPublication bintrayUpload
 // Then see instructions below
+// Finally bump to next version + -SNAPSHOT
 
 
 artifacts {
