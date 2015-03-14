@@ -13,7 +13,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.5-SNAPSHOT'
+        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.5'
     }
 
 }
