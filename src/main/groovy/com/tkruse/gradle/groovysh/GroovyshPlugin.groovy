@@ -1,5 +1,8 @@
 package com.tkruse.gradle.groovysh
 
+import static com.tkruse.gradle.groovysh.DynamicInvokeHelper.addGroovyshExtentions
+import static com.tkruse.gradle.groovysh.DynamicInvokeHelper.getPluginExtension
+
 import org.gradle.api.GradleScriptException
 import org.gradle.api.InvalidUserDataException
 import org.gradle.api.Plugin
@@ -15,11 +18,7 @@ class GroovyshPlugin implements Plugin<Project> {
 
     @Override
     void apply( final Project project ) {
-        project.extensions.create(NAME, GroovyshPluginExtension)
-        // not sure how to create nested extentions else...
-        project.groovysh.extensions.create(BuildDevShellTask.NAME, BuildDevShellTaskExtension)
-        project.groovysh.extensions.create(BuildShellTask.NAME, BuildShellTaskExtension)
-        project.groovysh.extensions.create(ApplicationShellTask.NAME, ApplicationShellTaskExtension)
+        addGroovyshExtentions(project)
 
         // need to have extensions read
         project.afterEvaluate {
@@ -28,7 +27,7 @@ class GroovyshPlugin implements Plugin<Project> {
     }
 
     static void setupTasks(final Project project) {
-        if (project.groovysh.enableBuildDevShell) {
+        if (getPluginExtension(project).enableBuildDevShell) {
             project.configurations.create(BuildDevShellTask.CONFIGURATION_NAME)
 
             try {
@@ -37,7 +36,7 @@ class GroovyshPlugin implements Plugin<Project> {
                 // task already exists, not 100 lines of stacktrace needed to understand
                 throw new GradleScriptException("$NAME: Cannot create task ${BuildDevShellTask.NAME}", e)
             }
-            URLClassLoader loader = GroovyObject.classLoader
+            URLClassLoader loader = (URLClassLoader) GroovyObject.classLoader
 
             if (project.gradle.gradleVersion.startsWith('1')) {
                 // gradle < 2.0 runs with groovy 1.8.6, groovysh needs jline 1.0
@@ -51,7 +50,7 @@ class GroovyshPlugin implements Plugin<Project> {
                 loader.addURL(file.toURL())
             }
         }
-        if (project.groovysh.enableBuildShell) {
+        if (getPluginExtension(project).enableBuildShell) {
             try {
                 project.tasks.create(BuildShellTask.NAME, BuildShellTask)
             } catch (InvalidUserDataException e) {
@@ -59,7 +58,7 @@ class GroovyshPlugin implements Plugin<Project> {
                 throw new GradleScriptException("$NAME: Cannot create task ${BuildShellTask.NAME}", e)
             }
         }
-        if (project.groovysh.enableAppShell) {
+        if (getPluginExtension(project).enableAppShell) {
             if (project.configurations.names.contains('runtime')) {
                 try {
                     project.tasks.create(ApplicationShellTask.NAME, ApplicationShellTask)
@@ -69,7 +68,7 @@ class GroovyshPlugin implements Plugin<Project> {
                 }
             }
         }
-        if (project.groovysh.enableAppShell || project.groovysh.enableBuildShell) {
+        if (getPluginExtension(project).enableAppShell || getPluginExtension(project).enableBuildShell) {
             try {
                 project.tasks.create(PatchedMainCompileTask.NAME, PatchedMainCompileTask)
             } catch (InvalidUserDataException e) {

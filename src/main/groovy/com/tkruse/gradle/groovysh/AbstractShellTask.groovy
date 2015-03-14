@@ -1,16 +1,18 @@
 package com.tkruse.gradle.groovysh
 
+import static com.tkruse.gradle.groovysh.DynamicInvokeHelper.getPluginExtension
+
 import org.gradle.api.file.FileCollection
 import org.gradle.api.tasks.JavaExec
 
 /**
  * Superclass of shell tasks
  */
-abstract class ShellTask extends JavaExec {
+abstract class AbstractShellTask extends JavaExec {
 
     abstract ShellTaskExtension getTaskExtension()
 
-    protected ShellTask() {
+    protected AbstractShellTask() {
         this.group = 'help'
         this.outputs.upToDateWhen { false }
         this.dependsOn(PatchedMainCompileTask.NAME)
@@ -68,7 +70,7 @@ abstract class ShellTask extends JavaExec {
 
     protected void addGroovyDependencies() {
         String taskConfigurationName = getConfigurationName()
-        TaskHelper.addGroovyDependencies(project, taskConfigurationName, project.groovysh.groovyVersion)
+        TaskHelper.addGroovyDependencies(project, taskConfigurationName, getPluginExtension(project).groovyVersion)
     }
 
     abstract String getConfigurationName()

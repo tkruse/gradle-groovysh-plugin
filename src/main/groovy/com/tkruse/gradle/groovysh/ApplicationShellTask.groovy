@@ -1,5 +1,7 @@
 package com.tkruse.gradle.groovysh
 
+import static com.tkruse.gradle.groovysh.DynamicInvokeHelper.getApplicationShellExtension
+
 import org.gradle.api.artifacts.Configuration
 import org.gradle.api.file.FileCollection
 import org.gradle.api.tasks.SourceSetContainer
@@ -7,7 +9,7 @@ import org.gradle.api.tasks.SourceSetContainer
 /**
  * A task that starts a groovy shell with the application runtime classpath configured
  */
-class ApplicationShellTask extends ShellTask {
+class ApplicationShellTask extends AbstractShellTask {
 
     static final String NAME = 'shell'
     static final String CONFIGURATION_NAME_PREFIX = 'appShellConf_'
@@ -18,7 +20,7 @@ class ApplicationShellTask extends ShellTask {
     ApplicationShellTask() {
         super()
         this.description = 'starts a groovysh shell with the classpath set as runtime configuration output'
-        String defaultSourceSet = project.groovysh.shell.sourceSetName
+        String defaultSourceSet = getTaskExtension().sourceSetName
         if (defaultSourceSet == null) {
             defaultSourceSet = 'main'
         }
@@ -27,12 +29,16 @@ class ApplicationShellTask extends ShellTask {
 
     @Override
     ShellTaskExtension getTaskExtension() {
-        return project.groovysh.shell
+        return getApplicationShellExtension(project)
     }
 
     def setSourceSetName(String newVal) {
         assert newVal != null
         this.sourceSetName = newVal
+
+        /*
+         * Would be nicer to use a Gradle JavaPlugin API here... but conventions should be stable
+         */
 
         SourceSetContainer sourceSets = project.sourceSets
 
@@ -55,7 +61,7 @@ class ApplicationShellTask extends ShellTask {
         FileCollection appClasspath = sourceSets.getByName(sourceSetName).runtimeClasspath
         FileCollection shellClasspath = project.configurations.getByName(getConfigurationName()).asFileTree
         this.classpath = appClasspath + shellClasspath
-        FileCollection extraClasspath = project.groovysh.shell.extraClasspath
+        FileCollection extraClasspath = getTaskExtension().extraClasspath
         if (extraClasspath != null) {
             this.classpath = this.classpath + extraClasspath
         }

@@ -1,12 +1,14 @@
 package com.tkruse.gradle.groovysh
 
+import static com.tkruse.gradle.groovysh.DynamicInvokeHelper.getBuildShellExtension
+
 import org.gradle.api.artifacts.Dependency
 import org.gradle.api.file.FileCollection
 
 /**
  * A task that starts a groovysh shell with the gradle tooling api onthe classpath
  */
-class BuildShellTask extends ShellTask {
+class BuildShellTask extends AbstractShellTask {
 
     static final String NAME = 'buildShell'
     static final String CONFIGURATION_NAME_PREFIX = 'buildShellConf_'
@@ -19,7 +21,7 @@ connector = GradleConnector.newConnector()
 
     @Override
     ShellTaskExtension getTaskExtension() {
-        return project.groovysh.buildShell
+        return getBuildShellExtension(project)
     }
 
     BuildShellTask() {
@@ -36,7 +38,7 @@ connector = GradleConnector.newConnector()
         List<Dependency> deps = project.configurations.getByName(getConfigurationName()).allDependencies
                 .collect { Dependency it -> it }
         TaskHelper.addIfMissing(project, getConfigurationName(),
-                deps, 'org.gradle', 'gradle-tooling-api', taskExtension.gradleVersion)
+                deps, 'org.gradle', 'gradle-tooling-api', taskExtension.gradleVersion, null)
         TaskHelper.addIfMissing(project, getConfigurationName(), deps, 'org.slf4j', 'slf4j-simple', '1.7.7')
     }
 
@@ -44,7 +46,7 @@ connector = GradleConnector.newConnector()
         FileCollection shellClasspath = project.configurations.getByName(getConfigurationName()).asFileTree
         this.classpath = shellClasspath
 
-        FileCollection extraClasspath = project.groovysh.shell.extraClasspath
+        FileCollection extraClasspath = getTaskExtension().extraClasspath
         if (extraClasspath != null) {
             this.classpath = this.classpath + extraClasspath
         }

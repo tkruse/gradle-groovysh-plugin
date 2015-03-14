@@ -21,5 +21,6 @@ class ShellTaskExtension {
     InputStream standardInput = System.in
     OutputStream standardOutput
     Map<String, Object> systemProperties
+    String gradleVersion
 
 }

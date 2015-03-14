@@ -46,6 +46,6 @@ class BuildDevShellTask extends DefaultTask {
             shell.interp.context.variables.put(varname, project.getProperties().get(varname))
         }
 
-        shell.run()
+        shell.run((String) null)
     }
 }
