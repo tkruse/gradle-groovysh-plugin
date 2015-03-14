@@ -14,7 +14,7 @@ groovysh {
     enablebuildDevShell = true
 
     // groovyVersion determines the features of the shell and buildShell tasks
-    // groovyVersion = '2.4.0'
+    // groovyVersion = '2.4.1'
 
     shell {
         // default is 'main'

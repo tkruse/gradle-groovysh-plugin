@@ -9,5 +9,5 @@ class GroovyshPluginExtension {
     boolean enableBuildShell = true
     boolean enableAppShell = true
 
-    String groovyVersion = '2.4.0'
+    String groovyVersion = '2.4.1'
 }
