@@ -28,7 +28,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '1.0.5'
+version = '1.0.6-SNAPSHOT'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -104,7 +104,7 @@ task javadocJar (type: Jar, dependsOn: javadoc) { // (1)
 // push to master with --tags
 // ./gradlew clean assemble uploadArchives generatePomFileForMavenJavaPublication bintrayUpload
 // Then see instructions below
-// Finally bump to next version + -SNAPSHOT
+// Finally bump to next version + -SNAPSHOT also in README and push to develop (not master!)
 
 
 artifacts {
