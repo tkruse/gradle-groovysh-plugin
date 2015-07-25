@@ -5,6 +5,6 @@ package com.tkruse.gradle.groovysh
  */
 class BuildShellTaskExtension extends ShellTaskExtension {
 
-    String gradleVersion = '2.0'
+    String gradleVersion = '2.5'
 
 }
