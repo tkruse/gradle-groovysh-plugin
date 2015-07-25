@@ -18,7 +18,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
-        classpath 'org.codehaus.groovy:groovy-backports-compat23:2.4.1'
+        classpath 'org.codehaus.groovy:groovy-backports-compat23:2.4.4'
     }
 }
 

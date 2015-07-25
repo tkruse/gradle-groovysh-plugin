@@ -9,7 +9,7 @@ In your ```build.gradle```:
 apply plugin: 'java'
 
 dependencies {
-  compile('org.codehaus.groovy:groovy-all:2.4.1') { force = true }
+  compile('org.codehaus.groovy:groovy-all:2.4.4') { force = true }
   compile('commons-cli:commons-cli:1.2')
   // when using groovy < 2.2 above:
   // "jline:jline:1.0"

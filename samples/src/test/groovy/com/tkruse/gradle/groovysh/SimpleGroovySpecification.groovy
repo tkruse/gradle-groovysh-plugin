@@ -37,6 +37,6 @@ class SimpleGroovySpecification extends Specification {
                           '2.1.0', '2.1.9',
                           '2.2.0', '2.2.2',
                           '2.3.0', '2.3.9',
-                          '2.4.0', '2.4.1']
+                          '2.4.0', '2.4.4']
     }
 }
