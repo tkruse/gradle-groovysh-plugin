@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/tkruse/gradle-groovysh-plugin.svg)](https://travis-ci.org/tkruse/gradle-groovysh-plugin)
 [![Download](https://api.bintray.com/packages/tkruse/maven/gradle-groovysh-plugin/images/download.svg) ](https://bintray.com/tkruse/maven/gradle-groovysh-plugin/_latestVersion)
 
-This plugin provides gradle tasks that start an interactive groovy shells, based on
+This plugin provides gradle tasks that start an interactive groovy shells (also known as REPL), based on
 the '[groovysh](http://groovy.codehaus.org/Groovy+Shell)' command that ships with any [Groovy](http://groovy.codehaus.org/) version.
 
 The main feature is an Application shell, meaning a shell where your application
@@ -32,7 +32,16 @@ This plugin is **Work In Progress**, expect some rough edges, but please do repo
 
 ## Installing the plugin
 
-Include the plugin in your build.gradle file like this:
+Include the plugin in your build.gradle file like this (using gradle > 2.1):
+
+```Groovy
+plugins {
+  id "com.github.tkruse.groovysh" version "1.0.6"
+}
+```
+Also see https://plugins.gradle.org/plugin/com.github.tkruse.groovysh
+
+For older gradle versions (or if you cannot use gradle plugin portal):
 
 ```Groovy
 apply plugin: 'com.github.tkruse.groovysh'
@@ -46,14 +55,18 @@ buildscript {
     }
 }
 ```
-(```mavenCentral()``` instead of jcenter also works)
+(```mavenCentral()``` instead of ```jcenter()``` also works)
 
 *Note*: With version 0.x.x of this plugin, the plugin id was just 'groovysh', so you would have
 to write ```apply plugin: 'groovysh'```. This was changed in line with the gradle portal.
 
 The plugin id has changed with version 1.0.0 due to the requirements of gradle-portal.
 
-Currently your project needs to also have the java plugin applied for the ```shell``` task.
+Currently your project needs to also have the java plugin applied for the ```shell``` task:
+
+```Groovy
+apply plugin: 'java'
+```
 
 ## Configuring the Plugin
 
@@ -186,3 +199,7 @@ The gradle progress logging gets in the way of the output else, no API exists to
 * My Unix prompt does not work after program exit, typed text remains invisible.
 
 This is known to happen with jline1.12. Run ```reset``` in that shell as workaround.
+
+* How does this compare to the Java 9 'JShell' REPL (Project Kulla)?
+
+Both are REPLs, both can interact with java classes, so usage should be similar. There are no dependencies. Arguably typing Groovy code in a REPL allows for easier interaction.

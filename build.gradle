@@ -103,7 +103,7 @@ task javadocJar (type: Jar, dependsOn: javadoc) { // (1)
 // push to develop
 // wait for travis to be happy
 // check README.md and CHANGELOG
-// remove -SNAPSHOT in build.gradle (2x) from version (in README too)
+// remove -SNAPSHOT in build.gradle (2x) and samples/build.gradle from version (in README too)
 // ./gradlew clean assemble uploadArchives generatePomFileForMavenJavaPublication bintrayUpload
 // git tag
 // push to master with --tags
