@@ -56,8 +56,7 @@ class ApplicationShellTaskTest {
         }
     }
 
-    @Test
-    void testConfigureMainWithArgs() {
+    private static Project setupProject() {
         Project project = TestHelper.createProjectWithPluginAndJava()
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         project.groovysh.shell.args = ['foo']
@@ -69,6 +68,12 @@ class ApplicationShellTaskTest {
         project.groovysh.shell.enableAssertions = true
         project.groovysh.shell.environment = ['FOO':'BAR']
 
+        return project
+    }
+
+    @Test
+    void testConfigureMainWithArgs() {
+        Project project = setupProject()
         ByteArrayOutputStream bos1 = new ByteArrayOutputStream()
         project.groovysh.shell.errorOutput = bos1
         project.groovysh.shell.maxHeapSize = '1024m'
@@ -80,6 +85,7 @@ class ApplicationShellTaskTest {
 
         TestHelper.setupTasks(project)
         project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
+
         ApplicationShellTask shellTask = (ApplicationShellTask) project.tasks.findByName(ApplicationShellTask.NAME)
 
         assert shellTask != null

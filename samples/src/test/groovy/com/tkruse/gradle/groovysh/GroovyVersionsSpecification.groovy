@@ -8,7 +8,7 @@ import spock.lang.Specification
  */
 class GroovyVersionsSpecification extends Specification {
 
-    def testGroovyshVersion(String groovyVersion) {
+    void testGroovyshVersion(String groovyVersion) {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject(
                 'groovyVersions',

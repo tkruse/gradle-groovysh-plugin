@@ -8,7 +8,7 @@ import spock.lang.Specification
  */
 class SimpleSpecification extends Specification {
 
-    def testImportCustomClass() {
+    void testImportCustomClass() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('simple')
 
@@ -32,7 +32,7 @@ class SimpleSpecification extends Specification {
 
     }
 
-    def testBuildshell() {
+    void testBuildshell() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('simple', ['clean', 'buildShell'] as String[])
 

@@ -118,8 +118,8 @@ desired groovysh version $version for $group:$module")
                 project, GenerateMainTask.CONFIGURATION_NAME,
                 ((GroovyshPluginExtension) project.getExtensions().getByName(GroovyshPlugin.NAME)).getGroovyVersion())
 
-            def generateTask = project.tasks.create(GenerateMainTask.NAME + 'Generate', GenerateMainTask)
-            def compileTask = project.tasks.create(GenerateMainTask.NAME, JavaCompile)
+            GenerateMainTask generateTask = project.tasks.create(GenerateMainTask.NAME + 'Generate', GenerateMainTask)
+            JavaCompile compileTask = project.tasks.create(GenerateMainTask.NAME, JavaCompile)
             compileTask.dependsOn(generateTask)
             configureCompileTask(project, compileTask)
 

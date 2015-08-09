@@ -8,7 +8,7 @@ import spock.lang.Specification
  */
 class JUnitSpecification extends Specification {
 
-    def testRunTests() {
+    void testRunTests() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('junit')
 

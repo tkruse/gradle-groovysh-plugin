@@ -26,7 +26,7 @@ class TestHelper {
 
     static void setupTasks(final Project project) {
         Plugin plugin = project.plugins.getPlugin(GroovyshPlugin.PLUGIN_ID)
-        assert plugin instanceof GroovyshPlugin
+        assert plugin.class == GroovyshPlugin
         // simulate AfterEvaluate
         ((GroovyshPlugin) plugin).setupTasks(project)
     }

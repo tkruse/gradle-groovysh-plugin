@@ -8,7 +8,7 @@ import spock.lang.Specification
  */
 class MongoSpecification extends Specification {
 
-    def testMongoDbRepoAndService() {
+    void testMongoDbRepoAndService() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('mongo')
 

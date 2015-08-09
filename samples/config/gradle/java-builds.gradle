@@ -51,7 +51,7 @@ checkstyleTest {
 
 codenarc {
     configFile = new File(rootDir, 'config/codenarc/rules.groovy')
-    toolVersion = 0.21
+    toolVersion = 0.24
 }
 
 //force compile tasks to use utf-8

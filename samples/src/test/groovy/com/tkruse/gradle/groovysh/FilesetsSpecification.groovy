@@ -8,7 +8,7 @@ import spock.lang.Specification
  */
 class FilesetsSpecification extends Specification {
 
-    def testBuildDevShell() {
+    void testBuildDevShell() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('filesets',
                 ['clean', 'buildDevShell'] as String[], ['-q'] as String[])

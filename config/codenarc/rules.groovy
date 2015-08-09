@@ -19,7 +19,9 @@ ruleset {
     ruleset('rulesets/braces.xml')
     ruleset('rulesets/concurrency.xml')
     ruleset('rulesets/convention.xml')
-    ruleset('rulesets/design.xml')
+    ruleset('rulesets/design.xml') {
+        NestedForLoop(enabled: false)
+    }
     ruleset('rulesets/dry.xml') {
         DuplicateListLiteral
         DuplicateMapLiteral

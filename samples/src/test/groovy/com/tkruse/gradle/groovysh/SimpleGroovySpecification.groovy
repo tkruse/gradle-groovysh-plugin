@@ -8,7 +8,7 @@ import spock.lang.Specification
  */
 class SimpleGroovySpecification extends Specification {
 
-    def testImportCustomclass() {
+    void testImportCustomclass() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('simpleGroovy',
                 ['clean', 'shell'] as String[],

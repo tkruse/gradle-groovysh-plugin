@@ -32,7 +32,7 @@ class ApplicationShellTask extends AbstractShellTask {
         return getApplicationShellExtension(project)
     }
 
-    def setSourceSetName(String newVal) {
+    void setSourceSetName(String newVal) {
         assert newVal != null
         this.sourceSetName = newVal
 
