@@ -28,7 +28,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '1.0.6-SNAPSHOT'
+version = '1.0.6'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -102,8 +102,8 @@ task javadocJar (type: Jar, dependsOn: javadoc) { // (1)
 // run clean check locally
 // push to develop
 // wait for travis to be happy
-// update README.md and CHANGELOG
-// remove -SNAPSHOT from version (in README too)
+// check README.md and CHANGELOG
+// remove -SNAPSHOT in build.gradle (2x) from version (in README too)
 // git tag
 // push to master with --tags
 // ./gradlew clean assemble uploadArchives generatePomFileForMavenJavaPublication bintrayUpload

@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.0.6 *(2015-08-09)*
+----------------------------
+
+Maintenance release. Update dependency version, default Groovy is 2.4.4
+Made Compatible with gradle 2.5
+
 Version 1.0.5 *(2015-03-14)*
 ----------------------------
 

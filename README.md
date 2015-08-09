@@ -171,7 +171,7 @@ Or just install Groovy and run ```groovysh``` with a suitable classpath.
 
 * Java Versions (6?, 7, 8)
 
-* Operating Systems (Ubuntu Precise)
+* Operating Systems (Ubuntu, Windows? MacOs?)
 
 * Gradle versions (1.8?, 1.9, 1.10, 1.11, 1.12, 2.x.x)
 
