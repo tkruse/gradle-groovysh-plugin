@@ -11,7 +11,7 @@ class BuildShellTaskTest {
     @Test
     void testConfigureMain() {
         Project project = TestHelper.createProjectWithPluginAndJava()
-        project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.7')
+        project.dependencies.add('compile', 'org.slf4j:slf4j-api:1.7.12')
         project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
         TestHelper.setupTasks(project)
         BuildShellTask buildShellTask = (BuildShellTask) project.tasks.findByName(BuildShellTask.NAME)

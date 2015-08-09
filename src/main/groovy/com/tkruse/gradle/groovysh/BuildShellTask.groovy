@@ -39,7 +39,7 @@ connector = GradleConnector.newConnector()
                 .collect { Dependency it -> it }
         TaskHelper.addIfMissing(project, getConfigurationName(),
                 deps, 'org.gradle', 'gradle-tooling-api', taskExtension.gradleVersion, null)
-        TaskHelper.addIfMissing(project, getConfigurationName(), deps, 'org.slf4j', 'slf4j-simple', '1.7.7')
+        TaskHelper.addIfMissing(project, getConfigurationName(), deps, 'org.slf4j', 'slf4j-simple', '1.7.12')
     }
 
     void setupClasspath() {
