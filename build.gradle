@@ -28,7 +28,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '1.0.6'
+version = '1.0.7-SNAPSHOT'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -104,9 +104,9 @@ task javadocJar (type: Jar, dependsOn: javadoc) { // (1)
 // wait for travis to be happy
 // check README.md and CHANGELOG
 // remove -SNAPSHOT in build.gradle (2x) from version (in README too)
+// ./gradlew clean assemble uploadArchives generatePomFileForMavenJavaPublication bintrayUpload
 // git tag
 // push to master with --tags
-// ./gradlew clean assemble uploadArchives generatePomFileForMavenJavaPublication bintrayUpload
 // Then see instructions below
 // Finally bump to next version + -SNAPSHOT also in README and push to develop (not master!)
 
@@ -134,8 +134,7 @@ signing {
 }
 
 /************ Maven central
- * run with gradle uploadArchives.
- * then go to
+ * go to
  * https://oss.sonatype.org/#stagingRepositories
  * check all is good. If so, find the repo, select, close, wait until closed, then release
  *
@@ -194,8 +193,7 @@ publishing {
 }
 
 /********* Bintray
- * Run with gradle bintrayUpload
- * then go to https://bintray.com/tkruse/maven/gradle-groovysh-plugin and hit publish
+ * go to https://bintray.com/tkruse/maven/gradle-groovysh-plugin and hit publish
  *
  * Set bintray version attribute  ('Edit' button on *version*, not package)
  * 'gradle-plugin', 'com.github.tkruse.groovysh:com.tkruse.gradle:gradle-groovysh-plugin'
