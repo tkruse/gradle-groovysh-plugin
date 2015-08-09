@@ -69,12 +69,7 @@ class GroovyshPlugin implements Plugin<Project> {
             }
         }
         if (getPluginExtension(project).enableAppShell || getPluginExtension(project).enableBuildShell) {
-            try {
-                project.tasks.create(PatchedMainCompileTask.NAME, PatchedMainCompileTask)
-            } catch (InvalidUserDataException e) {
-                // task already exists, not 100 lines of stacktrace needed to understand
-                throw new GradleScriptException("$NAME: Cannot create task ${PatchedMainCompileTask.NAME}", e)
-            }
+            TaskHelper.configureProjectForAppShell(project)
         }
     }
 }

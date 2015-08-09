@@ -15,7 +15,7 @@ abstract class AbstractShellTask extends JavaExec {
     protected AbstractShellTask() {
         this.group = 'help'
         this.outputs.upToDateWhen { false }
-        this.dependsOn(PatchedMainCompileTask.NAME)
+        this.dependsOn(GenerateMainTask.NAME)
         // use an independent configuration for the task dependencies, so that application compile is not influenced
         project.configurations.create(getConfigurationName())
 
@@ -65,7 +65,7 @@ abstract class AbstractShellTask extends JavaExec {
         }
 
         //this.main = 'org.codehaus.groovy.tools.shell.Main'
-        this.main = PatchedMainCompileTask.PATCH_CLASS_CAN_NAME
+        this.main = GenerateMainTask.PATCH_CLASS_CAN_NAME
     }
 
     protected void addGroovyDependencies() {
