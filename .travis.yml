@@ -15,7 +15,8 @@ env:
 install: ./gradlew   assemble --stacktrace
 script:
   - TERM=dumb ./gradlew clean build --stacktrace
-  - TERM=dumb $GRADLE -p samples clean check --stacktrace
+  - TERM=dumb $GRADLE -p samples clean check -x codenarcMain -x codenarcTest
+  - TERM=dumb $GRADLE -p samples codenarcMain codenarcTest
 notifications:
   email: false
 branches:
