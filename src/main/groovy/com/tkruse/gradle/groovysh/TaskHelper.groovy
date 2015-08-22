@@ -13,12 +13,18 @@ import org.gradle.api.tasks.compile.JavaCompile
 class TaskHelper {
 
     private final static String DAEMON_PROP = 'org.gradle.daemon'
+    private final static String JVMARGS_PROP = 'org.gradle.jvmargs'
 
     static void checkDaemon(final Project project) {
         if (project.hasProperty(DAEMON_PROP) && project.property(DAEMON_PROP) == 'true') {
-            String msg = 'Do not run with gradle daemon (use --no-daemon).'
+            String msg = '!!!!! WARNING: Do not run with gradle daemon, this may disable keyboard input.  (use --no-daemon). !!!!!!!!!'
             println(msg)
-            throw new IllegalStateException(msg)
+            //throw new IllegalStateException(msg)
+        }
+        if (project.hasProperty(JVMARGS_PROP)) {
+            String msg = "!!!!! WARNING: Do not run with  $JVMARGS_PROP in properties. This may disable keyboard input. !!!!!!!!!"
+            println(msg)
+            //throw new IllegalStateException(msg)
         }
     }
 
