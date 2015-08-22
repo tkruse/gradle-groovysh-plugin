@@ -28,7 +28,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '1.0.7-SNAPSHOT'
+version = '1.0.7'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
@@ -99,7 +99,7 @@ task javadocJar (type: Jar, dependsOn: javadoc) { // (1)
 
 
 // ********* Note to myself: Release steps
-// run clean check locally
+// run gradle clean check
 // push to develop
 // wait for travis to be happy
 // check README.md and CHANGELOG

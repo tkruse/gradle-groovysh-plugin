@@ -1,6 +1,12 @@
 Changelog
 =========
 
+Version 1.0.7 *(2015-08-22)*
+----------------------------
+
+Relax startup guard, shell still starts if daemon is activated in properties, with warning message
+Similar warning message for starting with jvmargs, as this causes the same problem
+
 Version 1.0.6 *(2015-08-09)*
 ----------------------------
 

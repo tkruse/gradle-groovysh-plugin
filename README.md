@@ -36,7 +36,14 @@ Include the plugin in your build.gradle file like this (using gradle > 2.1):
 
 ```Groovy
 plugins {
-  id "com.github.tkruse.groovysh" version "1.0.6"
+  id 'java'
+  id "com.github.tkruse.groovysh" version "1.0.7"
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
 }
 ```
 Also see https://plugins.gradle.org/plugin/com.github.tkruse.groovysh
@@ -51,7 +58,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.6'
+        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.7'
     }
 }
 ```
