@@ -12,6 +12,7 @@ env:
   - GRADLE=gradle/gradle2.3/gradlew
   - GRADLE=gradle/gradle2.4/gradlew
   - GRADLE=gradle/gradle2.5/gradlew
+  - GRADLE=gradle/gradle2.6/gradlew
 install: ./gradlew   assemble --stacktrace
 script:
   - TERM=dumb ./gradlew clean build --stacktrace

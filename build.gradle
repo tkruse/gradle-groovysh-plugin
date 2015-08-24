@@ -68,13 +68,15 @@ dependencies {
         compile('org.codehaus.groovy:groovy-all:2.4.4') { force = true }
     } else if (gradle.gradleVersion.startsWith('2.0')) {
         compile('org.codehaus.groovy:groovy-all:2.3.3') { force = true }
-    } else if (gradle.gradleVersion.startsWith('2')) {
-        // confirmed with gradle 2.1 and 2.2.1
-        if (gradle.gradleVersion.startsWith('2.5')) {
-            compile('org.codehaus.groovy:groovy-all:2.3.10') { force = true }
-        } else {
-            compile('org.codehaus.groovy:groovy-all:2.3.6') { force = true }
-        }
+    } else if (gradle.gradleVersion.startsWith('2.1')
+            || gradle.gradleVersion.startsWith('2.2')
+            || (gradle.gradleVersion.startsWith('2.3'))
+            || (gradle.gradleVersion.startsWith('2.4'))) {
+        compile('org.codehaus.groovy:groovy-all:2.3.6') { force = true }
+    } else if (gradle.gradleVersion.startsWith('2.5')) {
+        compile('org.codehaus.groovy:groovy-all:2.3.10') { force = true }
+    } else if (gradle.gradleVersion.startsWith('2.6')) {
+        compile('org.codehaus.groovy:groovy-all:2.3.10') { force = true }
     }
 
     runtime('commons-cli:commons-cli:1.2')
