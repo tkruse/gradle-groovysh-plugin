@@ -11,7 +11,8 @@ class FilesetsSpecification extends Specification {
     void testBuildDevShell() {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('filesets',
-                ['clean', 'buildDevShell'] as String[], ['-q'] as String[])
+                ['clean', 'buildDevShell'] as String[],
+                ['-q', '-PgroovyshPluginIgnoreNullConsole=true'] as String[])
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()

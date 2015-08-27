@@ -12,19 +12,13 @@ import org.gradle.api.tasks.compile.JavaCompile
  */
 class TaskHelper {
 
-    private final static String DAEMON_PROP = 'org.gradle.daemon'
-    private final static String JVMARGS_PROP = 'org.gradle.jvmargs'
+    static final String IGNORE_NULL_CONSOLE = 'groovyshPluginIgnoreNullConsole'
 
     static void checkDaemon(final Project project) {
-        if (project.hasProperty(DAEMON_PROP) && project.property(DAEMON_PROP) == 'true') {
-            String msg = '!!!!! WARNING: Do not run with gradle daemon, this may disable keyboard input.  (use --no-daemon). !!!!!!!!!'
+        if (System.console() == null && !project.hasProperty(IGNORE_NULL_CONSOLE)) {
+            String msg = 'Error: No system console available. This happens when using jvmargs or the gradle dameon.  (use --no-daemon ?).'
             println(msg)
-            //throw new IllegalStateException(msg)
-        }
-        if (project.hasProperty(JVMARGS_PROP)) {
-            String msg = "!!!!! WARNING: Do not run with  $JVMARGS_PROP in properties. This may disable keyboard input. !!!!!!!!!"
-            println(msg)
-            //throw new IllegalStateException(msg)
+            throw new IllegalStateException(msg)
         }
     }
 

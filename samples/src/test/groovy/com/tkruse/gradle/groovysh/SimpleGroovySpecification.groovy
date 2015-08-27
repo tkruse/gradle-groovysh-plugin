@@ -12,7 +12,9 @@ class SimpleGroovySpecification extends Specification {
         setup:
         BuildLauncher launcher = LauncherHelper.getLauncherForProject('simpleGroovy',
                 ['clean', 'shell'] as String[],
-                ["-PgroovyVersion=$groovyVersion", '-q'] as String[])
+                ["-PgroovyVersion=$groovyVersion",
+                 '-PgroovyshPluginIgnoreNullConsole=true',
+                 '-q'] as String[])
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()

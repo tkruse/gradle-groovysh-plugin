@@ -13,7 +13,9 @@ class GroovyVersionsSpecification extends Specification {
         BuildLauncher launcher = LauncherHelper.getLauncherForProject(
                 'groovyVersions',
                 ['clean', 'shell'] as String[],
-                ["-PgroovyVersion=$groovyVersion", '-q'] as String[])
+                ["-PgroovyVersion=$groovyVersion",
+                 '-PgroovyshPluginIgnoreNullConsole=true',
+                 '-q'] as String[])
 
         ByteArrayOutputStream bytesOut = new ByteArrayOutputStream()
         ByteArrayOutputStream bytesErr = new ByteArrayOutputStream()
