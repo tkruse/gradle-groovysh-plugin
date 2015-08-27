@@ -37,7 +37,7 @@ Include the plugin in your build.gradle file like this (using gradle > 2.1):
 ```Groovy
 plugins {
   id 'java'
-  id "com.github.tkruse.groovysh" version "1.0.7"
+  id "com.github.tkruse.groovysh" version "1.0.8"
 }
 
 buildscript {

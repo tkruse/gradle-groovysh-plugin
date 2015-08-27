@@ -28,7 +28,7 @@ repositories {
 }
 
 group = 'com.tkruse.gradle'
-version = '1.0.8-SNAPSHOT'
+version = '1.0.8'
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 def compatibilityVersion = 1.7
