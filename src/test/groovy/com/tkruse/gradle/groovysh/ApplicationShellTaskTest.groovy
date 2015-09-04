@@ -87,10 +87,20 @@ class ApplicationShellTaskTest {
         project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
 
         ApplicationShellTask shellTask = (ApplicationShellTask) project.tasks.findByName(ApplicationShellTask.NAME)
-
         assert shellTask != null
+        assert shellTask.errorOutput == bos1
+        assert shellTask.standardInput == bis
+        assert shellTask.standardOutput == bos2
+
         List<String> dependencyVersions =
                 project.configurations.appShellConf_shell.dependencies.asList().collect { it.name + it.version }
+
+        checkTaskSetup(dependencyVersions, shellTask, project)
+
+    }
+
+    private static void checkTaskSetup(List<String> dependencyVersions,
+                                       ApplicationShellTask shellTask, Project project) {
         assert dependencyVersions.contains('jline2.11')
         assert dependencyVersions.contains('commons-cli1.2')
         assert dependencyVersions.contains('groovy-all2.4.4')
@@ -104,11 +114,8 @@ class ApplicationShellTaskTest {
         assert shellTask.bootstrapClasspath.asPath.contains('lib/foo.jar')
         assert shellTask.enableAssertions
         assert shellTask.environment == ['FOO':'BAR']
-        assert shellTask.errorOutput == bos1
-        assert shellTask.maxHeapSize == '1024m'
-        assert shellTask.standardInput == bis
-        assert shellTask.standardOutput == bos2
-        assert shellTask.systemProperties == ['BAR':'FOO']
 
+        assert shellTask.maxHeapSize == '1024m'
+        assert shellTask.systemProperties == ['BAR':'FOO']
     }
 }

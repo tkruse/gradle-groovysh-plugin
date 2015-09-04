@@ -193,7 +193,7 @@ Or just install Groovy and run ```groovysh``` with a suitable classpath.
 
 * Operating Systems (Ubuntu, Windows? MacOs?)
 
-* Gradle versions (1.8?, 1.9, 1.10, 1.11, 1.12, 2.x.x)
+* Gradle versions (1.10, 1.11, 1.12, 2.x.x)
 
 * Groovy Versions (2.x.x)
 
