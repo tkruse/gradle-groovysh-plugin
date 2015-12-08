@@ -45,6 +45,10 @@ buildscript {
         jcenter()
     }
 }
+
+repositories {
+    jcenter() // or maven central...
+}
 ```
 Also see https://plugins.gradle.org/plugin/com.github.tkruse.groovysh
 
@@ -60,6 +64,10 @@ buildscript {
     dependencies {
         classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.7'
     }
+}
+
+repositories {
+    jcenter() // or maven central...
 }
 ```
 (```mavenCentral()``` instead of ```jcenter()``` also works)
@@ -210,3 +218,13 @@ This is known to happen with jline1.12. Run ```reset``` in that shell as workaro
 * How does this compare to the Java 9 'JShell' REPL (Project Kulla)?
 
 Both are REPLs, both can interact with java classes, so usage should be similar. There are no dependencies. Arguably typing Groovy code in a REPL allows for easier interaction.
+
+* I get: `Cannot resolve external dependency jline:jline:2.11 because no repositories are defined.`
+
+This means you need to define some plain repositories (not buildscript repositories):
+
+```
+repositories {
+    jcenter() // or maven central...
+}
+```
