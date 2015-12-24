@@ -13,6 +13,10 @@ env:
   - TERM=dumb GRADLE=gradle/gradle2.4/gradlew
   - TERM=dumb GRADLE=gradle/gradle2.5/gradlew
   - TERM=dumb GRADLE=gradle/gradle2.6/gradlew
+  - TERM=dumb GRADLE=gradle/gradle2.7/gradlew
+  - TERM=dumb GRADLE=gradle/gradle2.8/gradlew
+  - TERM=dumb GRADLE=gradle/gradle2.9/gradlew
+  - TERM=dumb GRADLE=gradle/gradle2.10/gradlew
 install: ./gradlew   assemble --stacktrace
 script:
   - ./gradlew clean build --stacktrace && $GRADLE -p samples clean check -x codenarcMain -x codenarcTest && $GRADLE -p samples codenarcMain codenarcTest
