@@ -18,7 +18,9 @@ ruleset {
     ruleset('rulesets/basic.xml')
     ruleset('rulesets/braces.xml')
     ruleset('rulesets/concurrency.xml')
-    ruleset('rulesets/convention.xml')
+    ruleset('rulesets/convention.xml') {
+		TrailingComma(enabled: false)
+	}
     ruleset('rulesets/design.xml') {
         NestedForLoop(enabled: false)
     }
@@ -58,6 +60,7 @@ ruleset {
     ruleset('rulesets/serialization.xml')
     ruleset('rulesets/size.xml') {
         CrapMetric(enabled: false)
+		ParameterCount(enabled: false)
     }
     ruleset('rulesets/unnecessary.xml') {
         UnnecessaryGetter(enabled: false)

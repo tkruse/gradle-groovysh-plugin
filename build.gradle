@@ -41,7 +41,7 @@ codenarcMain.maxPriority2Violations = 3
 codenarcTest.maxPriority2Violations = 1
 codenarc {
     configFile = file('config/codenarc/rules.groovy')
-    toolVersion = 0.24
+    toolVersion = '0.25.2'
 }
 
 

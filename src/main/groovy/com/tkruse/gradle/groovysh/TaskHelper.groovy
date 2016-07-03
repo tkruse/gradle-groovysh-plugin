@@ -16,7 +16,8 @@ class TaskHelper {
 
     static void checkDaemon(final Project project) {
         if (System.console() == null && !project.hasProperty(IGNORE_NULL_CONSOLE)) {
-            String msg = 'Error: No system console available. This happens when using jvmargs or the gradle dameon.  (use --no-daemon ?).'
+            String msg = 'Error: No system console available.'
+			+ ' This happens when using jvmargs or the gradle dameon.  (use --no-daemon ?).'
             println(msg)
             throw new IllegalStateException(msg)
         }
