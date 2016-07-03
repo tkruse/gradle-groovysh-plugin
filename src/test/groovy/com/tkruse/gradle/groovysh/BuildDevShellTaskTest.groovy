@@ -32,7 +32,7 @@ class BuildDevShellTaskTest {
     void testConfigureMainWithGradleVersion() {
         Project project = TestHelper.createProjectWithPluginAndJava()
 
-        project.groovysh.buildShell.gradleVersion = '2.6'
+        project.groovysh.buildShell.gradleVersion = '2.12'
 
         TestHelper.setupTasks(project)
         BuildDevShellTask buildDevShellTask = (BuildDevShellTask) project.tasks.findByName(BuildDevShellTask.NAME)

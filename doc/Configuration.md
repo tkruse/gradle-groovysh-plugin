@@ -32,7 +32,7 @@ groovysh {
        // gradle version determines version of connector in tooling API,
        // but connector can use other gradle version to build project via
        // connector.useGradleVersion('1.18')
-       // gradleVersion = '2.6'
+       // gradleVersion = '2.12'
 
        /* ... params of gradle JavaExec can also be used */
     }

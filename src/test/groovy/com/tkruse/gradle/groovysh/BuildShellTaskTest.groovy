@@ -26,7 +26,7 @@ class BuildShellTaskTest {
         assert buildShellTask.classpath.asPath.contains('groovy')
         assert buildShellTask.classpath.asPath.contains('slf4j')
         assert !buildShellTask.classpath.asPath.contains('junit')
-        assert dependencyVersions.contains('gradle-tooling-api2.6')
+        assert dependencyVersions.contains('gradle-tooling-api2.12')
     }
 
     @Test
@@ -57,7 +57,7 @@ class BuildShellTaskTest {
     void testConfigureMainWithGradleVersion() {
         Project project = TestHelper.createProjectWithPluginAndJava()
 
-        project.groovysh.buildShell.gradleVersion = '2.6'
+        project.groovysh.buildShell.gradleVersion = '2.12'
 
         TestHelper.setupTasks(project)
         BuildShellTask buildShellTask = (BuildShellTask) project.tasks.findByName(BuildShellTask.NAME)
@@ -70,7 +70,7 @@ class BuildShellTaskTest {
         assert dependencyVersions.contains('jline2.11')
         assert dependencyVersions.contains('commons-cli1.2')
         assert dependencyVersions.contains('groovy-all2.4.4')
-        assert dependencyVersions.contains('gradle-tooling-api2.6')
+        assert dependencyVersions.contains('gradle-tooling-api2.12')
 
     }
 }
