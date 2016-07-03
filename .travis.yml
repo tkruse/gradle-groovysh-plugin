@@ -7,16 +7,14 @@ jdk:
 env:
   - TERM=dumb GRADLE=gradle/gradle1.12/gradlew
   - TERM=dumb GRADLE=gradle/gradle2.0/gradlew
-  - TERM=dumb GRADLE=gradle/gradle2.1/gradlew
   - TERM=dumb GRADLE=gradle/gradle2.2.1/gradlew
-  - TERM=dumb GRADLE=gradle/gradle2.3/gradlew
-  - TERM=dumb GRADLE=gradle/gradle2.4/gradlew
   - TERM=dumb GRADLE=gradle/gradle2.5/gradlew
   - TERM=dumb GRADLE=gradle/gradle2.6/gradlew
-  - TERM=dumb GRADLE=gradle/gradle2.7/gradlew
   - TERM=dumb GRADLE=gradle/gradle2.8/gradlew
   - TERM=dumb GRADLE=gradle/gradle2.9/gradlew
   - TERM=dumb GRADLE=gradle/gradle2.10/gradlew
+  - TERM=dumb GRADLE=gradle/gradle2.13/gradlew
+  - TERM=dumb GRADLE=gradle/gradle2.14/gradlew
 install: ./gradlew   assemble --stacktrace
 script:
   - ./gradlew clean build --stacktrace && $GRADLE -p samples clean check -x codenarcMain -x codenarcTest && $GRADLE -p samples codenarcMain codenarcTest
