@@ -17,8 +17,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
-        classpath 'org.codehaus.groovy:groovy-backports-compat23:2.4.4'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
+        classpath 'org.codehaus.groovy:groovy-backports-compat23:2.4.7'
     }
 }
 
