@@ -65,7 +65,7 @@ dependencies {
     }
     if (gradle.gradleVersion.startsWith('1')) {
         // no conflict
-        compile('org.codehaus.groovy:groovy-all:2.4.4') { force = true }
+        compile('org.codehaus.groovy:groovy-all:2.4.6') { force = true }
     } else if (gradle.gradleVersion.startsWith('2.0')) {
         compile('org.codehaus.groovy:groovy-all:2.3.3') { force = true }
     } else if (gradle.gradleVersion == ('2.1')
@@ -78,6 +78,9 @@ dependencies {
     } else if (gradle.gradleVersion.startsWith('2.6')
 			  || gradle.gradleVersion.startsWith('2.7')) {
         compile('org.codehaus.groovy:groovy-all:2.3.10') { force = true }
+    } else if (gradle.gradleVersion.startsWith('2.13')
+            || gradle.gradleVersion.startsWith('2.14')) {
+        compile('org.codehaus.groovy:groovy-all:2.4.6') { force = true }
     } else {
         compile('org.codehaus.groovy:groovy-all:2.4.4') { force = true }
     } 

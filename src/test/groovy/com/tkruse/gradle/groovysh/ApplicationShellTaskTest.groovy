@@ -41,7 +41,7 @@ class ApplicationShellTaskTest {
 
     @Test
     void testGroovyVersions() {
-        for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.9', '2.4.4']) {
+        for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.9', '2.4.4', '2.4.6']) {
             Project project = TestHelper.createProjectWithPluginAndJava()
             project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
 
@@ -103,7 +103,7 @@ class ApplicationShellTaskTest {
                                        ApplicationShellTask shellTask, Project project) {
         assert dependencyVersions.contains('jline2.11')
         assert dependencyVersions.contains('commons-cli1.2')
-        assert dependencyVersions.contains('groovy-all2.4.4')
+        assert dependencyVersions.contains('groovy-all2.4.6')
         assert shellTask.dependsOn.contains('classes')
         assert shellTask.classpath.asPath.contains('groovy')
         assert shellTask.classpath.asPath.contains('junit')

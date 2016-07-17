@@ -31,7 +31,7 @@ class BuildShellTaskTest {
 
     @Test
     void testGroovyVersions() {
-        for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.9', '2.4.4']) {
+        for (String version in ['2.2.1', '2.2.2', '2.3.0', '2.3.9', '2.4.4', '2.4.6']) {
             for (String gradleVersion in ['1.12', '2.0', '2.1', '2.2.1', '2.3', '2.4', '2.5', '2.6', '2.7', '2.8', '2.9', '2.13', '2.14']) {
                 Project project = TestHelper.createProjectWithPluginAndJava()
                 project.dependencies.add('testCompile', 'junit:junit-dep:4.11')
@@ -69,7 +69,7 @@ class BuildShellTaskTest {
                 project.configurations.buildShellConf_buildShell.dependencies.asList().collect { it.name + it.version }
         assert dependencyVersions.contains('jline2.11')
         assert dependencyVersions.contains('commons-cli1.2')
-        assert dependencyVersions.contains('groovy-all2.4.4')
+        assert dependencyVersions.contains('groovy-all2.4.6')
         assert dependencyVersions.contains('gradle-tooling-api2.12')
 
     }
