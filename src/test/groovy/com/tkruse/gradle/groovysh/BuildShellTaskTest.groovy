@@ -45,7 +45,7 @@ class BuildShellTaskTest {
                 List<String> dependencyVersions =
                         project.configurations.buildShellConf_buildShell
                                 .dependencies.asList().collect { it.name + it.version }
-                assert dependencyVersions.contains('jline2.11')
+                assert dependencyVersions.contains('jline2.12')
                 assert dependencyVersions.contains('commons-cli1.2')
                 assert dependencyVersions.contains('groovy-all' + version)
                 assert dependencyVersions.contains('gradle-tooling-api' + gradleVersion)
@@ -67,7 +67,7 @@ class BuildShellTaskTest {
         assert buildShellTask != null
         List<String> dependencyVersions =
                 project.configurations.buildShellConf_buildShell.dependencies.asList().collect { it.name + it.version }
-        assert dependencyVersions.contains('jline2.11')
+        assert dependencyVersions.contains('jline2.12')
         assert dependencyVersions.contains('commons-cli1.2')
         assert dependencyVersions.contains('groovy-all2.4.4')
         assert dependencyVersions.contains('gradle-tooling-api2.12')

@@ -43,7 +43,7 @@ class GroovyshPlugin implements Plugin<Project> {
                 project.dependencies.add(BuildDevShellTask.CONFIGURATION_NAME, 'jline:jline:1.0')
             } else {
                 // gradle 2.0 runs with groovy 2.3.3, groovysh needs jline 2.11
-                project.dependencies.add(BuildDevShellTask.CONFIGURATION_NAME, 'jline:jline:2.11')
+                project.dependencies.add(BuildDevShellTask.CONFIGURATION_NAME, 'jline:jline:2.12')
             }
 
             project.configurations.getByName(BuildDevShellTask.CONFIGURATION_NAME).each { File file ->

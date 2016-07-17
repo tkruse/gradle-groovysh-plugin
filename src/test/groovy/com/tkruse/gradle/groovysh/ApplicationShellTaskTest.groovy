@@ -50,7 +50,7 @@ class ApplicationShellTaskTest {
             project.tasks.findByName(ApplicationShellTask.NAME).addGroovyDependencies()
             List<String> dependencyVersions =
                     project.configurations.appShellConf_shell.dependencies.asList().collect { it.name + it.version }
-            assert dependencyVersions.contains('jline2.11')
+            assert dependencyVersions.contains('jline2.12')
             assert dependencyVersions.contains('commons-cli1.2')
             assert dependencyVersions.contains('groovy-all' + version)
         }
@@ -101,7 +101,7 @@ class ApplicationShellTaskTest {
 
     private static void checkTaskSetup(List<String> dependencyVersions,
                                        ApplicationShellTask shellTask, Project project) {
-        assert dependencyVersions.contains('jline2.11')
+        assert dependencyVersions.contains('jline2.12')
         assert dependencyVersions.contains('commons-cli1.2')
         assert dependencyVersions.contains('groovy-all2.4.4')
         assert shellTask.dependsOn.contains('classes')

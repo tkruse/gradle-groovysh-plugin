@@ -59,7 +59,7 @@ class TaskHelper {
                 addIfMissing(project, configurationName, deps, 'jline', 'jline', '1.0')
                 break
             case ~/2\.[2-4]\.[0-9].*/:
-                addIfMissing(project, configurationName, deps, 'jline', 'jline', '2.11')
+                addIfMissing(project, configurationName, deps, 'jline', 'jline', '2.12')
                 break
             default:
                 String msg = "Unknown Groovy version '$actualGroovyVersion'"

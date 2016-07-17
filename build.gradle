@@ -61,7 +61,7 @@ dependencies {
     if (gradle.gradleVersion.startsWith('1')) {
         compile "jline:jline:1.0"
     } else {
-        compile "jline:jline:2.11"
+        compile "jline:jline:2.12"
     }
     if (gradle.gradleVersion.startsWith('1')) {
         // no conflict

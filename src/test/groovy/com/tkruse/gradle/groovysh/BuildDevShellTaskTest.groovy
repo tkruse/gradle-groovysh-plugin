@@ -24,7 +24,7 @@ class BuildDevShellTaskTest {
         if (gradleVersion.startsWith('1')) {
             assert dependencyVersions.contains('jline1.0')
         } else {
-            assert dependencyVersions.contains('jline2.11')
+            assert dependencyVersions.contains('jline2.12')
         }
     }
 
