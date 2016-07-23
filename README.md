@@ -1,5 +1,14 @@
 # Gradle plugin providing a Groovy Shell
 
+---
+
+**This plugin is broken starting with gradle 2.13, and I currently have no time to fix the issues.**
+
+**If you like to have a REPL, an alternative is to explicitly create one as part of your project, see [docs](doc/InstallAppShellManually.md)**
+
+---
+
+
 [![Build Status](https://travis-ci.org/tkruse/gradle-groovysh-plugin.svg)](https://travis-ci.org/tkruse/gradle-groovysh-plugin)
 [![Download](https://api.bintray.com/packages/tkruse/maven/gradle-groovysh-plugin/images/download.svg) ](https://bintray.com/tkruse/maven/gradle-groovysh-plugin/_latestVersion)
 
