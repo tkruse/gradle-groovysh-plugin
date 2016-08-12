@@ -44,15 +44,15 @@ This plugin is **Work In Progress**, expect some rough edges, but please do repo
 Include the plugin in your build.gradle file like this (using gradle > 2.1):
 
 ```Groovy
-plugins {
-  id 'java'
-  id "com.github.tkruse.groovysh" version "1.0.9"
-}
-
 buildscript {
     repositories {
         jcenter()
     }
+}
+
+plugins {
+  id 'java'
+  id "com.github.tkruse.groovysh" version "1.0.9"
 }
 
 repositories {
