@@ -59,10 +59,3 @@ class ShellMain {
 ```
 
 You can also use a Groovy Class, of course.
-
-Note that in some cases, when running ```./gradlew shell```, the shell prompt can get messed up. Pass the option 
-```--console plain``` to fix this:
-
-```
-./gradlew --console plain shell
-```
