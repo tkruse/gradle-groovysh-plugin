@@ -6,6 +6,8 @@
 
 **If you like to have a REPL, an alternative is to explicitly create one as part of your project, see [docs](doc/InstallAppShellManually.md)**
 
+**UPDATE:** Inspired by the above documentation, [@sandipchitale](https://github.com/sandipchitale) has developed a [Gist - Run groovysh in Gradle build context](https://github.com/sandipchitale/gradle-groovysh-plugin.git) and a [VSCode extention - Extend Gradle for Java extention](https://marketplace.visualstudio.com/items?itemName=sandipchitale.vscode-gradle-ext). Give it a try.
+
 ---
 
 
